@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Content — GB STUDY</title>
+    <meta name="description" content="View lectures, notes, DPP exercises, and schedule details on GB STUDY.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://eduzex.pages.dev/pw_content.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="/server-loader.js"></script>
+    <style>
+        :root {
+            --pw-blue: #2563eb;
+            --pw-light-blue: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-body: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --active-tab-bg: #334155;
+            --active-tab-text: #ffffff;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.5; padding-bottom: 40px; }
+        
+        .header { 
+            position: sticky; top: 0; z-index: 50; background: #fff; 
+            padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+        .back-btn { background: none; border: none; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center; padding-right: 4px; }
+        .page-title { font-size: 17px; font-weight: 700; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        /* Pill Tabs */
+        .tabs-nav {
+            display: flex; gap: 8px; padding: 16px; 
+            overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+            position: sticky; top: 52px; background: #fff; z-index: 40;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        
+        .tab-btn {
+            background: #ffffff; border: 1px solid var(--border-color); 
+            padding: 8px 16px; font-size: 14px; font-weight: 600;
+            color: #475569; cursor: pointer; border-radius: 20px; white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab-btn.active { 
+            background: var(--active-tab-bg); 
+            color: var(--active-tab-text); 
+            border-color: var(--active-tab-bg); 
+            font-weight: 700;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+        
+        .content-grid, .list-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .lecture-card, .content-card {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        @media (min-width: 640px) {
+            .lecture-card, .content-card {
+                width: calc(50% - 8px);
+                max-width: none;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lecture-card {
+                width: calc(33.333% - 11px);
+            }
+        }
+        
+        .content-card {
+            border: 1px solid var(--border-color); border-radius: 16px; padding: 16px;
+            background: #ffffff; display: flex; flex-direction: column; gap: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        
+        .lecture-card {
+            border: 1px solid var(--border-color); border-radius: 16px;
+            background: #ffffff; display: flex; flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); overflow: hidden; gap: 0; padding: 0;
+            transition: transform 0.2s;
+        }
+        .lecture-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+        
+        .lecture-banner {
+            width: 100%; aspect-ratio: 16/9; background: #e2e8f0;
+            position: relative; overflow: hidden; cursor: pointer;
+        }
+        .lecture-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .play-btn-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 48px; height: 48px; background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); backdrop-filter: blur(4px);
+        }
+        .play-btn-overlay svg { width: 24px; height: 24px; fill: var(--pw-blue); margin-left: 4px; }
+        
+        .lecture-info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+        .card-meta { font-size: 13px; color: #475569; font-weight: 600; margin-bottom: 4px; }
+        .card-title { font-size: 15.5px; font-weight: 700; color: #0f172a; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; cursor: pointer; }
+        
+        .lecture-actions {
+            display: flex; gap: 12px; align-items: center;
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid #f1f5f9;
+        }
+        
+        .action-icon-btn {
+            background: none; border: none; cursor: pointer; color: #64748b;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 8px; transition: all 0.2s;
+            border: 1px solid var(--border-color);
+        }
+        .action-icon-btn:hover { background: #f1f5f9; color: #1e293b; }
+        
+        .check-btn { color: var(--text-muted); transition: all 0.2s; border: none; width: 32px; height: 32px; }
+        .check-btn.completed { color: #8b5cf6; background: transparent; }
+        .check-btn:hover { border: none; }
+
+        .watch-now-btn {
+            background: #8b5cf6;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            transition: all 0.2s;
+            height: 40px;
+        }
+        .watch-now-btn:hover { background: #7c3aed; }
+
+        .card-progress-bar {
+            height: 4px;
+            background: #8b5cf6;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .lecture-attachments {
+            background: #f8fafc; border-top: 1px solid var(--border-color);
+            padding: 16px; display: none; flex-direction: column; gap: 12px;
+        }
+        .lecture-attachments.expanded { display: flex; }
+        
+        /* Inner Content Card (for attachments or general lists) */
+        .card-top { display: flex; gap: 16px; }
+        .icon-box {
+            width: 56px; height: 56px; border-radius: 12px; background: var(--pw-light-blue);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;
+        }
+        .icon-box-inner {
+            width: 36px; height: 36px; border-radius: 50%; background: var(--pw-blue);
+            display: flex; align-items: center; justify-content: center; color: #fff;
+        }
+        .icon-box-inner svg { width: 20px; height: 20px; }
+        .small-badge {
+            position: absolute; bottom: -2px; right: -2px; width: 20px; height: 20px;
+            background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+        .small-badge-inner {
+            width: 16px; height: 16px; background: var(--pw-blue); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff;
+        }
+        .card-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+        .card-divider { height: 1px; background: #f1f5f9; margin: 0 -16px; }
+        .card-action {
+            width: 100%; padding: 12px; border-radius: 8px; background: #f8fafc;
+            border: 1px solid #e2e8f0; color: #0f172a; font-size: 14px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .card-action:hover { background: #f1f5f9; }
+        
+        .loader { width: 32px; height: 32px; border: 3px solid #f3f3f3; border-top: 3px solid var(--pw-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 40px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .empty-state { text-align: center; padding: 48px 16px; color: var(--text-muted); font-size: 15px; grid-column: 1 / -1; }
+
+        /* Bottom Sheet */
+        .bottom-sheet-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 100;
+            display: none; flex-direction: column; justify-content: flex-end;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .bottom-sheet-overlay.active { display: flex; opacity: 1; }
+        .bottom-sheet {
+            background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-height: 80vh;
+            display: flex; flex-direction: column; overflow: hidden;
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .bottom-sheet-overlay.active .bottom-sheet { transform: translateY(0); }
+        .bottom-sheet-header {
+            padding: 16px; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .bottom-sheet-header h3 { font-size: 16px; font-weight: 700; color: #1e293b; margin: 0; }
+        .close-btn { background: none; border: none; font-size: 24px; color: var(--text-muted); cursor: pointer; line-height: 1; }
+        .bottom-sheet-content { padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    
+        .pdf-popup-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .pdf-popup {
+            background: white; padding: 24px; border-radius: 12px; width: 90%; max-width: 400px;
+            text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .pdf-popup-icon { font-size: 48px; color: #ef4444; margin-bottom: 16px; }
+        .pdf-popup-title { font-weight: 600; margin-bottom: 16px; color: #1e293b; word-break: break-all; }
+        .pdf-popup-progress-container {
+            height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; margin-bottom: 8px;
+        }
+        .pdf-popup-progress-bar {
+            height: 100%; background: #0284c7; width: 0%; transition: width 0.3s ease;
+        }
+        .pdf-popup-status { font-size: 14px; color: #64748b; }
+    \n    </style>
+
+<style>
+  img[src*="1790916890122.png"], img[src*="eduzex.png"], .pw-header-logo, .footer-pw-logo, .brand img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+</style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" onclick="history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <div class="page-title" id="pageTitle">Content</div>
+        </div>
+    </div>
+    
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('LECTURES', event)">Lectures</button>
+        <button class="tab-btn" onclick="switchTab('NOTES', event)">Notes</button>
+        <button class="tab-btn" onclick="switchTab('DPP_QUIZ', event)">DPP Quiz</button>
+        <button class="tab-btn" onclick="switchTab('DPP_PDFS', event)">DPP PDF</button>
+        <button class="tab-btn" onclick="switchTab('DppVideos', event)">Solution</button>
+    </div>
+    
+    <div class="container">
+        <div id="contentContainer">
+            <div class="loader"><div class="loader-ball"></div><div class="loader-ball"></div><div class="loader-ball"></div></div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet Popup -->
+    <div id="attachmentPopup" class="bottom-sheet-overlay" onclick="if(event.target===this) closeAttachmentPopup()">
+        <div class="bottom-sheet">
+            <div class="bottom-sheet-header">
+                <h3>Attachments</h3>
+                <button class="close-btn" onclick="closeAttachmentPopup()">&times;</button>
+            </div>
+            <div class="bottom-sheet-content" id="popupContent">
+                <!-- Attachments rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const batchId = urlParams.get('batch_id') || urlParams.get('batchid');
+        const subjectId = urlParams.get('subject_id') || urlParams.get('subjectid');
+        const topicId = urlParams.get('topic_id') || urlParams.get('topicid') || urlParams.get('tagId');
+        const programId = urlParams.get('program_id') || urlParams.get('programId');
+        const chapterId = urlParams.get('chapter_id') || urlParams.get('chapterId');
+        const passedName = urlParams.get('name') || urlParams.get('title') || urlParams.get('tittle');
+
+        if (passedName) {
+            document.getElementById('pageTitle').textContent = passedName;
+            document.title = passedName;
+        } else {
+            document.title = 'Content';
+        }
+
+        window.lectureItemsMap = {};
+        window.lectureMetaMap = {};
+
+        function showLectureTransitionModal(url, extraMeta) {
+            try {
+                extraMeta = extraMeta || {};
+                var urlObj = new URL(url, window.location.origin);
+                var defaultTeacherImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+                var title = extraMeta.title || urlObj.searchParams.get('title') || urlObj.searchParams.get('name') || 'Lecture';
+                var batchName = extraMeta.batchName || urlObj.searchParams.get('batch_name') || localStorage.getItem('active_batch_name') || 'Arjuna JEE 2026';
+                var teacher = extraMeta.teacher || urlObj.searchParams.get('teacher') || 'Saleem Ahmad Sir';
+                var subject = extraMeta.subject || urlObj.searchParams.get('subject') || 'Physics';
+                var img = extraMeta.facultyImg || urlObj.searchParams.get('faculty_image') || urlObj.searchParams.get('facultyImage') || urlObj.searchParams.get('image');
+                if (!img || img.includes('86e92751-6d7c-4a34-8c65-27a32b2e843f.png')) {
+                    img = defaultTeacherImg;
+                }
+
+                var overlay = document.getElementById('lectureTransitionOverlay');
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.id = 'lectureTransitionOverlay';
+                    overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,10,20,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:16px;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;';
+                    overlay.innerHTML = `
+                        <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:8px;padding:12px 14px;background:linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);">
+                          <div id="transBackBtn" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                          </div>
+                          <div id="transTopTitle" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:600;color:#cbd5e1;">Lecture</div>
+                        </div>
+                        <div style="position:relative;width:100%;max-width:370px;border-radius:28px;border:1px solid rgba(56,189,248,0.25);background:#0d1424;padding:36px 24px 28px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.85), 0 0 45px rgba(56,189,248,0.15);">
+                          <div style="position:relative;margin:0 auto;width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
+                            <div style="position:absolute;inset:0;border-radius:50%;border:2.5px solid transparent;border-top-color:#38bdf8;border-right-color:#818cf8;animation:pwSpin 1.2s linear infinite;"></div>
+                            <div style="position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(56,189,248,0.2);"></div>
+                            <div style="position:relative;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#2563eb,#38bdf8);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(99,102,241,0.7);">
+                              <svg style="width:20px;height:20px;margin-left:2px;fill:#ffffff;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                          </div>
+                          <h3 id="transStatusText" style="margin-top:20px;margin-bottom:0;font-size:17.5px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;transition:all 0.2s;">
+                            Matching Batch & Faculty...
+                          </h3>
+                          <p id="transLecTitle" style="margin-top:6px;margin-bottom:0;padding:0 4px;font-size:13.5px;font-weight:500;line-height:1.5;color:#94a3b8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></p>
+                          <div style="margin-top:20px;margin-bottom:20px;display:flex;align-items:center;gap:14px;border-radius:16px;border:1px solid rgba(255,255,255,0.1);background:rgba(15,23,42,0.7);padding:12px;text-align:left;">
+                            <img id="transFacultyImg" src="${defaultTeacherImg}" referrerpolicy="no-referrer" alt="Faculty" style="width:48px;height:48px;flex-shrink:0;border-radius:14px;object-fit:cover;background:#1e293b;border:1px solid rgba(56,189,248,0.3);box-shadow:0 4px 12px rgba(0,0,0,0.4);display:block;" onerror="this.onerror=null; this.src='https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';" />
+                            <div style="flex:1;min-width:0;">
+                              <div id="transBatchName" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px;font-weight:700;color:#ffffff;"></div>
+                              <div id="transSubName" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;font-weight:600;color:#38bdf8;margin-top:2px;"></div>
+                            </div>
+                          </div>
+                          <div style="height:5px;width:100%;overflow:hidden;border-radius:9999px;background:rgba(255,255,255,0.1);">
+                            <div id="transProgressBar" style="height:100%;width:28%;border-radius:9999px;background:linear-gradient(to right, #38bdf8, #6366f1, #a855f7);transition:width 0.3s cubic-bezier(0.4,0,0.2,1);"></div>
+                          </div>
+                        </div>
+                        <style>
+                          @keyframes pwSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                        </style>
+                    `;
+                    document.body.appendChild(overlay);
+                }
+                document.getElementById('transTopTitle').textContent = title;
+                document.getElementById('transLecTitle').textContent = title;
+                document.getElementById('transBatchName').textContent = batchName;
+                document.getElementById('transSubName').textContent = teacher + ' • ' + subject;
+                var progEl = document.getElementById('transProgressBar');
+                var statusEl = document.getElementById('transStatusText');
+                var imgEl = document.getElementById('transFacultyImg');
+                if (progEl) progEl.style.width = '28%';
+                if (statusEl) statusEl.textContent = 'Matching Batch & Faculty...';
+                if (imgEl) {
+                    imgEl.referrerPolicy = 'no-referrer';
+                    imgEl.onerror = function() {
+                        this.onerror = null;
+                        this.src = defaultTeacherImg;
+                    };
+                    imgEl.src = img || defaultTeacherImg;
+                }
+                overlay.style.display = 'flex';
+
+                var cancelLaunch = false;
+                var backBtn = document.getElementById('transBackBtn');
+                if (backBtn) {
+                    backBtn.onclick = function() {
+                        cancelLaunch = true;
+                        overlay.style.display = 'none';
+                    };
+                }
+
+                setTimeout(function() {
+                    if (cancelLaunch) return;
+                    if (progEl) progEl.style.width = '74%';
+                    if (statusEl) statusEl.textContent = 'Syncing Lecture Parameters...';
+                }, 60);
+
+                setTimeout(function() {
+                    if (cancelLaunch) return;
+                    if (progEl) progEl.style.width = '100%';
+                    if (statusEl) statusEl.textContent = 'Launching Player...';
+                }, 130);
+
+                setTimeout(function() {
+                    if (cancelLaunch) return;
+                    window.location.href = url;
+                }, 200);
+            } catch(e) {
+                window.location.href = url;
+            }
+        }
+
+        function openClassUrl(url, itemId) {
+            if (!url) return;
+            var meta = null;
+            try {
+                if (itemId && window.lectureMetaMap && window.lectureMetaMap[itemId]) {
+                    meta = window.lectureMetaMap[itemId];
+                    sessionStorage.setItem('khazana_lecture_' + itemId, JSON.stringify(meta));
+                }
+            } catch (e) {}
+            showLectureTransitionModal(url, meta);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        let cachedData = {};
+        let currentTab = 'LECTURES';
+        let pwCompleted = {};
+        try {
+            const rawPw = localStorage.getItem('pw_completed');
+            if (rawPw && rawPw.trim()) {
+                pwCompleted = JSON.parse(rawPw);
+            }
+        } catch (e) {}
+        window.lectureItemsMap = {};
+
+        function switchTab(tab, event) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
+            fetchData(tab);
+        }
+
+        async function fetchData(tabName) {
+            const container = document.getElementById('contentContainer');
+            container.className = ''; 
+            
+            if (cachedData[tabName]) {
+                renderList(cachedData[tabName], tabName);
+                return;
+            }
+            
+            container.innerHTML = '<div class="loader"><div class="loader-ball"></div><div class="loader-ball"></div><div class="loader-ball"></div></div>';
+            
+            try {
+                let candidateUrls = [];
+                if (programId && chapterId) {
+                    if (tabName === 'LECTURES') {
+                        candidateUrls = [
+                            `/api/pw/radha/v1/programs/${programId}/subjects/${subjectId}/chapters/${chapterId}/topics/${topicId}/contents?page=1&contentType=videos`
+                        ];
+                    } else if (tabName === 'NOTES') {
+                        candidateUrls = [
+                            `/api/pw/radha/v1/programs/${programId}/subjects/${subjectId}/chapters/${chapterId}/topics/${topicId}/contents?page=1&contentType=notes`
+                        ];
+                    } else if (tabName === 'DPP_PDFS') {
+                        candidateUrls = [
+                            `/api/pw/radha/v1/programs/${programId}/subjects/${subjectId}/chapters/${chapterId}/topics/${topicId}/contents?page=1&contentType=DppNotes`
+                        ];
+                    } else if (tabName === 'DPP_QUIZ') {
+                        candidateUrls = [
+                            `/api/pw/radha/v1/programs/${programId}/subjects/${subjectId}/chapters/${chapterId}/topics/${topicId}/contents?page=1&contentType=exercises`
+                        ];
+                    } else if (tabName === 'DppVideos') {
+                        candidateUrls = [
+                            `/api/pw/radha/v1/programs/${programId}/subjects/${subjectId}/chapters/${chapterId}/topics/${topicId}/contents?page=1&contentType=DppVideos`
+                        ];
+                    }
+                } else if (tabName === 'LECTURES') {
+                    candidateUrls = [
+                        `/api/pw/radha/v2/batches/${batchId}/subject/${subjectId}/contents?tag=${topicId}&contentType=videos&page=1&limit=1000`,
+                        `/api/pw/radha/batch-service/v3/batch-subject-schedules/${batchId}/subject/${subjectId}/contents?skip=0&limit=100&contentType=LECTURES&tagId=${topicId}`
+                    ];
+                } else if (tabName === 'NOTES') {
+                    candidateUrls = [
+                        `/api/pw/radha/v2/batches/${batchId}/subject/${subjectId}/contents?tag=${topicId}&contentType=notes&page=1&limit=1000`,
+                        `/api/pw/radha/batch-service/v3/batch-subject-schedules/${batchId}/subject/${subjectId}/contents?skip=0&limit=100&contentType=NOTES&tagId=${topicId}`
+                    ];
+                } else if (tabName === 'DPP_PDFS') {
+                    candidateUrls = [
+                        `/api/pw/radha/v2/batches/${batchId}/subject/${subjectId}/contents?tag=${topicId}&contentType=DppNotes&page=1&limit=1000`,
+                        `/api/pw/radha/batch-service/v3/batch-subject-schedules/${batchId}/subject/${subjectId}/contents?skip=0&limit=100&contentType=DPP_PDF&tagId=${topicId}`
+                    ];
+                } else if (tabName === 'DPP_QUIZ') {
+                    candidateUrls = [
+                        `/api/pw/radha/v2/batches/${batchId}/subject/${subjectId}/contents?tag=${topicId}&contentType=exercises&page=1&limit=1000`,
+                        `/api/pw/radha/v3/test-service/tests/new-dpp-list?batchId=${batchId}&batchSubjectId=${subjectId}&chapterId=${topicId}&dppType=ALL&page=1&limit=1000`,
+                        `/api/pw/radha/batch-service/v3/batch-subject-schedules/${batchId}/subject/${subjectId}/contents?skip=0&limit=100&contentType=DPP_QUIZ&tagId=${topicId}`
+                    ];
+                } else if (tabName === 'DppVideos') {
+                    candidateUrls = [
+                        `/api/pw/radha/v2/batches/${batchId}/subject/${subjectId}/contents?tag=${topicId}&contentType=DppVideos&page=1&limit=1000`,
+                        `/api/pw/radha/batch-service/v3/batch-subject-schedules/${batchId}/subject/${subjectId}/contents?skip=0&limit=100&contentType=DPP_VIDEOS&tagId=${topicId}`
+                    ];
+                }
+
+                let data = [];
+                for (const url of candidateUrls) {
+                    try {
+                        const res = await fetch(url);
+                        if (!res.ok) continue;
+                        const text = await res.text().catch(() => '');
+                        const json = text ? JSON.parse(text) : {};
+                        const items = Array.isArray(json.data) ? json.data : (json.data?.tests || (Array.isArray(json) ? json : []));
+                        data = items;
+                        break;
+                    } catch (e) {
+                        console.warn("[API Debug] Endpoint attempt failed:", url, e.message);
+                    }
+                }
+
+                cachedData[tabName] = data;
+                renderList(data, tabName);
+            } catch (err) {
+                console.error("[API Debug] Error loading tab:", tabName, err);
+                container.innerHTML = `<div class="empty-state">Failed to load content. Please try again.</div>`;
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Available';
+            const d = new Date(dateString);
+            return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        
+        function viewPdf(itemId, pdfUrl, title = 'document', hwId = '') {
+            const params = new URLSearchParams({
+                batch_id: batchId || programId || '',
+                subject_id: subjectId || '',
+                Id: itemId || '',
+                type: 'pdf',
+                title: title || 'document'
+            });
+            if (programId) params.set('program_id', programId);
+            if (chapterId) params.set('chapter_id', chapterId);
+            if (topicId) params.set('topic_id', topicId);
+            if (hwId) params.set('hw_id', hwId);
+            if (pdfUrl && pdfUrl.startsWith('http') && pdfUrl.toLowerCase().includes('.pdf')) {
+                params.set('pdf_url', pdfUrl);
+            }
+            const proxyUrl = window.location.origin + `/api/pw/shyam?${params.toString()}`;
+            const viewerUrl = 'https://pdfweb.classx.co.in/pdfjs/web/viewer-new.html?file=' + encodeURIComponent(proxyUrl) + '&save_flag=1&title=' + encodeURIComponent(title);
+            window.location.href = viewerUrl;
+        }
+
+        async function downloadPdf(itemId, pdfUrl, title = 'document', hwId = '') {
+            const popup = document.getElementById('pdfDownloadPopup');
+            const titleEl = document.getElementById('pdfDownloadTitle');
+            const progress = document.getElementById('pdfDownloadProgressBar');
+            const status = document.getElementById('pdfDownloadStatus');
+            
+            let finalFilename = title;
+            if (!finalFilename.toLowerCase().endsWith('.pdf')) {
+                finalFilename += '.pdf';
+            }
+            
+            titleEl.textContent = finalFilename;
+            progress.style.width = '10%';
+            progress.style.backgroundColor = '#0284c7';
+            status.textContent = 'Starting download...';
+            popup.style.display = 'flex';
+            
+            try {
+                const params = new URLSearchParams({
+                    batch_id: batchId || programId || '',
+                    subject_id: subjectId || '',
+                    Id: itemId || '',
+                    type: 'pdf',
+                    title: title || 'document'
+                });
+                if (programId) params.set('program_id', programId);
+                if (chapterId) params.set('chapter_id', chapterId);
+                if (topicId) params.set('topic_id', topicId);
+                if (hwId) params.set('hw_id', hwId);
+                if (pdfUrl && pdfUrl.startsWith('http') && pdfUrl.toLowerCase().includes('.pdf')) {
+                    params.set('pdf_url', pdfUrl);
+                }
+                const downloadUrl = `/api/pw/shyam?${params.toString()}`;
+                
+                const response = await fetch(downloadUrl);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error("API Error Details:", { status: response.status, url: downloadUrl, error: errorText });
+                    throw new Error("Download failed with status " + response.status);
+                }
+                
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    const textRes = await response.text().catch(() => '');
+                    const jsonRes = textRes ? JSON.parse(textRes) : {};
+                    if (!jsonRes.success) {
+                        throw new Error(jsonRes.error || "Failed to download PDF");
+                    }
+                }
+                
+                progress.style.width = '50%';
+                status.textContent = 'Processing file...';
+
+                const blob = await response.blob();
+                progress.style.width = '100%';
+                status.textContent = 'Complete!';
+                
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = finalFilename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                
+                setTimeout(() => { popup.style.display = 'none'; }, 1500);
+            } catch (err) {
+                console.error("PDF Download Exception:", err);
+                status.textContent = err.message || 'Download failed!';
+                progress.style.backgroundColor = '#ef4444';
+                setTimeout(() => { popup.style.display = 'none'; }, 3000);
+            }
+        }
+
+        function toggleCheck(id, lectureId, btn) {
+            if (event) { event.stopPropagation(); }
+            pwCompleted[id] = !pwCompleted[id];
+            localStorage.setItem('pw_completed', JSON.stringify(pwCompleted));
+            
+            if (pwCompleted[id]) btn.classList.add('completed');
+            else btn.classList.remove('completed');
+            
+            updateProgress(lectureId);
+        }
+
+        function updateProgress(lectureId) {
+            if (!lectureId) return;
+            const itemIds = window.lectureItemsMap[lectureId];
+            if (itemIds && itemIds.length > 0) {
+                let completedCount = itemIds.filter(itemId => pwCompleted[itemId]).length;
+                let progress = (completedCount / itemIds.length) * 100;
+                let progressBar = document.getElementById('progress-' + lectureId);
+                if (progressBar) progressBar.style.width = progress + '%';
+            }
+        }
+        
+        async function openAttachments(lectureId) {
+            const popup = document.getElementById('attachmentPopup');
+            const popupContent = document.getElementById('popupContent');
+            
+            const fallbackEl = document.getElementById('fallback-attach-' + lectureId);
+            let htmlToRender = fallbackEl ? fallbackEl.innerHTML : '';
+            
+            // Show popup immediately with fallback or loader
+            if (!htmlToRender) {
+                popupContent.innerHTML = '<div class="empty-state" style="text-align: center;"><img src="https://i.ibb.co/Q3g9fGSt/1791541921524.png" alt="Empty" style="max-width: 150px; margin: 20px auto;"><br><span style="color: #64748b; font-weight: 500;">No attachments available</span></div>';
+            } else {
+                popupContent.innerHTML = htmlToRender;
+            }
+            popup.classList.add('active');
+            
+            try {
+                // Fetch details API to get actual attachments
+                const res = await fetch(`/api/pw/shyam?batch_id=${batchId}&subject_id=${subjectId}&Id=${lectureId}&type=details`);
+                const text = await res.text().catch(() => '');
+                const json = text ? JSON.parse(text) : {};
+                
+                if (json.success && json.data) {
+                    let attachmentsHtml = '';
+                    const item = json.data;
+                    
+                    if (item.homeworkIds && item.homeworkIds.length > 0) {
+                        item.homeworkIds.forEach(hw => {
+                            let attTypeLabel = 'Notes';
+                            let attIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`;
+                            let attBadgeSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+                            let attPdfUrl = '';
+                            if (hw.attachmentIds && hw.attachmentIds.length > 0) {
+                                attPdfUrl = (hw.attachmentIds[0].baseUrl || '') + (hw.attachmentIds[0].key || hw.attachmentIds[0].name || '');
+                            }
+
+                            
+                            let actualFileName = (hw.attachmentIds && hw.attachmentIds.length > 0 && hw.attachmentIds[0].name) ? hw.attachmentIds[0].name : null;
+                            let docTitle1 = (actualFileName || hw.topic || hw.name || hw.title || "document").replace(/'/g, "");
+                            // Remove .pdf from end of docTitle1 if it exists so we don't end up with .pdf.pdf
+                            if (docTitle1.toLowerCase().endsWith('.pdf')) {
+                                docTitle1 = docTitle1.slice(0, -4);
+                            }
+
+                            let attActionBtn = '<div style="display: flex; gap: 8px;">' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px; background: #e0f2fe; color: #0284c7;" onclick="viewPdf(\'' + lectureId + '\', \'' + attPdfUrl + '\', \'' + docTitle1 + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View</button>' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px;" onclick="downloadPdf(\'' + lectureId + '\', \'' + attPdfUrl + '\', \'' + docTitle1 + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download</button>' +
+                            '</div>';
+
+                            attachmentsHtml += renderAttachmentCard(hw, attTypeLabel, attIconSvg, attBadgeSvg, attActionBtn, lectureId);
+                        });
+                    }
+
+                    if (item.dpp && item.dpp.homeworkIds && item.dpp.homeworkIds.length > 0) {
+                        item.dpp.homeworkIds.forEach(hw => {
+                            let attTypeLabel = 'DPP PDF';
+                            let attIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+                            let attBadgeSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+                            let attPdfUrl = '';
+                            if (hw.attachmentIds && hw.attachmentIds.length > 0) {
+                                attPdfUrl = (hw.attachmentIds[0].baseUrl || '') + (hw.attachmentIds[0].key || hw.attachmentIds[0].name || '');
+                            }
+
+                            
+                            let actualFileName = (hw.attachmentIds && hw.attachmentIds.length > 0 && hw.attachmentIds[0].name) ? hw.attachmentIds[0].name : null;
+                            let docTitle1 = (actualFileName || hw.topic || hw.name || hw.title || "document").replace(/'/g, "");
+                            // Remove .pdf from end of docTitle1 if it exists so we don't end up with .pdf.pdf
+                            if (docTitle1.toLowerCase().endsWith('.pdf')) {
+                                docTitle1 = docTitle1.slice(0, -4);
+                            }
+
+                            let attActionBtn = '<div style="display: flex; gap: 8px;">' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px; background: #e0f2fe; color: #0284c7;" onclick="viewPdf(\'' + item._id + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle1) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View</button>' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px;" onclick="downloadPdf(\'' + item._id + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle1) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download</button>' +
+                            '</div>';
+
+                            attachmentsHtml += renderAttachmentCard(hw, attTypeLabel, attIconSvg, attBadgeSvg, attActionBtn, lectureId);
+                        });
+                    }
+
+                    if (item.exerciseIds && item.exerciseIds.length > 0) {
+                        item.exerciseIds.forEach(ex => {
+                            let attTypeLabel = 'DPP Quiz';
+                            let attIconSvg = '<img src="https://pi-mf.pw.live/static/svg/dpp.2cfc71ee.svg" style="width: 26px; height: 26px; object-fit: contain; aspect-ratio: 1/1;" alt="DPP">';
+                            let attBadgeSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>';
+                            
+                            let exTitle = ex.title || ex.topic || ex.name || "DPP Quiz";
+                            const realContent = (ex.content && ex.content.length > 0) ? ex.content[0] : null;
+                            const actualTestId = (realContent && (realContent.exerciseId || (realContent.exerciseDetails && realContent.exerciseDetails._id))) || ex.dppId || ex.testId || ex._id;
+                            const actualExerciseId = (realContent && ((realContent.exerciseDetails && realContent.exerciseDetails._id) || realContent.exerciseId || realContent._id)) || ex.exerciseId || actualTestId;
+                            const schedId = lectureId || item._id || '';
+                            const actualBatchId = batchId || item.batchId || '';
+                            const actualSubId = subjectId || item.batchSubjectId || '';
+
+                            const testParams = new URLSearchParams({
+                                testId: actualTestId,
+                                test_id: actualTestId,
+                                batchId: actualBatchId,
+                                batch_id: actualBatchId,
+                                subjectId: actualSubId,
+                                subject_id: actualSubId,
+                                exerciseId: actualExerciseId,
+                                batchScheduleId: schedId,
+                                testSource: 'BATCH_QUIZ',
+                                cohortId: '',
+                                test_name: exTitle
+                            });
+                            const testUrl = `/start-dpp-test/?${testParams.toString()}`;
+                            let attActionBtn = `<button class="card-action" onclick="window.location.href='${testUrl}'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Start Quiz</button>`;
+                            
+                            attachmentsHtml += renderAttachmentCard(ex, attTypeLabel, attIconSvg, attBadgeSvg, attActionBtn, lectureId);
+                        });
+                    }
+                    if (attachmentsHtml) {
+                        popupContent.innerHTML = attachmentsHtml;
+                        return; // Successfully fetched and rendered
+                    } else {
+                        popupContent.innerHTML = '<div class="empty-state" style="text-align: center;"><img src="https://i.ibb.co/Q3g9fGSt/1791541921524.png" alt="Empty" style="max-width: 150px; margin: 20px auto;"><br><span style="color: #64748b; font-weight: 500;">No attachments available</span></div>';
+                    }
+                }
+            } catch(e) {
+                console.error("Failed to fetch detailed attachments", e);
+            }
+            
+            // If API fetch fails or returns no attachments, we already showed fallback/empty-state.
+        }
+
+        function closeAttachmentPopup() {
+            const popup = document.getElementById('attachmentPopup');
+            popup.classList.remove('active');
+        }
+
+        function renderAttachmentCard(item, typeLabel, iconSvg, badgeSvg, actionBtnHtml, lectureId = null) {
+            const title = item.topic || item.name || item.title || "Untitled Attachment";
+            const dateStr = formatDate(item.date || item.startTime || item.createdAt);
+            
+            let checkHtml = '';
+            if (lectureId) {
+                let isCompleted = pwCompleted[item._id] ? 'completed' : '';
+                checkHtml = `
+                    <button class="action-icon-btn check-btn ${isCompleted}" onclick="toggleCheck('${item._id}', '${lectureId}', this)" title="Mark as complete">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </button>
+                `;
+            }
+            
+            return `
+                <div class="content-card">
+                    <div class="card-top">
+                        <div class="icon-box">
+                            <div class="icon-box-inner">
+                                ${iconSvg}
+                            </div>
+                            <div class="small-badge">
+                                <div class="small-badge-inner">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        ${badgeSvg.split('viewBox="0 0 24 24"')[1] || ''}
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-meta">${typeLabel} • ${dateStr}</div>
+                            <div class="card-title">${escapeHtml(title)}</div>
+                        </div>
+                        ${checkHtml}
+                    </div>
+                    <div class="card-divider"></div>
+                    ${actionBtnHtml}
+                </div>
+            `;
+        }
+
+        function renderList(list, tabName) {
+            const container = document.getElementById('contentContainer');
+            
+            if (!list || list.length === 0) {
+                container.className = '';
+                container.innerHTML = `<div class="empty-state">No content available here.</div>`;
+                return;
+            }
+
+            if (tabName === 'LECTURES' || tabName === 'DppVideos') {
+                container.className = 'content-grid';
+            } else {
+                container.className = 'list-grid';
+            }
+
+            let html = '';
+            
+            if (tabName === 'LECTURES' || tabName === 'DppVideos') {
+                list.forEach((itemWrap, index) => {
+                    let item = itemWrap.data || itemWrap;
+                    let title = item.topic || item.name || item.title || "Untitled Lecture";
+                    let dateStr = formatDate(item.date || item.startTime || item.createdAt);
+                    let typeLabel = 'Lecture';
+                    
+                    let imageUrl = '';
+                    if (item.videoDetails && item.videoDetails.image) {
+                        imageUrl = item.videoDetails.image;
+                    } else if (item.previewImageUrl) {
+                        imageUrl = item.previewImageUrl;
+                    } else {
+                        imageUrl = 'https://dummyimage.com/640x360/e2e8f0/64748b&text=No+Thumbnail';
+                    }
+
+                    let teacherName = '';
+                    if (item.faculty) {
+                        teacherName = item.faculty.name || item.faculty;
+                    } else if (Array.isArray(item.teachers) && item.teachers[0]) {
+                        teacherName = typeof item.teachers[0] === 'string' ? item.teachers[0] : (item.teachers[0].name || item.teachers[0].firstName || '');
+                    }
+                    if (!teacherName) {
+                        teacherName = urlParams.get('teacher') || urlParams.get('teacher_name') || 'Saleem Ahmad Sir';
+                    }
+
+                    let facultyImg = '';
+                    if (item.faculty && (item.faculty.image || item.faculty.imageUrl || item.faculty.photo)) {
+                        facultyImg = item.faculty.image || item.faculty.imageUrl || item.faculty.photo;
+                    } else if (Array.isArray(item.teachers) && item.teachers[0] && item.teachers[0].imageId) {
+                        const tImg = item.teachers[0].imageId;
+                        if (typeof tImg === 'string') facultyImg = tImg;
+                        else if (tImg.baseUrl) facultyImg = tImg.baseUrl + (tImg.key || '');
+                    }
+                    if (!facultyImg) {
+                        facultyImg = urlParams.get('faculty_image') || urlParams.get('facultyImage') || urlParams.get('teacher_image') || '';
+                    }
+                    if (!facultyImg || facultyImg.includes('86e92751-6d7c-4a34-8c65-27a32b2e843f.png')) {
+                        facultyImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+                    }
+
+                    const batchTitle = urlParams.get('batch_name') || urlParams.get('batchName') || localStorage.getItem('active_batch_name') || 'Arjuna JEE 2026';
+                    const subjectTitle = passedName || urlParams.get('subject') || urlParams.get('subject_name') || 'Physics';
+
+                    const rawStreamUrl = item.url || (item.videoDetails && item.videoDetails.videoUrl) || '';
+                    const vId = (item.videoDetails && (item.videoDetails.id || item.videoDetails._id)) || item._id || '';
+                    const isLiveClass = (item.isLive || item.lectureType === 'LIVE' || item.type === 'LIVE' || item.status === 'LIVE');
+                    const vidUrl = `/pw/player?batchId=${encodeURIComponent(batchId)}&subjectId=${encodeURIComponent(subjectId)}&childId=${encodeURIComponent(item._id)}&videoId=${encodeURIComponent(vId)}&scheduleId=${encodeURIComponent(item._id)}&type=${isLiveClass ? 'live' : 'vod'}&isLive=${isLiveClass ? 'true' : 'false'}&title=${encodeURIComponent(title)}&batch_name=${encodeURIComponent(batchTitle)}&teacher=${encodeURIComponent(teacherName)}&subject=${encodeURIComponent(subjectTitle)}&faculty_image=${encodeURIComponent(facultyImg)}${rawStreamUrl ? '&streamUrl=' + encodeURIComponent(rawStreamUrl) : ''}${imageUrl ? '&image=' + encodeURIComponent(imageUrl) : ''}`;
+                    if (!window.lectureMetaMap) window.lectureMetaMap = {};
+                    window.lectureMetaMap[item._id] = {
+                        title,
+                        videoUrl: rawStreamUrl,
+                        image: imageUrl,
+                        videoId: vId,
+                        batchId,
+                        subjectId,
+                        batchName: batchTitle,
+                        teacher: teacherName,
+                        subject: subjectTitle,
+                        facultyImg: facultyImg
+                    };
+                    
+                    let relatedIds = [];
+                    let attachmentsHtml = '';
+                    if (item.homeworkIds && item.homeworkIds.length > 0) {
+                        item.homeworkIds.forEach(hw => {
+                            relatedIds.push(hw._id);
+                            let attTypeLabel = 'Notes';
+                            let attIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`;
+                            let attBadgeSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+                            let attPdfUrl = '';
+                            if (hw.attachmentIds && hw.attachmentIds.length > 0) {
+                                attPdfUrl = (hw.attachmentIds[0].baseUrl || '') + (hw.attachmentIds[0].key || hw.attachmentIds[0].name || '');
+                            }
+
+                            
+                            let actualFileName = (hw.attachmentIds && hw.attachmentIds.length > 0 && hw.attachmentIds[0].name) ? hw.attachmentIds[0].name : null;
+                            let docTitle1 = (actualFileName || hw.topic || hw.name || hw.title || "document").replace(/'/g, "");
+                            // Remove .pdf from end of docTitle1 if it exists so we don't end up with .pdf.pdf
+                            if (docTitle1.toLowerCase().endsWith('.pdf')) {
+                                docTitle1 = docTitle1.slice(0, -4);
+                            }
+
+                            let attActionBtn = '<div style="display: flex; gap: 8px;">' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px; background: #e0f2fe; color: #0284c7;" onclick="viewPdf(\'' + item._id + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle1) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View</button>' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px;" onclick="downloadPdf(\'' + item._id + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle1) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download</button>' +
+                            '</div>';
+
+                            attachmentsHtml += renderAttachmentCard(hw, attTypeLabel, attIconSvg, attBadgeSvg, attActionBtn, item._id);
+                        });
+                    }
+                    
+                    window.lectureItemsMap[item._id] = relatedIds;
+                    
+                    let completedCount = relatedIds.filter(id => pwCompleted[id]).length;
+                    let progress = relatedIds.length > 0 ? (completedCount / relatedIds.length) * 100 : 0;
+                    
+                    let isCompleted = pwCompleted[item._id] ? 'completed' : '';
+
+                    html += `
+                        <div class="lecture-card">
+                            <div class="lecture-banner" data-url="${escapeHtml(vidUrl)}" onclick="openClassUrl(this.getAttribute('data-url'), '${item._id}')" style="cursor: pointer;">
+                                <img src="${imageUrl}" alt="Thumbnail">
+                            </div>
+                            <div class="lecture-info">
+                                <div class="card-meta">${typeLabel} • ${dateStr}</div>
+                                <div class="card-title" data-url="${escapeHtml(vidUrl)}" onclick="openClassUrl(this.getAttribute('data-url'), '${item._id}')" style="cursor: pointer;">${escapeHtml(title)}</div>
+                                <div class="lecture-actions">
+                                    <button class="action-icon-btn check-btn ${isCompleted}" onclick="toggleCheck('${item._id}', '${item._id}', this)" title="Mark as complete">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                    </button>
+                                    <button class="watch-now-btn" data-url="${escapeHtml(vidUrl)}" onclick="openClassUrl(this.getAttribute('data-url'), '${item._id}')">Watch Now</button>
+                                    <button class="action-icon-btn" onclick="openAttachments('${item._id}')" title="Show Attachments">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/9941/9941021.png" style="width: 20px; height: 20px; filter: grayscale(100%) opacity(0.7);" alt="Attachments">
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="fallback-attach-${item._id}" style="display: none;">${attachmentsHtml}</div>
+                            <div class="card-progress-bar" id="progress-${item._id}" style="width: ${progress}%;"></div>
+                        </div>
+                    `;
+                });
+            } else if (tabName === 'NOTES' || tabName === 'DPP_PDFS') {
+                let itemsFound = 0;
+                list.forEach((itemWrap) => {
+                    let item = itemWrap.data || itemWrap;
+                    let attachments = item.homeworkIds || item.attachmentIds || [];
+                    
+                    if (attachments.length > 0) {
+                        attachments.forEach(hw => {
+                            let isNotes = tabName === 'NOTES';
+                            let typeLabel = isNotes ? 'Notes' : 'DPP PDF';
+                            
+                            let iconSvg = '';
+                            let badgeSvg = '';
+                            if (isNotes) {
+                                iconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`;
+                                badgeSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+                            } else {
+                                iconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+                                badgeSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+                            }
+
+                            let attPdfUrl = '';
+                            if (hw.attachmentIds && hw.attachmentIds.length > 0) {
+                                attPdfUrl = (hw.attachmentIds[0].baseUrl || '') + (hw.attachmentIds[0].key || hw.attachmentIds[0].name || '');
+                            } else if (hw.baseUrl && (hw.key || hw.name)) {
+                                attPdfUrl = hw.baseUrl + (hw.key || hw.name);
+                            }
+                            
+
+                            let topId = item._id;
+                            let docTitle2 = (hw.topic || hw.name || hw.title || item.topic || item.name || item.title || "document").replace(/'/g, "");
+                            let actionBtnHtml = '<div style="display: flex; gap: 8px;">' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px; background: #e0f2fe; color: #0284c7;" onclick="viewPdf(\'' + topId + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle2) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View</button>' +
+                                '<button class="card-action" style="flex: 1; padding: 6px 12px;" onclick="downloadPdf(\'' + topId + '\', \'' + escapeJs(attPdfUrl) + '\', \'' + escapeJs(docTitle2) + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download</button>' +
+                            '</div>';
+
+                            
+                            html += renderAttachmentCard(hw, typeLabel, iconSvg, badgeSvg, actionBtnHtml, item._id);
+                            itemsFound++;
+                        });
+                    }
+                });
+                
+                if (itemsFound === 0) {
+                    container.className = '';
+                    html = `<div class="empty-state">No content available here.</div>`;
+                }
+            } else if (tabName === 'DPP_QUIZ') {
+                let itemsFound = 0;
+                list.forEach((itemWrap) => {
+                    let item = itemWrap.data || itemWrap;
+                    let quizzes = [];
+                    if (item.exerciseIds && item.exerciseIds.length > 0) {
+                        quizzes = item.exerciseIds;
+                    } else if (item.type === 'DPP_QUIZ' && item.dppQuizDetails?.test) {
+                        quizzes = [item.dppQuizDetails.test];
+                    } else if (item.dppData) {
+                        quizzes = [item.dppData];
+                    } else if (item.testId || item.testNumber || (item.totalQuestions !== undefined && item._id)) {
+                        quizzes = [item];
+                    }
+                    
+                    if (quizzes.length > 0) {
+                        quizzes.forEach(ex => {
+                            let typeLabel = 'DPP Quiz';
+                            let iconSvg = '<img src="https://pi-mf.pw.live/static/svg/dpp.2cfc71ee.svg" style="width: 26px; height: 26px; object-fit: contain; aspect-ratio: 1/1;" alt="DPP">';
+                            let badgeSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>';
+                            
+                            let exTitle = ex.title || ex.topic || ex.name || "DPP Quiz";
+                            const realContent = (ex.content && ex.content.length > 0) ? ex.content[0] : null;
+                            const actualTestId = (realContent && (realContent.exerciseId || (realContent.exerciseDetails && realContent.exerciseDetails._id))) || ex.dppId || ex.testId || ex._id;
+                            const actualExerciseId = (realContent && ((realContent.exerciseDetails && realContent.exerciseDetails._id) || realContent.exerciseId || realContent._id)) || ex.exerciseId || actualTestId;
+                            const schedId = item._id || itemWrap._id || '';
+                            const actualBatchId = batchId || item.batchId || '';
+                            const actualSubId = subjectId || item.batchSubjectId || '';
+
+                            const testParams = new URLSearchParams({
+                                testId: actualTestId,
+                                test_id: actualTestId,
+                                batchId: actualBatchId,
+                                batch_id: actualBatchId,
+                                subjectId: actualSubId,
+                                subject_id: actualSubId,
+                                exerciseId: actualExerciseId,
+                                batchScheduleId: schedId,
+                                testSource: 'BATCH_QUIZ',
+                                cohortId: '',
+                                test_name: exTitle
+                            });
+                            const testUrl = `/start-dpp-test/?${testParams.toString()}`;
+                            let actionBtnHtml = `<button class="card-action" onclick="window.location.href='${testUrl}'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Start Quiz</button>`;
+                            
+                            html += renderAttachmentCard(ex, typeLabel, iconSvg, badgeSvg, actionBtnHtml, item._id);
+                            itemsFound++;
+                        });
+                    }
+                });
+                
+                if (itemsFound === 0) {
+                    container.className = '';
+                    html = `<div class="empty-state">No content available here.</div>`;
+                }
+            }
+
+            container.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        function escapeJs(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '&quot;')
+                .replace(/\n/g, ' ')
+                .replace(/\r/g, '');
+        }
+
+        // Initialize by fetching first tab
+        fetchData('LECTURES');
+
+    </script>
+
+    <!-- PDF Download Popup -->
+    <div id="pdfDownloadPopup" class="pdf-popup-overlay" style="display: none;">
+        <div class="pdf-popup">
+            <div class="pdf-popup-icon">
+                <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <div class="pdf-popup-title" id="pdfDownloadTitle">Document.pdf</div>
+            <div class="pdf-popup-progress-container">
+                <div class="pdf-popup-progress-bar" id="pdfDownloadProgressBar"></div>
+            </div>
+            <div class="pdf-popup-status" id="pdfDownloadStatus">Preparing download...</div>
+        </div>
+    </div>
+</body>
+</html>

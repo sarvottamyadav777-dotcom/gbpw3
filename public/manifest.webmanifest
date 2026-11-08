@@ -1,0 +1,31 @@
+{
+  "name": "GB STUDY — Batches, Lectures, Notes & DPPs",
+  "short_name": "GB STUDY",
+  "description": "GB STUDY is an educational platform helping learners discover study resources, batches, video lectures, DPP practice sheets, notes, and tests in one place.",
+  "start_url": "/pw",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/Q3g9fGSt/1791541921524.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/Q3g9fGSt/1791541921524.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/Q3g9fGSt/1791541921524.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

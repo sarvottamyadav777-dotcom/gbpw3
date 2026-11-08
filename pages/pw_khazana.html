@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Khazana — GB STUDY</title>
+    <meta name="description" content="Explore master faculties, recorded lectures, notes, and topic materials on GB STUDY Khazana.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://eduzex.pages.dev/khazana.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Shaka Player for DASH (.mpd) and HLS (.m3u8) video streaming -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+
+    <style>
+        :root {
+            --pw-primary: #5a4bda;
+            --pw-primary-hover: #4838cc;
+            --pw-accent: #059669;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --bg-page: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            
+            /* Subject Theme Colors */
+            --physics-bg: #dcfce7;
+            --physics-border: #bbf7d0;
+            --physics-accent: #15803d;
+            
+            --chem-bg: #e0f2fe;
+            --chem-border: #bae6fd;
+            --chem-accent: #0369a1;
+            
+            --math-bg: #fef3c7;
+            --math-border: #fde68a;
+            --math-accent: #b45309;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .top-navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .nav-back-btn {
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: color 0.15s;
+            flex-shrink: 0;
+        }
+
+        .nav-back-btn:hover {
+            color: var(--pw-primary);
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .header-batch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 260px;
+        }
+
+        .header-viewall-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 380px;
+            display: none;
+        }
+
+        .header-khazana-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #065f46;
+            flex-shrink: 0;
+        }
+
+        /* Khazana Hero Section */
+        .khazana-hero {
+            background: linear-gradient(135deg, #a7f3d0 0%, #bbf7d0 45%, #d1fae5 100%);
+            padding: 32px 16px 28px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #86efac;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Ambient sparkles */
+        .sparkle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.85);
+            pointer-events: none;
+            user-select: none;
+            animation: pulse-sparkle 3s ease-in-out infinite alternate;
+        }
+        .sparkle-1 { top: 20px; left: 12%; font-size: 16px; }
+        .sparkle-2 { top: 38px; right: 14%; font-size: 20px; animation-delay: 1s; }
+        .sparkle-3 { bottom: 25px; left: 22%; font-size: 14px; animation-delay: 1.5s; }
+        .sparkle-4 { bottom: 35px; right: 26%; font-size: 18px; animation-delay: 0.5s; }
+
+        @keyframes pulse-sparkle {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .hero-branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+
+        .laurel-branch {
+            font-size: 32px;
+            color: #15803d;
+            opacity: 0.9;
+        }
+
+        .khazana-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #14532d;
+            letter-spacing: -0.5px;
+        }
+
+        .khazana-tagline {
+            font-size: 14px;
+            font-weight: 600;
+            color: #166534;
+            letter-spacing: 0.2px;
+            margin-bottom: 22px;
+        }
+
+        /* Search Box in Hero */
+        .hero-search-wrapper {
+            width: 100%;
+            max-width: 780px;
+            position: relative;
+        }
+
+        .hero-search-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .hero-search-input {
+            width: 100%;
+            padding: 13px 20px 13px 48px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: #ffffff;
+            font-size: 14.5px;
+            outline: none;
+            box-shadow: 0 4px 16px rgba(20, 83, 45, 0.08);
+            transition: all 0.2s;
+        }
+
+        .hero-search-input:focus {
+            box-shadow: 0 6px 20px rgba(20, 83, 45, 0.16);
+            border-color: #15803d;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
+            width: 100%;
+        }
+
+        /* Section Heading & Filters */
+        .section-header {
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        /* Filter Pills Row */
+        .filter-pills-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 6px;
+            position: relative;
+        }
+
+        .filter-pills-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-dropdown-pill {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 22px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: all 0.15s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .filter-dropdown-pill:hover {
+            border-color: var(--pw-primary);
+            color: var(--pw-primary);
+        }
+
+        .filter-dropdown-pill.active {
+            background: var(--pw-primary-light);
+            border-color: var(--pw-primary);
+            color: var(--pw-primary);
+        }
+
+        .filter-reset-pill {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #ef4444;
+            padding: 8px 14px;
+            border-radius: 22px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            display: none;
+        }
+
+        /* Dropdown Popup Modal */
+        .filter-popover {
+            position: fixed;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            padding: 12px;
+            z-index: 100;
+            min-width: 240px;
+            max-width: 320px;
+            max-height: 380px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .filter-popover-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.15s;
+        }
+
+        .filter-popover-item:hover {
+            background: #f1f5f9;
+        }
+
+        .filter-popover-item.selected {
+            background: var(--pw-primary-light);
+            color: var(--pw-primary);
+            font-weight: 700;
+        }
+
+        /* Subject Course Row (Carousel) */
+        .subject-section {
+            margin-bottom: 34px;
+        }
+
+        .subject-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .view-all-btn {
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+
+        .view-all-btn:hover {
+            color: var(--pw-primary);
+        }
+
+        /* Carousel Track */
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 4px 2px 14px;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Carousel Arrow Buttons */
+        .carousel-arrow {
+            position: absolute;
+            top: 42%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: var(--text-main);
+            transition: all 0.15s;
+        }
+
+        .carousel-arrow:hover {
+            background: #f8fafc;
+            color: var(--pw-primary);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-arrow.left { left: -14px; }
+        .carousel-arrow.right { right: -14px; }
+
+        /* Course Card (Exact Match to Image) */
+        .course-card {
+            flex: 0 0 260px;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.07);
+        }
+
+        /* Upper card container with wavy background and cutout image */
+        .card-visual {
+            height: 148px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        /* Physics background */
+        .card-visual.physics-visual {
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            border-bottom: 1px solid var(--physics-border);
+        }
+
+        /* Chemistry background */
+        .card-visual.chem-visual {
+            background: linear-gradient(135deg, #e0f2fe 0%, #e8f0fe 100%);
+            border-bottom: 1px solid var(--chem-border);
+        }
+
+        /* Maths background */
+        .card-visual.math-visual {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border-bottom: 1px solid var(--math-border);
+        }
+
+        /* SVG wavy subtle contour lines */
+        .card-visual-wave {
+            position: absolute;
+            inset: 0;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Red "Complete" badge on top left */
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #eb5757;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.2px;
+            z-index: 2;
+        }
+
+        /* Teacher Cutout Photo */
+        .card-teacher-cutout {
+            height: 138px;
+            max-width: 90%;
+            object-fit: contain;
+            z-index: 1;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover .card-teacher-cutout {
+            transform: scale(1.03);
+        }
+
+        /* Lower Card Details */
+        .card-details {
+            padding: 12px 14px 14px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-course-name {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+
+        .card-teacher-name {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card-batch-tag {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Browse By Teachers Section */
+        .teachers-section {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .teachers-grid, .teachers-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .teachers-grid::-webkit-scrollbar, .teachers-row::-webkit-scrollbar { display: none; }
+
+        .teacher-card {
+            flex: 0 0 135px;
+            width: 135px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .teacher-card:hover { transform: translateY(-2px); }
+
+        .teacher-card-banner {
+            position: relative;
+            width: 135px;
+            height: 140px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .teacher-card-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15),
+                rgba(255, 255, 255, 0.15) 12px,
+                transparent 12px,
+                transparent 24px
+            );
+            pointer-events: none;
+        }
+        .teacher-card-photo {
+            height: 95%;
+            width: 95%;
+            object-fit: contain;
+            object-position: bottom;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+        }
+        .teacher-card-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 8px;
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            width: 100%;
+            word-break: break-word;
+        }
+
+        /* Khazana Footer Banner */
+        .khazana-footer-banner {
+            background: linear-gradient(135deg, #1e1b4b 0%, #2e2a72 50%, #3730a3 100%);
+            border-radius: 20px;
+            padding: 26px 28px;
+            margin-top: 36px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: #ffffff;
+            box-shadow: 0 10px 28px rgba(30, 27, 75, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .khazana-footer-content {
+            flex: 1;
+            min-width: 0;
+            z-index: 2;
+            padding-right: 140px;
+        }
+
+        .khazana-footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            color: #ffd700;
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .khazana-free-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #22c55e;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .khazana-footer-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            line-height: 1.25;
+        }
+
+        .khazana-footer-desc {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.5;
+            font-weight: 500;
+            max-width: 520px;
+            margin-bottom: 16px;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0088cc;
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 9px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35);
+            transition: all 0.2s ease;
+        }
+        .telegram-btn:hover {
+            background: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 136, 204, 0.45);
+        }
+
+        .khazana-footer-visual {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .khazana-footer-img {
+            height: 100%;
+            max-height: 165px;
+            width: auto;
+            object-fit: contain;
+            object-position: right bottom;
+        }
+
+        @media (max-width: 640px) {
+            .khazana-footer-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 22px;
+            }
+            .khazana-footer-content {
+                padding-right: 0;
+            }
+            .khazana-footer-visual {
+                position: relative;
+                align-self: flex-end;
+                margin-top: 10px;
+                right: auto;
+                bottom: auto;
+                top: auto;
+            }
+            .khazana-footer-img {
+                height: 110px;
+            }
+            .khazana-footer-title {
+                font-size: 19px;
+            }
+        }
+
+        /* Dedicated Subject View All Section */
+        .subject-viewall-container {
+            display: none;
+            padding: 24px 0 48px;
+        }
+
+        .subject-viewall-header {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .subject-viewall-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+
+        .subject-viewall-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .subject-viewall-search-box {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .subject-viewall-search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .subject-viewall-search-input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .subject-viewall-search-input:focus {
+            border-color: var(--pw-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .subject-viewall-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* Redirecting Modal */
+        .redirect-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .redirect-card {
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .redirect-header {
+            margin-bottom: 20px;
+        }
+
+        .redirect-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .redirect-visual-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            width: 100%;
+        }
+
+        .redirect-batch-preview {
+            width: 110px;
+            height: 110px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            background: #0f172a;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .redirect-batch-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .redirect-batch-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+            padding: 6px 4px 4px;
+            text-align: center;
+        }
+
+        .redirect-batch-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: #ffffff;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .redirect-connector-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+            animation: pulse-conn 1.5s infinite alternate;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-conn {
+            0% { transform: scale(0.92); }
+            100% { transform: scale(1.08); }
+        }
+
+        .redirect-teacher-avatar-wrap {
+            width: 110px;
+            height: 110px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .redirect-teacher-img {
+            max-height: 100%;
+            max-width: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .redirect-info {
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .redirect-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .redirect-subname {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .redirect-status-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        .redirect-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid #cbd5e1;
+            border-top-color: var(--pw-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .redirect-status-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--pw-primary);
+            letter-spacing: 0.2px;
+        }
+
+        /* Chapter Topics & Content Modal / Drilldown */
+        .drilldown-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            backdrop-filter: blur(4px);
+        }
+
+        .drilldown-content {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 780px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modal-enter 0.2s ease-out;
+        }
+
+        @keyframes modal-enter {
+            from { opacity: 0; transform: scale(0.96) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .drilldown-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+        }
+
+        .drilldown-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .drilldown-close-btn {
+            background: #e2e8f0;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            color: #475569;
+            transition: all 0.15s;
+        }
+
+        .drilldown-close-btn:hover {
+            background: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .drilldown-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* Topic Item List */
+        .topics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .topic-row-item {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .topic-row-item:hover {
+            border-color: var(--pw-primary);
+            background: #f8fafc;
+            transform: translateX(3px);
+        }
+
+        .topic-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .topic-icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--pw-primary-light);
+            color: var(--pw-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .topic-name {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .topic-badge-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Lectures & Content Items */
+        .lectures-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lecture-item-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .lecture-info-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .lecture-thumb {
+            width: 80px;
+            height: 48px;
+            border-radius: 6px;
+            background: #0f172a;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .lecture-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .watch-lecture-btn {
+            background: var(--pw-primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+
+        .watch-lecture-btn:hover {
+            background: var(--pw-primary-hover);
+        }
+
+        /* Video Player Modal */
+        .player-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.95);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .player-box {
+            width: 100%;
+            max-width: 880px;
+            background: #000000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .player-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: block;
+            background: #000;
+        }
+
+        .player-header {
+            padding: 12px 16px;
+            background: #0f172a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .player-title {
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 75%;
+        }
+
+        .player-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-close-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Shimmer Loading */
+        .card-skeleton {
+            flex: 0 0 260px;
+            height: 220px;
+            border-radius: 16px;
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        @media (max-width: 640px) {
+            .khazana-title { font-size: 28px; }
+            .laurel-branch { font-size: 24px; }
+            .course-card { flex: 0 0 220px; }
+            .card-visual { height: 130px; }
+            .card-teacher-cutout { height: 120px; }
+            .carousel-arrow { display: none; }
+        }
+    </style>
+
+<style>
+  img[src*="1790916890122.png"], img[src*="eduzex.png"], .pw-header-logo, .footer-pw-logo, .brand img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+</style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+        <div class="top-navbar-inner">
+            <div class="header-left-group">
+                <button class="nav-back-btn" id="btnBack">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back</span>
+                </button>
+                <div class="header-divider"></div>
+                <div class="header-batch-badge" id="headerBatchBadge">
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--pw-primary);"></i>
+                    <span id="headerBatchName">Arjuna JEE 2027</span>
+                </div>
+                <div class="header-viewall-title" id="headerViewAllTitle"></div>
+            </div>
+            <div class="header-khazana-pill">
+                <i class="fa-solid fa-box-archive"></i>
+                <span>Khazana</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Khazana Hero Section with Sparkling Stars & Laurel Icon -->
+    <section class="khazana-hero" id="khazanaHeroSection">
+        <span class="sparkle sparkle-1">✦</span>
+        <span class="sparkle sparkle-2">✨</span>
+        <span class="sparkle sparkle-3">✨</span>
+        <span class="sparkle sparkle-4">✦</span>
+
+        <div class="hero-branding">
+            <span class="laurel-branch">🌿</span>
+            <h1 class="khazana-title">Khazana</h1>
+            <span class="laurel-branch" style="transform: scaleX(-1);">🌿</span>
+        </div>
+        <p class="khazana-tagline">Entire Syllabus. One Destination</p>
+
+        <!-- Search Input -->
+        <div class="hero-search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="hero-search-input" id="heroSearchInput" placeholder="Search for Topics, Chapters or Teachers..." oninput="handleSearch(this.value)">
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="content-container">
+        <!-- Main Overview Section -->
+        <div id="mainOverviewSection">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">All Courses</h2>
+                <!-- Filter Pills Row -->
+                <div class="filter-pills-row" id="filterPillsRow">
+                    <button class="filter-dropdown-pill" id="pillSubjects" onclick="openFilterDropdown('subjectId', this)">
+                        <span id="labelSubjects">3 Subjects</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                    <button class="filter-dropdown-pill" id="pillTeachers" onclick="openFilterDropdown('teacherId', this)">
+                        <span id="labelTeachers">63 Teachers</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                    <button class="filter-dropdown-pill" id="pillCourseTypes" onclick="openFilterDropdown('courseTypes', this)">
+                        <span id="labelCourseTypes">3 Course Type</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                    <button class="filter-dropdown-pill" id="pillYears" onclick="openFilterDropdown('years', this)">
+                        <span id="labelYears">6 Year</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                    <button class="filter-dropdown-pill" id="pillBatches" onclick="openFilterDropdown('batchTypes', this)">
+                        <span id="labelBatches">32 Batch</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                    <button class="filter-reset-pill" id="btnResetFilters" onclick="resetAllFilters()">
+                        <i class="fa-solid fa-xmark"></i> Clear Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subject Rows Carousels Container -->
+            <div id="subjectSectionsContainer">
+                <!-- Loading Skeletons -->
+                <div class="subject-section">
+                    <div class="subject-header-row">
+                        <div style="width: 220px; height: 22px; background: #e2e8f0; border-radius: 6px;"></div>
+                    </div>
+                    <div class="carousel-track">
+                        <div class="card-skeleton"></div>
+                        <div class="card-skeleton"></div>
+                        <div class="card-skeleton"></div>
+                        <div class="card-skeleton"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browse By Teachers Section -->
+            <section class="teachers-section">
+                <h2 class="section-title">Browse By Teachers</h2>
+                <div class="teachers-row" id="teachersGrid">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Khazana Footer Banner -->
+            <div class="khazana-footer-banner">
+                <div class="khazana-footer-content">
+                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                        <div class="khazana-footer-badge">
+                            <i class="fa-solid fa-crown"></i>
+                            <span>Khazana</span>
+                        </div>
+                        <div class="khazana-free-tag">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>100% Free on GB STUDY</span>
+                        </div>
+                    </div>
+                    <h2 class="khazana-footer-title">Unlock Past Batches, Learn Freely</h2>
+                    <p class="khazana-footer-desc">Learn from top faculty, access past lectures & content, and master every topic at your own pace.</p>
+                    <a href="https://t.me/GBFreestudy" target="_blank" rel="noopener noreferrer" class="telegram-btn">
+                        <i class="fa-brands fa-telegram" style="font-size: 16px;"></i>
+                        <span>Join Telegram</span>
+                    </a>
+                </div>
+                <div class="khazana-footer-visual">
+                    <img src="https://static.pw.live/react-batches/assets/images/khazana_footer.svg" alt="Khazana" class="khazana-footer-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated Subject View All Container -->
+        <div class="subject-viewall-container" id="subjectViewAllSection">
+            <div class="subject-viewall-header">
+                <div>
+                    <h2 class="subject-viewall-title" id="subjectViewAllTitle">Complete Mathematics - 11th</h2>
+                    <p class="subject-viewall-subtitle" id="subjectViewAllSubtitle">All available faculties and courses</p>
+                </div>
+                <div class="subject-viewall-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="subject-viewall-search-input" id="subjectViewAllSearchInput" placeholder="Filter teachers in this subject..." oninput="handleSubjectViewSearch(this.value)">
+                </div>
+            </div>
+            <div class="subject-viewall-grid" id="subjectViewAllGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Filter Popover Menu -->
+    <div class="filter-popover" id="filterPopover"></div>
+
+    <!-- Chapter Topics Drilldown Modal -->
+    <div class="drilldown-modal" id="drilldownModal" onclick="handleModalBackdropClick(event, 'drilldownModal')">
+        <div class="drilldown-content">
+            <div class="drilldown-header">
+                <div class="drilldown-header-info">
+                    <button class="drilldown-close-btn" id="btnDrilldownBack" onclick="navigateDrilldownBack()" style="display:none; margin-right:4px;">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h3 id="modalCourseTitle" style="font-size:16px; font-weight:800; color:var(--text-main);">Physics (2026)</h3>
+                        <p id="modalTeacherSubtitle" style="font-size:12.5px; color:var(--text-muted);">Saleem Ahmad Sir • Complete</p>
+                    </div>
+                </div>
+                <button class="drilldown-close-btn" onclick="closeDrilldownModal()">&times;</button>
+            </div>
+            <div class="drilldown-body" id="drilldownBody">
+                <!-- Topics list or lectures list -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div class="player-modal" id="playerModal" onclick="handleModalBackdropClick(event, 'playerModal')">
+        <div class="player-box">
+            <div class="player-header">
+                <span class="player-title" id="playerTitle">Playing Lecture</span>
+                <button class="player-close-btn" onclick="closePlayerModal()">&times;</button>
+            </div>
+            <video id="playerVideo" class="player-video" controls autoplay playsinline></video>
+        </div>
+    </div>
+
+    <!-- Redirecting Modal -->
+    <div class="redirect-modal" id="redirectModal">
+        <div class="redirect-card">
+            <div class="redirect-header">
+                <span class="redirect-badge"><i class="fa-solid fa-sparkles"></i> Khazana Faculty Connect</span>
+            </div>
+            <div class="redirect-visual-container">
+                <div class="redirect-batch-preview">
+                    <img id="redirectBatchImg" src="" alt="Batch" class="redirect-batch-img">
+                    <div class="redirect-batch-overlay">
+                        <span id="redirectBatchName" class="redirect-batch-name">Arjuna JEE</span>
+                    </div>
+                </div>
+                <div class="redirect-connector-badge">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                </div>
+                <div class="redirect-teacher-avatar-wrap">
+                    <img id="redirectTeacherImg" src="" alt="Teacher" class="redirect-teacher-img">
+                </div>
+            </div>
+            <div class="redirect-info">
+                <h3 class="redirect-title" id="redirectTeacherTitle">Saleem Sir Khazana</h3>
+                <p class="redirect-subname" id="redirectSubjectName">Physics By Saleem Ahmad Sir</p>
+            </div>
+            <div class="redirect-status-box">
+                <div class="redirect-spinner"></div>
+                <span class="redirect-status-text">Wait for redirecting...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL and Batch resolution
+        const urlParams = new URLSearchParams(window.location.search);
+        const batchId = urlParams.get('batchid') || urlParams.get('batchId') || urlParams.get('batch_id') || localStorage.getItem('active_batch_id') || '698ad3519549b300a5e1cc6a';
+        const batchName = urlParams.get('name') || urlParams.get('batchName') || localStorage.getItem('active_batch_name') || 'Arjuna JEE 2027';
+
+        let currentBatchTitle = batchName;
+        let khazanaProgramId = '62cc7a39ea773600110bec2f'; // Default program ID from prompt
+        let filterMetadata = {};
+        let activeFilters = {
+            subjectId: 'all',
+            teacherId: 'all',
+            courseTypes: 'all',
+            years: 'all',
+            batchTypes: 'all'
+        };
+
+        let subjectsList = [];
+        let allChaptersBySubject = {};
+        let teachersDataList = [];
+        let currentSearchQuery = '';
+
+        // View Mode: 'overview' | 'subject'
+        let currentViewMode = 'overview';
+        let activeSubjectViewId = null;
+        let activeSubjectViewName = null;
+        let subjectViewSearchQuery = '';
+
+        // Drilldown stack
+        let activeChapterContext = null;
+        let drilldownLevel = 'TOPICS'; // 'TOPICS' | 'LECTURES'
+        let shakaPlayerInstance = null;
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            setupHeader();
+            initShakaPlayer();
+            await resolveProgramIdAndLoad();
+            checkInitialRoute();
+        });
+
+        function setupHeader() {
+            const batchNameEl = document.getElementById('headerBatchName');
+            if (batchNameEl) {
+                batchNameEl.textContent = currentBatchTitle || batchName;
+            }
+
+            document.getElementById('btnBack').addEventListener('click', () => {
+                if (currentViewMode === 'subject') {
+                    exitSubjectView();
+                    return;
+                }
+                if (document.referrer && document.referrer.includes(window.location.host)) {
+                    history.back();
+                } else {
+                    window.location.href = `/pw/study?batch_id=${batchId}`;
+                }
+            });
+
+            window.addEventListener('popstate', (e) => {
+                if (e.state && e.state.view === 'subject') {
+                    enterSubjectView(e.state.subjectId, e.state.subjectName, false);
+                } else if (currentViewMode === 'subject') {
+                    exitSubjectView(false);
+                }
+            });
+        }
+
+        function checkInitialRoute() {
+            const initialView = urlParams.get('view');
+            const initialSubId = urlParams.get('subject_id');
+            const initialSubName = urlParams.get('name');
+            if (initialView === 'subject' && initialSubId) {
+                enterSubjectView(initialSubId, initialSubName || 'Complete Subject', false);
+            }
+        }
+
+        function initShakaPlayer() {
+            if (window.shaka) {
+                shaka.polyfill.installAll();
+                if (shaka.Player.isBrowserSupported()) {
+                    const video = document.getElementById('playerVideo');
+                    shakaPlayerInstance = new shaka.Player(video);
+                    shakaPlayerInstance.addEventListener('error', onShakaError);
+                }
+            }
+        }
+
+        function onShakaError(event) {
+            console.error('Shaka player error:', event.detail);
+        }
+
+        async function resolveProgramIdAndLoad() {
+            try {
+                // 1. Fetch batch details to get khazanaProgramId
+                const batchRes = await fetch(`/api/pw/radha/v3/batches/${batchId}/details`).catch(() => null);
+                if (batchRes && batchRes.ok) {
+                    const bText = await batchRes.text().catch(() => '');
+                    const bJson = bText ? JSON.parse(bText) : {};
+                    if (bJson.data && bJson.data.khazanaProgramId) {
+                        khazanaProgramId = bJson.data.khazanaProgramId;
+                    }
+                    if (bJson.data && bJson.data.name) {
+                        currentBatchTitle = bJson.data.name;
+                        const bNameEl = document.getElementById('headerBatchName');
+                        if (bNameEl) bNameEl.textContent = currentBatchTitle;
+                    }
+                }
+            } catch (err) {
+                console.warn("Could not fetch batch details, using default program ID", err);
+            }
+
+            // 2. Fetch filters metadata & subjects
+            await loadFilters();
+
+            // 3. Fetch chapters for all subjects
+            await loadAllSubjectChapters();
+
+            // 4. Fetch teachers for "Browse By Teachers"
+            loadTeachersSection();
+        }
+
+        async function loadFilters() {
+            try {
+                const res = await fetch(`/api/pw/radha/v2/programs/${khazanaProgramId}/filters?page=1&limit=20`);
+                if (res.ok) {
+                    const text = await res.text().catch(() => '');
+                    const json = text ? JSON.parse(text) : {};
+                    if (json.success && json.data && Array.isArray(json.data.filters)) {
+                        json.data.filters.forEach(f => {
+                            filterMetadata[f.key] = f;
+                        });
+                        updateFilterPillsDisplay();
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to load filters:", e);
+            }
+        }
+
+        function updateFilterPillsDisplay() {
+            if (filterMetadata.subjectId) {
+                const opts = filterMetadata.subjectId.options.filter(o => o.value !== 'all');
+                subjectsList = opts;
+                document.getElementById('labelSubjects').textContent = activeFilters.subjectId === 'all' 
+                    ? `${opts.length} Subjects` 
+                    : (opts.find(o => o.value === activeFilters.subjectId)?.name || 'Subject');
+            }
+            if (filterMetadata.teacherId) {
+                const opts = filterMetadata.teacherId.options.filter(o => o.value !== 'all');
+                document.getElementById('labelTeachers').textContent = activeFilters.teacherId === 'all' 
+                    ? `${opts.length} Teachers` 
+                    : (opts.find(o => o.value === activeFilters.teacherId)?.name || 'Teacher');
+            }
+            if (filterMetadata.courseTypes) {
+                const opts = filterMetadata.courseTypes.options.filter(o => o.value !== 'all');
+                document.getElementById('labelCourseTypes').textContent = activeFilters.courseTypes === 'all' 
+                    ? `${opts.length} Course Type` 
+                    : (opts.find(o => o.value === activeFilters.courseTypes)?.name || 'Course Type');
+            }
+            if (filterMetadata.years) {
+                const opts = filterMetadata.years.options.filter(o => o.value !== 'all');
+                document.getElementById('labelYears').textContent = activeFilters.years === 'all' 
+                    ? `${opts.length} Year` 
+                    : (opts.find(o => o.value === activeFilters.years)?.name || 'Year');
+            }
+            if (filterMetadata.batchTypes) {
+                const opts = filterMetadata.batchTypes.options.filter(o => o.value !== 'all');
+                document.getElementById('labelBatches').textContent = activeFilters.batchTypes === 'all' 
+                    ? `${opts.length} Batch` 
+                    : (opts.find(o => o.value === activeFilters.batchTypes)?.name || 'Batch');
+            }
+
+            // Check if any filter active
+            const hasActive = Object.values(activeFilters).some(v => v !== 'all');
+            document.getElementById('btnResetFilters').style.display = hasActive ? 'inline-flex' : 'none';
+        }
+
+        async function loadAllSubjectChapters() {
+            // Default fallback subjects if filter hasn't loaded them yet
+            if (!subjectsList || subjectsList.length === 0) {
+                subjectsList = [
+                    { name: "Complete Physics - 11th", value: "62cc853e8f90fa001898321e" },
+                    { name: "Complete Chemistry - 11th", value: "62cc85527ad3580018f02cfc" },
+                    { name: "Complete Mathematics - 11th", value: "62cc855911ff520011242076" }
+                ];
+            }
+
+            // Fetch chapters for each subject in parallel
+            const promises = subjectsList.map(async (sub) => {
+                try {
+                    const res = await fetch(`/api/pw/radha/v2/programs/${khazanaProgramId}/subjects/${sub.value}/chapters/list?page=1&limit=50`);
+                    if (res.ok) {
+                        const text = await res.text().catch(() => '');
+                        const json = text ? JSON.parse(text) : {};
+                        allChaptersBySubject[sub.value] = json.data || [];
+                    }
+                } catch (err) {
+                    console.error("Error fetching chapters for " + sub.name, err);
+                    allChaptersBySubject[sub.value] = [];
+                }
+            });
+
+            await Promise.all(promises);
+            renderSubjectCarousels();
+        }
+
+        function renderSubjectCarousels() {
+            const container = document.getElementById('subjectSectionsContainer');
+            let html = '';
+
+            subjectsList.forEach((sub, subIdx) => {
+                // If filter on subjectId is active and doesn't match this subject, skip
+                if (activeFilters.subjectId !== 'all' && activeFilters.subjectId !== sub.value) {
+                    return;
+                }
+
+                let chapters = allChaptersBySubject[sub.value] || [];
+
+                // Filter chapters based on current filters and search query
+                chapters = filterChaptersList(chapters);
+
+                if (chapters.length === 0 && (currentSearchQuery || Object.values(activeFilters).some(v => v !== 'all'))) {
+                    // Hide empty rows when filtered
+                    return;
+                }
+
+                // Pick visual theme according to subject
+                const subLower = sub.name.toLowerCase();
+                let themeClass = 'physics-visual';
+                if (subLower.includes('chem')) {
+                    themeClass = 'chem-visual';
+                } else if (subLower.includes('math')) {
+                    themeClass = 'math-visual';
+                }
+
+                html += `
+                    <div class="subject-section" id="subject_${sub.value}">
+                        <div class="subject-header-row">
+                            <h3 class="subject-title">${escapeHtml(sub.name)}</h3>
+                            <button class="view-all-btn" onclick="viewAllSubject('${sub.value}', '${escapeJs(sub.name)}')">
+                                <span>View All</span>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-wrapper">
+                            <button class="carousel-arrow left" onclick="scrollCarousel('track_${sub.value}', -280)">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </button>
+                            <div class="carousel-track" id="track_${sub.value}">
+                                ${chapters.map(c => renderCourseCard(c, sub, themeClass)).join('')}
+                            </div>
+                            <button class="carousel-arrow right" onclick="scrollCarousel('track_${sub.value}', 280)">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (!html) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 50px 20px; background: white; border-radius: 16px; border: 1px solid var(--border-color);">
+                        <i class="fa-solid fa-filter-circle-xmark" style="font-size: 40px; color: #94a3b8; margin-bottom: 12px;"></i>
+                        <h3 style="font-size: 16px; font-weight: 700;">No courses match your criteria</h3>
+                        <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">Try resetting filters or searching with another term.</p>
+                        <button onclick="resetAllFilters()" style="margin-top: 14px; background: var(--pw-primary); color: white; border: none; padding: 8px 18px; border-radius: 20px; font-weight: 700; cursor: pointer;">Reset Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function filterChaptersList(chapters) {
+            return chapters.filter(c => {
+                // Teacher filter
+                if (activeFilters.teacherId !== 'all') {
+                    if (c.teacher && c.teacher._id !== activeFilters.teacherId) {
+                        return false;
+                    }
+                }
+                // Course Type filter
+                if (activeFilters.courseTypes !== 'all') {
+                    const ct = c.courseType ? c.courseType.value : '';
+                    if (ct !== activeFilters.courseTypes) return false;
+                }
+                // Year filter
+                if (activeFilters.years !== 'all') {
+                    const yr = c.year ? c.year.value : '';
+                    if (yr !== activeFilters.years) return false;
+                }
+                // Batch filter
+                if (activeFilters.batchTypes !== 'all') {
+                    const bt = c.batchType ? c.batchType.value : '';
+                    if (bt !== activeFilters.batchTypes) return false;
+                }
+                // Search query
+                if (currentSearchQuery) {
+                    const title = (c.name || '').toLowerCase();
+                    const teacher = (c.teacherName || (c.teacher ? `${c.teacher.firstName} ${c.teacher.lastName}` : '')).toLowerCase();
+                    const desc = (c.description || '').toLowerCase();
+                    if (!title.includes(currentSearchQuery) && !teacher.includes(currentSearchQuery) && !desc.includes(currentSearchQuery)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        function renderCourseCard(c, sub, themeClass) {
+            // Cutout image of teacher
+            let teacherImg = '';
+            if (c.teacher && c.teacher.imageId && c.teacher.imageId.baseUrl && c.teacher.imageId.key) {
+                teacherImg = `${c.teacher.imageId.baseUrl}${c.teacher.imageId.key}`;
+            } else if (c.imageId && c.imageId.baseUrl) {
+                teacherImg = `${c.imageId.baseUrl}${c.imageId.key}`;
+            } else {
+                teacherImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+            }
+
+            const courseBadge = (c.courseType && c.courseType.name) ? c.courseType.name : 'Complete';
+            const teacherName = c.teacherName || (c.teacher ? `${c.teacher.firstName} ${c.teacher.lastName}` : 'PW Faculty');
+            const cardBatchName = c.batchType ? c.batchType.name : (c.description && c.description.includes('Arjuna') ? c.description.split(';').pop().trim() : 'Arjuna JEE 2026');
+            const teacherId = (c.teacher && c.teacher._id) ? c.teacher._id : '';
+
+            // Card HTML with teacher redirect flow
+            return `
+                <div class="course-card" onclick="handleTeacherCourseClick('${c._id}', '${sub.value}', '${escapeJs(c.name)}', '${escapeJs(teacherName)}', '${teacherId}', '${escapeJs(cardBatchName)}', '${escapeJs(teacherImg)}')">
+                    <div class="card-visual ${themeClass}">
+                        <svg class="card-visual-wave" viewBox="0 0 260 148" fill="none" preserveAspectRatio="none">
+                            <path d="M0 60 Q 65 30 130 65 T 260 50 V 148 H 0 Z" fill="rgba(255,255,255,0.4)"/>
+                            <path d="M0 90 Q 65 70 130 95 T 260 85 V 148 H 0 Z" fill="rgba(255,255,255,0.5)"/>
+                        </svg>
+                        <span class="card-badge">${escapeHtml(courseBadge)}</span>
+                        <img src="${teacherImg}" class="card-teacher-cutout" alt="${escapeHtml(teacherName)}" loading="lazy">
+                    </div>
+                    <div class="card-details">
+                        <div class="card-course-name">${escapeHtml(c.name)}</div>
+                        <div class="card-teacher-name">By ${escapeHtml(teacherName)}</div>
+                        ${cardBatchName ? `<div class="card-batch-tag"><i class="fa-solid fa-graduation-cap"></i> ${escapeHtml(cardBatchName)}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function scrollCarousel(id, delta) {
+            const track = document.getElementById(id);
+            if (track) {
+                track.scrollBy({ left: delta, behavior: 'smooth' });
+            }
+        }
+
+        // Browse By Teachers Section (1:1 aspect ratio)
+        async function loadTeachersSection() {
+            const grid = document.getElementById('teachersGrid');
+            try {
+                const res = await fetch(`/api/pw/radha/v2/programs/${khazanaProgramId}/teachers`);
+                if (res.ok) {
+                    const text = await res.text().catch(() => '');
+                    const json = text ? JSON.parse(text) : {};
+                    if (json.success && Array.isArray(json.data)) {
+                        teachersDataList = json.data;
+                    }
+                }
+            } catch (err) {
+                console.warn("Could not fetch teachers list", err);
+            }
+
+            // Fallback from chapters if teachers list empty
+            if (teachersDataList.length === 0) {
+                const set = new Map();
+                Object.values(allChaptersBySubject).flat().forEach(c => {
+                    if (c.teacher && c.teacher._id && !set.has(c.teacher._id)) {
+                        set.set(c.teacher._id, c.teacher);
+                    }
+                });
+                teachersDataList = Array.from(set.values());
+            }
+
+            if (teachersDataList.length === 0) {
+                grid.innerHTML = `<p style="color:var(--text-muted)">Teachers directory loading...</p>`;
+                return;
+            }
+
+            // Color palette for teacher background banners like Khazana Search
+            const teacherBgColors = [
+                '#e8d4b8', // soft warm beige
+                '#d6e6f9', // soft sky blue
+                '#fbd8c3', // soft warm peach / red
+                '#e2d5f8', // soft lavender purple
+                '#d2edd8', // soft mint green
+                '#f8d7da', // soft rose pink
+                '#e2ece9', // soft sage grey
+                '#fde2e4'  // soft coral blush
+            ];
+
+            // Render all teachers with compact colorful card style
+            grid.innerHTML = teachersDataList.map((t, index) => {
+                let imgUrl = '';
+                if (t.imageId && t.imageId.baseUrl && t.imageId.key) {
+                    imgUrl = `${t.imageId.baseUrl}${t.imageId.key}`;
+                } else {
+                    imgUrl = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+                }
+
+                const tName = t.name || `${t.firstName || ''} ${t.lastName || ''}`.trim() || 'PW Faculty';
+                const subject = t.subject || 'Faculty';
+                const bgColor = teacherBgColors[index % teacherBgColors.length];
+
+                return `
+                    <div class="teacher-card" onclick="handleTeacherPortraitClick('${t._id}', '${escapeJs(tName)}', '${escapeJs(imgUrl)}', '${escapeJs(subject)}')">
+                        <div class="teacher-card-banner" style="background-color: ${bgColor};">
+                            <img class="teacher-card-photo" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(tName)}" loading="lazy">
+                        </div>
+                        <div class="teacher-card-name">${escapeHtml(tName)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleTeacherCourseClick(chapterId, subjectId, courseName, teacherName, teacherId, cardBatchName, teacherImg) {
+            executeTeacherRedirectFlow({
+                chapterId: chapterId,
+                subjectId: subjectId,
+                teacherId: teacherId,
+                teacherName: teacherName,
+                teacherImg: teacherImg,
+                courseName: courseName,
+                batchName: cardBatchName || currentBatchTitle || batchName || 'Arjuna JEE 2026'
+            });
+        }
+
+        function handleTeacherPortraitClick(teacherId, teacherName, teacherImg, subjectName) {
+            const progId = khazanaProgramId || '62cc7a39ea773600110bec2f';
+            const targetUrl = `/Khazana_teacher?program_id=${encodeURIComponent(progId)}&id=${encodeURIComponent(teacherId)}&name=${encodeURIComponent(teacherName)}&Img_url=${encodeURIComponent(teacherImg || '')}`;
+            window.location.href = targetUrl;
+        }
+
+        // Teacher / Course Click -> Directly redirect to Kahzana Topics without popup modal
+        function executeTeacherRedirectFlow(params) {
+            const cleanName = (params.teacherName || 'Faculty').replace(/\s*sir\s*/i, '').replace(/\s*ma'?am\s*/i, '').trim();
+            const firstWord = cleanName.split(' ')[0] || 'Teacher';
+            const displayTitle = `${firstWord} Khazana`;
+
+            const targetUrl = `/kahzana_topics?program_id=${encodeURIComponent(khazanaProgramId || '62cc7a39ea773600110bec2f')}&teacher_id=${encodeURIComponent(params.teacherId || '')}&subject_id=${encodeURIComponent(params.subjectId || '')}&chapter_id=${encodeURIComponent(params.chapterId || '')}&name=${encodeURIComponent(params.courseName || displayTitle)}`;
+            
+            window.location.href = targetUrl;
+        }
+
+        function filterByTeacher(tId, tName) {
+            activeFilters.teacherId = tId;
+            updateFilterPillsDisplay();
+            renderSubjectCarousels();
+            // Scroll up to All Courses
+            window.scrollTo({ top: 220, behavior: 'smooth' });
+        }
+
+        // Search handler
+        function handleSearch(val) {
+            currentSearchQuery = val.trim().toLowerCase();
+            renderSubjectCarousels();
+        }
+
+        // Filter Popover
+        function openFilterDropdown(filterKey, triggerEl) {
+            const popover = document.getElementById('filterPopover');
+            const meta = filterMetadata[filterKey];
+            if (!meta || !meta.options) return;
+
+            // Positioning
+            const rect = triggerEl.getBoundingClientRect();
+            popover.style.top = `${rect.bottom + window.scrollY + 6}px`;
+            popover.style.left = `${Math.min(rect.left, window.innerWidth - 260)}px`;
+
+            let itemsHtml = meta.options.map(opt => {
+                const isSelected = activeFilters[filterKey] === opt.value;
+                return `
+                    <div class="filter-popover-item ${isSelected ? 'selected' : ''}" onclick="selectFilterOption('${filterKey}', '${opt.value}')">
+                        <span>${escapeHtml(opt.name)}</span>
+                        ${isSelected ? '<i class="fa-solid fa-check"></i>' : ''}
+                    </div>
+                `;
+            }).join('');
+
+            popover.innerHTML = itemsHtml;
+            popover.style.display = 'block';
+
+            setTimeout(() => {
+                document.addEventListener('click', closePopoverOnOutsideClick);
+            }, 50);
+        }
+
+        function closePopoverOnOutsideClick(e) {
+            const popover = document.getElementById('filterPopover');
+            if (!popover.contains(e.target) && !e.target.closest('.filter-dropdown-pill')) {
+                popover.style.display = 'none';
+                document.removeEventListener('click', closePopoverOnOutsideClick);
+            }
+        }
+
+        function selectFilterOption(filterKey, value) {
+            activeFilters[filterKey] = value;
+            document.getElementById('filterPopover').style.display = 'none';
+            document.removeEventListener('click', closePopoverOnOutsideClick);
+            updateFilterPillsDisplay();
+            renderSubjectCarousels();
+        }
+
+        function resetAllFilters() {
+            activeFilters = {
+                subjectId: 'all',
+                teacherId: 'all',
+                courseTypes: 'all',
+                years: 'all',
+                batchTypes: 'all'
+            };
+            currentSearchQuery = '';
+            document.getElementById('heroSearchInput').value = '';
+            updateFilterPillsDisplay();
+            renderSubjectCarousels();
+        }
+
+        document.getElementById('heroSearchInput')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    window.location.href = `/Khazana_search?program_id=${encodeURIComponent(khazanaProgramId || '62cc7a39ea773600110bec2f')}&q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+
+        function viewAllSubject(subjectId, subjectName) {
+            enterSubjectView(subjectId, subjectName, true);
+        }
+
+        function enterSubjectView(subjectId, subjectName, updateHistory = true) {
+            currentViewMode = 'subject';
+            activeSubjectViewId = subjectId;
+            activeSubjectViewName = subjectName;
+
+            if (updateHistory) {
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('view', 'subject');
+                newUrl.searchParams.set('subject_id', subjectId);
+                newUrl.searchParams.set('name', subjectName);
+                history.pushState({ view: 'subject', subjectId, subjectName }, '', newUrl.toString());
+            }
+
+            // Header heading e.g. "Complete Mathematics - 11th"
+            const headTitleEl = document.getElementById('headerViewAllTitle');
+            if (headTitleEl) {
+                headTitleEl.textContent = subjectName;
+                headTitleEl.style.display = 'block';
+            }
+
+            // Hide hero & main overview, show dedicated subject view all container
+            const heroEl = document.getElementById('khazanaHeroSection');
+            if (heroEl) heroEl.style.display = 'none';
+
+            const overviewEl = document.getElementById('mainOverviewSection');
+            if (overviewEl) overviewEl.style.display = 'none';
+
+            const subSection = document.getElementById('subjectViewAllSection');
+            if (subSection) subSection.style.display = 'block';
+
+            document.getElementById('subjectViewAllTitle').textContent = subjectName;
+            const chapters = allChaptersBySubject[subjectId] || [];
+            document.getElementById('subjectViewAllSubtitle').textContent = `${chapters.length} Courses available by India's top faculties`;
+            document.getElementById('subjectViewAllSearchInput').value = '';
+            subjectViewSearchQuery = '';
+
+            renderSubjectViewGrid(chapters);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function exitSubjectView(updateHistory = true) {
+            currentViewMode = 'overview';
+            activeSubjectViewId = null;
+            activeSubjectViewName = null;
+
+            if (updateHistory) {
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.delete('view');
+                newUrl.searchParams.delete('subject_id');
+                newUrl.searchParams.set('name', currentBatchTitle || batchName);
+                history.pushState({ view: 'overview' }, '', newUrl.toString());
+            }
+
+            const headTitleEl = document.getElementById('headerViewAllTitle');
+            if (headTitleEl) headTitleEl.style.display = 'none';
+
+            const heroEl = document.getElementById('khazanaHeroSection');
+            if (heroEl) heroEl.style.display = 'block';
+
+            const overviewEl = document.getElementById('mainOverviewSection');
+            if (overviewEl) overviewEl.style.display = 'block';
+
+            const subSection = document.getElementById('subjectViewAllSection');
+            if (subSection) subSection.style.display = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderSubjectViewGrid(chapters) {
+            const grid = document.getElementById('subjectViewAllGrid');
+            if (!grid) return;
+
+            const filtered = chapters.filter(c => {
+                if (!subjectViewSearchQuery) return true;
+                const title = (c.name || '').toLowerCase();
+                const teacher = (c.teacherName || (c.teacher ? `${c.teacher.firstName} ${c.teacher.lastName}` : '')).toLowerCase();
+                const desc = (c.description || '').toLowerCase();
+                return title.includes(subjectViewSearchQuery) || teacher.includes(subjectViewSearchQuery) || desc.includes(subjectViewSearchQuery);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: white; border-radius: 16px; border: 1px solid var(--border-color);">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 38px; color: #94a3b8; margin-bottom: 12px;"></i>
+                        <h3 style="font-size: 16px; font-weight: 700;">No faculties found matching "${escapeHtml(subjectViewSearchQuery)}"</h3>
+                        <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">Try searching with another keyword or name.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const sub = subjectsList.find(s => s.value === activeSubjectViewId) || { value: activeSubjectViewId, name: activeSubjectViewName };
+            const subLower = (activeSubjectViewName || '').toLowerCase();
+            let themeClass = 'physics-visual';
+            if (subLower.includes('chem')) themeClass = 'chem-visual';
+            else if (subLower.includes('math')) themeClass = 'math-visual';
+
+            grid.innerHTML = filtered.map(c => renderCourseCard(c, sub, themeClass)).join('');
+        }
+
+        function handleSubjectViewSearch(val) {
+            subjectViewSearchQuery = val.trim().toLowerCase();
+            const chapters = allChaptersBySubject[activeSubjectViewId] || [];
+            renderSubjectViewGrid(chapters);
+        }
+
+        // Drilldown Modal: Topics & Lectures
+        async function openChapterDrilldown(chapterId, subjectId, courseName, teacherName) {
+            activeChapterContext = { chapterId, subjectId, courseName, teacherName };
+            drilldownLevel = 'TOPICS';
+
+            document.getElementById('modalCourseTitle').textContent = courseName;
+            document.getElementById('modalTeacherSubtitle').textContent = `By ${teacherName} • Topics & Content`;
+            document.getElementById('btnDrilldownBack').style.display = 'none';
+
+            const body = document.getElementById('drilldownBody');
+            body.innerHTML = `<div style="text-align:center; padding: 40px;"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px; color:var(--pw-primary);"></i><p style="margin-top:8px; color:var(--text-muted);">Loading topics...</p></div>`;
+
+            document.getElementById('drilldownModal').style.display = 'flex';
+
+            try {
+                const res = await fetch(`/api/pw/radha/v2/programs/${khazanaProgramId}/subjects/${subjectId}/chapters/${chapterId}/topics`);
+                if (res.ok) {
+                    const text = await res.text().catch(() => '');
+                    const json = text ? JSON.parse(text) : {};
+                    const topics = json.data || [];
+                    renderTopicsList(topics);
+                } else {
+                    body.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding: 30px;">No topics found for this course.</p>`;
+                }
+            } catch (err) {
+                console.error("Error loading chapter topics", err);
+                body.innerHTML = `<p style="color:#ef4444; text-align:center; padding: 30px;">Failed to load topics. Please try again.</p>`;
+            }
+        }
+
+        function renderTopicsList(topics) {
+            const body = document.getElementById('drilldownBody');
+            if (topics.length === 0) {
+                body.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding: 30px;">No topics available.</p>`;
+                return;
+            }
+
+            body.innerHTML = `
+                <div class="topics-list">
+                    ${topics.map(t => {
+                        const isPdfOnly = (t.name || '').includes('Only PDF');
+                        const iconClass = isPdfOnly ? 'fa-regular fa-file-pdf' : 'fa-solid fa-play';
+                        return `
+                            <div class="topic-row-item" onclick="openTopicLectures('${t._id}', '${escapeJs(t.name)}')">
+                                <div class="topic-left">
+                                    <div class="topic-icon-circle">
+                                        <i class="${iconClass}"></i>
+                                    </div>
+                                    <div>
+                                        <div class="topic-name">${escapeHtml(t.name)}</div>
+                                        <div class="topic-badge-count">
+                                            ${t.totalLectures !== undefined ? `${t.totalLectures} Lectures` : 'View Contents'}
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right" style="color:#94a3b8; font-size:14px;"></i>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        async function openTopicLectures(topicId, topicName) {
+            drilldownLevel = 'LECTURES';
+            document.getElementById('btnDrilldownBack').style.display = 'inline-flex';
+            document.getElementById('modalCourseTitle').textContent = topicName;
+            document.getElementById('modalTeacherSubtitle').textContent = `${activeChapterContext.courseName} • Lectures & Notes`;
+
+            const body = document.getElementById('drilldownBody');
+            body.innerHTML = `<div style="text-align:center; padding: 40px;"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px; color:var(--pw-primary);"></i><p style="margin-top:8px; color:var(--text-muted);">Loading lectures & materials...</p></div>`;
+
+            try {
+                const res = await fetch(`/api/pw/radha/v1/programs/${khazanaProgramId}/subjects/${activeChapterContext.subjectId}/chapters/${activeChapterContext.chapterId}/topics/${topicId}/contents?page=1&contentType=videos`);
+                if (res.ok) {
+                    const text = await res.text().catch(() => '');
+                    const json = text ? JSON.parse(text) : {};
+                    const contents = json.data || [];
+                    renderLecturesList(contents);
+                } else {
+                    body.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding: 30px;">No lectures available in this topic.</p>`;
+                }
+            } catch (err) {
+                console.error("Error loading lectures", err);
+                body.innerHTML = `<p style="color:#ef4444; text-align:center; padding: 30px;">Error loading contents.</p>`;
+            }
+        }
+
+        function renderLecturesList(contents) {
+            const body = document.getElementById('drilldownBody');
+            if (contents.length === 0) {
+                body.innerHTML = `<p style="color:var(--text-muted); text-align:center; padding: 30px;">No video lectures found in this topic.</p>`;
+                return;
+            }
+
+            body.innerHTML = `
+                <div class="lectures-list">
+                    ${contents.map(item => {
+                        const title = item.title || item.name || 'Lecture';
+                        const firstContent = (item.content && item.content[0]) ? item.content[0] : {};
+                        const videoUrl = firstContent.videoUrl || '';
+                        
+                        let thumb = '';
+                        if (firstContent.videoDetails && firstContent.videoDetails.image) {
+                            thumb = firstContent.videoDetails.image;
+                        } else {
+                            thumb = 'https://dummyimage.com/640x360/0f172a/ffffff&text=Physics+Wallah';
+                        }
+
+                        return `
+                            <div class="lecture-item-card">
+                                <div class="lecture-info-left">
+                                    <img src="${thumb}" class="lecture-thumb" alt="Thumb">
+                                    <div>
+                                        <div class="lecture-title">${escapeHtml(title)}</div>
+                                        <div style="font-size:12px; color:var(--text-muted);">
+                                            <i class="fa-solid fa-circle-play" style="color:var(--pw-primary);"></i> Video Lecture
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="watch-lecture-btn" onclick="playLecture('${encodeURIComponent(videoUrl)}', '${escapeJs(title)}')">
+                                    <i class="fa-solid fa-play"></i> Watch
+                                </button>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        function navigateDrilldownBack() {
+            if (drilldownLevel === 'LECTURES') {
+                openChapterDrilldown(activeChapterContext.chapterId, activeChapterContext.subjectId, activeChapterContext.courseName, activeChapterContext.teacherName);
+            }
+        }
+
+        function closeDrilldownModal() {
+            document.getElementById('drilldownModal').style.display = 'none';
+        }
+
+        // Video Player
+        async function playLecture(encodedUrl, title) {
+            const rawUrl = decodeURIComponent(encodedUrl);
+            const modal = document.getElementById('playerModal');
+            const video = document.getElementById('playerVideo');
+            document.getElementById('playerTitle').textContent = title;
+
+            modal.style.display = 'flex';
+
+            if (!rawUrl) {
+                // If stream url is not in content, navigate to live class or demo player
+                window.location.href = `/pw/live?batch_id=${batchId}&name=${encodeURIComponent(title)}`;
+                return;
+            }
+
+            try {
+                if (shakaPlayerInstance && (rawUrl.includes('.mpd') || rawUrl.includes('.m3u8'))) {
+                    await shakaPlayerInstance.load(rawUrl);
+                    video.play().catch(() => {});
+                } else {
+                    video.src = rawUrl;
+                    video.play().catch(() => {});
+                }
+            } catch (err) {
+                console.warn("Shaka direct stream load failed, attempting native/fallback player", err);
+                video.src = rawUrl;
+                video.play().catch(() => {});
+            }
+        }
+
+        function closePlayerModal() {
+            const modal = document.getElementById('playerModal');
+            const video = document.getElementById('playerVideo');
+            video.pause();
+            if (shakaPlayerInstance) {
+                shakaPlayerInstance.unload().catch(() => {});
+            }
+            video.src = '';
+            modal.style.display = 'none';
+        }
+
+        function handleModalBackdropClick(e, modalId) {
+            if (e.target.id === modalId) {
+                if (modalId === 'playerModal') closePlayerModal();
+                else if (modalId === 'drilldownModal') closeDrilldownModal();
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function escapeJs(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '&quot;')
+                .replace(/\n/g, ' ')
+                .replace(/\r/g, '');
+        }
+    </script>
+</body>
+</html>

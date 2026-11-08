@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Study Portal — GB STUDY</title>
+    <meta name="description" content="Access batch details, class schedules, notices, and teacher details on GB STUDY.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://eduzex.pages.dev/study.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/server-loader.js"></script>
+    <script>
+        try { localStorage.removeItem('pw_dark_mode'); } catch(e) {}
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Base / Mobile Layout --- */
+        .app-container {
+            width: 100%;
+            max-width: 414px;
+            background-color: #0b0e17;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            padding: 16px 15px 12px;
+            color: white;
+            background-color: #0b0e17;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .menu-icon i { font-size: 24px; cursor: pointer; color: #ffffff; }
+
+        .header-stats {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-pill {
+            background: #ffffff;
+            border-radius: 9999px;
+            padding: 3px 14px 3px 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 36px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+            text-decoration: none;
+            color: #0f172a;
+            user-select: none;
+        }
+
+        .stat-pill-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .stat-pill-icon.streak {
+            background: #ffffff;
+        }
+
+        .stat-pill-icon.xp {
+            background: transparent;
+        }
+
+        .xp-badge-icon {
+            width: 28px !important;
+            height: 28px !important;
+            object-fit: contain !important;
+            border-radius: 0 !important;
+            display: block;
+        }
+
+        .stat-pill-lock {
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 13px;
+            height: 13px;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            z-index: 2;
+        }
+
+        .stat-pill-lock i {
+            font-size: 7px;
+            color: #b45309;
+        }
+
+        .stat-pill-val {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1;
+            margin-left: 1px;
+        }
+
+        .bell-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 2px;
+        }
+
+        .bell-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 7px;
+            height: 7px;
+            background: #ef4444;
+            border-radius: 50%;
+            border: 1.5px solid #0b0e17;
+        }
+
+        .header-batch {
+            margin-bottom: 20px;
+        }
+
+        .batch-label {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .batch-label i.fa-crown {
+            color: #f59e0b;
+            font-size: 13px;
+        }
+
+        .batch-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #currentBatchSelector {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        #activeBatchName {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        #currentBatchSelector i.fa-caret-down {
+            font-size: 16px;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        /* Batch Offerings Section */
+        .batch-offerings-section {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        .batch-offerings-header {
+            font-size: 18.5px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .offering-card {
+            background: #111422;
+            border: 1px solid #1c2236;
+            border-radius: 16px;
+            padding: 12px 4px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            min-height: 104px;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-2px);
+            background: #15192b;
+            border-color: #2b334d;
+        }
+
+        .offering-card:active {
+            transform: scale(0.97);
+        }
+
+        .offering-new-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #15803d;
+            color: #ffffff;
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-top-left-radius: 14px;
+            border-bottom-right-radius: 8px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .offering-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 7px;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .offering-lock-badge {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 17px;
+            height: 17px;
+            background: #222638;
+            border-radius: 50%;
+            border: 1.5px solid #111422;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .offering-lock-badge i {
+            font-size: 8px;
+            color: #fbbf24;
+        }
+
+        .offering-label {
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 600;
+            line-height: 1.25;
+            text-align: center;
+            white-space: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+        }
+
+        .main-content {
+            background-color: #ffffff;
+            border-radius: 20px 20px 0 0;
+            padding: 25px 15px 100px 15px;
+            flex: 1;
+        }
+
+        /* Resume Banner */
+        .resume-banner {
+            background-color: #fef3c7;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .banner-icon { font-size: 24px; color: #9ca3af; }
+        .banner-text { flex: 1; margin-left: 15px; }
+        .banner-text h4 { font-size: 14px; color: #1f2937; margin-bottom: 4px; }
+        .banner-text p { font-size: 13px; color: #4b5563; }
+        .resume-btn {
+            background-color: #111827;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+
+        .avatar-float {
+            position: absolute;
+            right: -10px;
+            top: -15px;
+            width: 50px;
+            height: 50px;
+            background-color: #ddd6fe;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Grid Layout */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px 10px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 12px;
+            font-weight: 500;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .feature-item:hover { transform: translateY(-3px); }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            background-color: #f8fafc;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .highlight-box {
+            border: 2px solid #8b5cf6;
+            border-radius: 12px;
+            padding: 10px 5px;
+            margin: -10px -5px;
+        }
+        
+        .cursor-pointer {
+            position: absolute;
+            bottom: -5px;
+            right: 10px;
+            color: #6366f1;
+            font-size: 24px;
+            transform: rotate(-45deg);
+            z-index: 10;
+        }
+
+        .badge-new {
+            position: absolute;
+            top: -20px;
+            background-color: #22c55e;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 414px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px 20px 20px;
+            border-top: 1px solid #f1f5f9;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-item i { font-size: 20px; margin-bottom: 5px; }
+        .nav-item.active { color: #0f172a; }
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            width: 25px;
+            height: 3px;
+            background-color: #0f172a;
+            border-radius: 2px;
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #facc15;
+            color: #000;
+            font-size: 8px;
+            padding: 1px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Icon Colors */
+        .c-red { color: #ef4444; }
+        .c-pink { color: #ec4899; }
+        .c-blue { color: #3b82f6; }
+        .c-purple { color: #a855f7; }
+        .c-green { color: #22c55e; }
+        .c-yellow { color: #eab308; }
+        .c-teal { color: #14b8a6; }
+        .c-olive { color: #65a30d; }
+        .c-orange { color: #f97316; }
+
+        /* PW SIDEBAR */ 
+        .pw-sidebar-overlay { 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(5px); 
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000; 
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        } 
+        .pw-sidebar-overlay.open { 
+            opacity: 1;
+            visibility: visible;
+        } 
+        .pw-sidebar { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            bottom: 0; 
+            width: 84%; 
+            max-width: 320px; 
+            background: #ffffff; 
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease; 
+            display: flex; 
+            flex-direction: column; 
+            box-shadow: 12px 0 35px rgba(0,0,0,0.18); 
+        } 
+        .pw-sidebar-overlay.open .pw-sidebar { 
+            transform: translateX(0); 
+        } 
+        .pw-sidebar-header { 
+            padding: 22px 18px 14px; 
+            background: #ffffff; 
+            color: #0f172a;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        } 
+        .sidebar-user-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .user-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .pw-brand-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #000000;
+            border: 2px solid #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+            flex-shrink: 0;
+        }
+        .pw-avatar-text {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 20px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.04em;
+        }
+        .pw-avatar-sub {
+            color: #38bdf8;
+            font-size: 15px;
+            margin-left: 1px;
+        }
+        .user-status-dot {
+            position: absolute;
+            bottom: 1px;
+            right: 1px;
+            width: 11px;
+            height: 11px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+        }
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .user-name {
+            font-size: 15.5px;
+            font-weight: 800;
+            margin: 0;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .user-goal {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .pw-sidebar-close { 
+            background: #f1f5f9; 
+            border: none; 
+            color: #475569; 
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px; 
+            font-weight: 700;
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        } 
+        .pw-sidebar-close:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .pw-sidebar-body { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 14px 0 24px; 
+            background: #ffffff;
+            transition: background-color 0.25s ease;
+        } 
+        .sidebar-action-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .sidebar-action-card:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+        .sidebar-divider {
+            height: 1px;
+            background: #f1f5f9;
+            margin: 0 16px 10px;
+        }
+        .sidebar-beta-card {
+            background: #f0fdfa;
+            border: 1px solid #ccfbf1;
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #0f766e;
+            font-weight: 700;
+            font-size: 13.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            margin-bottom: 8px;
+        }
+        .sidebar-beta-card:hover {
+            background: #ccfbf1;
+        }
+        .sidebar-menu-list {
+            margin-top: 4px;
+        }
+        .sidebar-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            padding: 11px 20px; 
+            color: #334155; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600;
+            cursor: pointer; 
+            transition: all 0.15s ease; 
+            user-select: none;
+        } 
+        .sidebar-item:hover { 
+            background: #f8fafc; 
+            color: #0f172a;
+        } 
+        .sidebar-item.active { 
+            color: #2563eb; 
+            background: #eff6ff; 
+            font-weight: 700;
+            border-right: 3px solid #2563eb;
+        } 
+        .sidebar-icon {
+            font-size: 17px;
+            width: 22px;
+            text-align: center;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .sidebar-badge-popular {
+            background: #15803d;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2.5px 8px;
+            border-radius: 6px;
+            margin-left: auto;
+            letter-spacing: 0.02em;
+        }
+        .sidebar-badge-new {
+            background: #fef3c7;
+            color: #b45309;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2.5px 8px;
+            border-radius: 6px;
+            margin-left: auto;
+            letter-spacing: 0.02em;
+        }
+
+        /* PW Switch Slider */
+        .pw-switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+        .pw-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .pw-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .25s ease;
+            border-radius: 26px;
+        }
+        .pw-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #ffffff;
+            transition: .25s ease;
+            border-radius: 50%;
+            box-shadow: 0 1.5px 4px rgba(0,0,0,0.25);
+        }
+        input:checked + .pw-slider {
+            background-color: #2563eb;
+        }
+        input:checked + .pw-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* ================= DARK MODE STYLES ================= */
+        body.dark-mode {
+            background-color: #060910 !important;
+            color: #f8fafc !important;
+        }
+        body.dark-mode .app-container {
+            background-color: #0b0e17 !important;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);
+        }
+        body.dark-mode .main-content {
+            background-color: #0b0f19 !important;
+            color: #f8fafc !important;
+        }
+
+        /* Force dark text elements to white/light in dark mode */
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5,
+        body.dark-mode h6,
+        body.dark-mode p,
+        body.dark-mode span,
+        body.dark-mode div,
+        body.dark-mode label,
+        body.dark-mode .user-name,
+        body.dark-mode .offering-label,
+        body.dark-mode .stat-pill-val,
+        body.dark-mode .section-header,
+        body.dark-mode .card-title,
+        body.dark-mode .batch-title,
+        body.dark-mode .today-class-card,
+        body.dark-mode .today-class-title,
+        body.dark-mode .batch-for-you-card {
+            color: #f8fafc !important;
+        }
+
+        /* Muted text in dark mode */
+        body.dark-mode .text-muted,
+        body.dark-mode .subtext,
+        body.dark-mode .user-goal,
+        body.dark-mode .card-subtext {
+            color: #94a3b8 !important;
+        }
+
+        /* Cards & Containers in Dark Mode */
+        body.dark-mode .today-class-card,
+        body.dark-mode .batch-card,
+        body.dark-mode .batch-for-you-card,
+        body.dark-mode .offering-card,
+        body.dark-mode .icon-box,
+        body.dark-mode .stat-pill,
+        body.dark-mode .filter-chip,
+        body.dark-mode .tab-btn {
+            background-color: #111827 !important;
+            border-color: #1f2937 !important;
+            color: #f8fafc !important;
+        }
+
+        body.dark-mode .bottom-nav {
+            background-color: #0b0e17 !important;
+            border-top: 1px solid #1e293b !important;
+        }
+        body.dark-mode .nav-item {
+            color: #64748b;
+        }
+        body.dark-mode .nav-item.active {
+            color: #38bdf8 !important;
+        }
+        body.dark-mode .nav-item.active::before {
+            background-color: #38bdf8 !important;
+        }
+        body.dark-mode .feature-item {
+            color: #cbd5e1 !important;
+        }
+        body.dark-mode .icon-box {
+            background-color: #151d30 !important;
+            color: #ffffff !important;
+        }
+        body.dark-mode .resume-banner {
+            background-color: #172033 !important;
+            border: 1px solid #23304c !important;
+        }
+        body.dark-mode .banner-text h4 {
+            color: #f1f5f9 !important;
+        }
+        body.dark-mode .banner-text p {
+            color: #94a3b8 !important;
+        }
+        body.dark-mode .batch-for-you-card {
+            background-color: #111827 !important;
+            border-color: #1f2937 !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+        }
+        body.dark-mode .batch-for-you-card h4 {
+            color: #f8fafc !important;
+        }
+        body.dark-mode .batch-for-you-card span,
+        body.dark-mode .batch-for-you-card div {
+            border-color: #1f2937 !important;
+        }
+        body.dark-mode .pw-sidebar {
+            background-color: #0d1322 !important;
+            color: #f1f5f9 !important;
+            box-shadow: 12px 0 40px rgba(0,0,0,0.6) !important;
+        }
+        body.dark-mode .pw-sidebar-header {
+            background-color: #090e1a !important;
+            border-bottom: 1px solid #1e293b !important;
+            color: #ffffff !important;
+        }
+        body.dark-mode .user-name {
+            color: #ffffff !important;
+        }
+        body.dark-mode .user-goal {
+            color: #94a3b8 !important;
+        }
+        body.dark-mode .pw-sidebar-close {
+            background: #1e293b !important;
+            color: #cbd5e1 !important;
+        }
+        body.dark-mode .pw-sidebar-close:hover {
+            background: #334155 !important;
+            color: #ffffff !important;
+        }
+        body.dark-mode .pw-sidebar-body {
+            background-color: #0d1322 !important;
+        }
+        body.dark-mode .sidebar-divider {
+            background: #1e293b !important;
+        }
+        body.dark-mode .sidebar-item {
+            color: #cbd5e1 !important;
+        }
+        body.dark-mode .sidebar-item:hover {
+            background: #162035 !important;
+            color: #ffffff !important;
+        }
+        body.dark-mode .sidebar-item.active {
+            background: rgba(37, 99, 235, 0.22) !important;
+            color: #38bdf8 !important;
+            border-right: 3px solid #38bdf8 !important;
+        }
+        body.dark-mode .sidebar-icon {
+            color: #94a3b8 !important;
+        }
+        body.dark-mode .user-status-dot {
+            border-color: #0d1322 !important;
+        }
+
+        /* --- PC / Desktop Mode Dashboard Transformation --- */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+                background-color: #0b0e17;
+            }
+
+            .app-container {
+                max-width: 1400px;
+                border-radius: 16px;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                min-height: 90vh;
+                box-shadow: none;
+            }
+
+            .header {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+                padding: 30px 40px;
+            }
+
+            .header-top { margin-bottom: 10px; }
+            .batch-title { font-size: 28px; }
+
+            .main-content {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+                border-radius: 30px 30px 16px 16px;
+                padding: 40px;
+            }
+
+            .offerings-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 14px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 40px 20px;
+                margin-top: 20px;
+            }
+
+            .icon-box {
+                width: 70px;
+                height: 70px;
+                font-size: 32px;
+                border-radius: 20px;
+            }
+
+            .feature-item { font-size: 14px; }
+            
+            .highlight-box { margin: -15px -10px; padding: 15px 10px; }
+            .cursor-pointer { right: 5px; font-size: 28px; }
+
+            .resume-banner {
+                max-width: 600px; /* Keep it neat on large screens */
+            }
+
+            /* Transform Bottom Nav to Sidebar */
+            .bottom-nav {
+                position: relative;
+                grid-column: 1 / 2;
+                grid-row: 1 / 3;
+                flex-direction: column;
+                justify-content: flex-start;
+                background-color: #0b0e17;
+                border-top: none;
+                padding: 40px 0;
+                border-right: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .nav-item {
+                flex-direction: row;
+                padding: 18px 30px;
+                font-size: 15px;
+                gap: 20px;
+                width: 100%;
+                color: #94a3b8;
+                transition: background 0.2s;
+            }
+
+            .nav-item:hover {
+                background-color: rgba(255,255,255,0.02);
+            }
+
+            .nav-item i { margin-bottom: 0; font-size: 22px; width: 25px; text-align: center; }
+
+            .nav-item.active {
+                color: #fff;
+                background-color: rgba(255,255,255,0.05);
+            }
+
+            .nav-item.active::before {
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #8b5cf6;
+                border-radius: 0 4px 4px 0;
+            }
+
+            .nav-badge {
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 2px 6px;
+                font-size: 10px;
+            }
+        }
+    
+        /* Extra features toggle */
+        .feature-extra {
+            display: none !important;
+        }
+        .feature-extra.show-extra {
+            display: flex !important;
+        }
+        .features-toggle-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0 18px;
+        }
+        .features-toggle-btn {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .features-toggle-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: #1e293b;
+        }
+        .features-toggle-btn i {
+            transition: transform 0.25s ease;
+        }
+
+        /* Today Schedule Card Improvements */
+        .today-class-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 15px 16px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .today-class-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+        .today-class-card:hover .play-overlay {
+            opacity: 1 !important;
+        }
+        .class-card-divider {
+            height: 1px;
+            background: #f1f5f9;
+            margin: 12px 0 14px 0;
+        }
+        @keyframes pulse-live {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .live-pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #dc2626;
+            display: inline-block;
+            animation: pulse-live 1.5s infinite ease-in-out;
+        }
+
+        /* Batches for You Section */
+        .batches-scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        .batches-scroll-container::-webkit-scrollbar {
+            height: 5px;
+        }
+        .batches-scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .batches-scroll-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .batch-for-you-card {
+            flex: 0 0 220px;
+            max-width: 78vw;
+            scroll-snap-align: start;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.035);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .batch-for-you-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        .batch-for-you-card:active {
+            transform: scale(0.99);
+        }
+        .batch-buy-btn:hover {
+            background: #272f40 !important;
+        }
+        .batch-arrow-btn:hover {
+            background: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+        }
+
+    </style>
+
+<style>
+  img[src*="1790916890122.png"], img[src*="eduzex.png"], .pw-header-logo, .footer-pw-logo, .brand img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <!-- PW GLOBAL SIDEBAR -->
+    <div class="pw-sidebar-overlay" id="pwSidebarOverlay">
+        <div class="pw-sidebar" id="pwSidebar">
+            <!-- SIDEBAR HEADER (PW LOGO + GB STUDY) -->
+            <div class="pw-sidebar-header">
+                <div class="sidebar-user-card" onclick="openSidebarLink('/pw')">
+                    <div class="user-avatar-wrap">
+                        <img src="https://i.ibb.co/Q3g9fGSt/1791541921524.png" alt="GB STUDY Logo" class="user-avatar" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #2563eb; flex-shrink: 0;">
+                        <span class="user-status-dot"></span>
+                    </div>
+                    <div class="user-meta">
+                        <h4 class="user-name">
+                            GB STUDY
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563eb"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </h4>
+                        <span class="user-goal">View profile</span>
+                    </div>
+                </div>
+                <button class="pw-sidebar-close" id="pwSidebarClose" aria-label="Close sidebar">✕</button>
+            </div>
+
+            <!-- SIDEBAR BODY -->
+            <div class="pw-sidebar-body">
+                <div class="sidebar-menu-list"><a href="https://t.me/GBFreestudy" target="_blank" rel="noopener noreferrer" class="sidebar-item" style="text-decoration:none;"><i class="fa-brands fa-telegram sidebar-icon" style="color: #0088cc;"></i><span>Telegram Channel</span><span class="sidebar-badge-new" style="background:#0088cc; color:#fff;">JOIN</span></a>
+                    <!-- 1. STUDY -->
+                    <div class="sidebar-item active" id="sidebarStudy" onclick="openSidebarLink('/pw/study')">
+                        <i class="fa-solid fa-graduation-cap sidebar-icon" style="color: #ea580c;"></i>
+                        <span>Study</span>
+                    </div>
+
+                    <!-- 2. BATCHES -->
+                    <div class="sidebar-item" id="sidebarBatches" onclick="openSidebarLink('/pw')">
+                        <i class="fa-solid fa-layer-group sidebar-icon" style="color: #6366f1;"></i>
+                        <span>Batches</span>
+                    </div>
+
+                    <!-- 2. ALL CLASSES -->
+                    <div class="sidebar-item" id="sidebarAllClasses" onclick="openSidebarLink('/pw/subjects')">
+                        <i class="fa-solid fa-book-open sidebar-icon" style="color: #2563eb;"></i>
+                        <span>All Classes</span>
+                    </div>
+
+                    <!-- 3. ALL TESTS -->
+                    <div class="sidebar-item" id="sidebarAllTests" onclick="openSidebarLink('/pw/test')">
+                        <i class="fa-solid fa-file-lines sidebar-icon" style="color: #059669;"></i>
+                        <span>All Tests</span>
+                    </div>
+
+                    <!-- 4. KHAZANA -->
+                    <div class="sidebar-item" id="sidebarKhazana" onclick="openSidebarLink('/pw/khazana')">
+                        <i class="fa-solid fa-bolt-lightning sidebar-icon" style="color: #f59e0b;"></i>
+                        <span>Khazana</span>
+                        <span class="sidebar-badge-new">HOT</span>
+                    </div>
+
+                    <!-- 5. COMMUNITY -->
+                    <div class="sidebar-item" id="sidebarCommunity" onclick="openSidebarLink('/community')">
+                        <i class="fa-solid fa-users sidebar-icon" style="color: #8b5cf6;"></i>
+                        <span>Community</span>
+                    </div>
+
+                    <!-- 6. PI PRO -->
+                    <div class="sidebar-item" id="sidebarPiPro" onclick="openSidebarLink('/pw/mydoubts')">
+                        <i class="fa-solid fa-wand-magic-sparkles sidebar-icon" style="color: #0284c7;"></i>
+                        <span>Pi Pro</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-top">
+            <div style="display: flex; align-items: center;">
+                <div class="menu-icon" id="pwSidebarToggle"><i class="fa-solid fa-bars"></i></div>
+                <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; margin-left: 10px;">
+                    <img src="https://i.ibb.co/Q3g9fGSt/1791541921524.png" alt="GB STUDY Logo" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
+                    <span style="font-weight: 800; font-size: 15px; color: #0f172a; letter-spacing: -0.02em;">GB STUDY</span>
+                </a>
+            </div>
+            <div class="header-stats">
+                <!-- Streak Pill -->
+                <div class="stat-pill" title="Daily Streak">
+                    <div class="stat-pill-icon streak">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10.5" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+                            <path d="M12 4.5c.5 1.5 2 3.5 2 5.5 0 2.2-1.5 3.5-2 3.5s-2-1.3-2-3.5c0-2 1.5-4 2-5.5z" fill="#fed7aa"/>
+                            <path d="M12 20c-3.8 0-6.5-3-6.5-6.8 0-2.8 2-5.3 3.3-6.6.3-.3.7-.1.7.3 0 1.7 1.5 3.1 3 3.1 1.2 0 2.3-.8 2.6-2 .7-2.9-.3-4.5-.5-4.7-.2-.3.1-.6.4-.5 3.3 1.2 5.7 5 5.7 8.7C20.7 17 16.8 20 12 20z" fill="#f97316"/>
+                            <path d="M12 18c-2.4 0-4.1-1.9-4.1-4.1 0-1.5 1-3.2 2.1-4.1.3-.2.6 0 .6.3 0 1.1.9 2 2 2 .8 0 1.5-.4 1.7-1.2.3-1.1-.2-2-.3-2.2-.1-.2.2-.3.3-.2 1.8 1 2.7 3 2.7 4.5 0 2.7-2.1 5-5 5z" fill="#fde047"/>
+                        </svg>
+                        <div class="stat-pill-lock">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                    </div>
+                    <span class="stat-pill-val">0</span>
+                </div>
+
+                <!-- XP Pill with transparent XP hexagon badge -->
+                <div class="stat-pill" title="XP Points">
+                    <div class="stat-pill-icon xp">
+                        <img src="/assets/aistudio/xp_badge.png" alt="XP" class="xp-badge-icon" />
+                        <div class="stat-pill-lock">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                    </div>
+                    <span class="stat-pill-val">0</span>
+                </div>
+
+                <!-- Bell Notification Icon -->
+                <a href="/announcements" class="bell-btn" id="notificationBellBtn" title="Batch Announcements & Notifications">
+                    <i class="fa-regular fa-bell" style="font-size: 21px;"></i>
+                    <span id="notifDot" style="display:none;" class="bell-dot"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Your Batch Selector -->
+        <div class="header-batch">
+            <div class="batch-label">YOUR BATCH <i class="fa-solid fa-crown"></i></div>
+            <div class="batch-title">
+                <div id="currentBatchSelector" onclick="openBatchSelector()">
+                    <span id="activeBatchName">Loading...</span> <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Offerings Section -->
+        <div class="batch-offerings-section">
+            <h2 class="batch-offerings-header">Batch Offerings</h2>
+            <div class="offerings-grid">
+                <!-- 1. All Classes -->
+                <a href="#" class="offering-card feature-item" id="allClassesBtn">
+                    <div class="offering-icon-box" style="background: #ffece8;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="#f43f5e">
+                            <rect x="2" y="3" width="20" height="14" rx="3"></rect>
+                            <polygon points="10,7.5 15,10 10,12.5" fill="#ffece8"></polygon>
+                            <path d="M8 21h8M12 17v4" stroke="#f43f5e" stroke-width="2.2" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+                    <span class="offering-label">All Classes</span>
+                </a>
+
+                <!-- 2. All Tests -->
+                <a href="#" class="offering-card feature-item" id="allTestsBtn">
+                    <div class="offering-icon-box" style="background: #ffdfeb;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="#ec4899">
+                            <circle cx="12" cy="13" r="8"></circle>
+                            <path d="M12 9v4l2.5 2.5" stroke="#ffdfeb" stroke-width="2.2" stroke-linecap="round"></path>
+                            <path d="M10 2h4M12 2v3" stroke="#ec4899" stroke-width="2.2" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+                    <span class="offering-label">All Tests</span>
+                </a>
+
+                <!-- 3. Khazana -->
+                <a href="/pw/khazana" class="offering-card feature-item" id="khazanaBtn">
+                    <div class="offering-icon-box" style="background: #def7ec;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v2H3V8z"></path>
+                            <rect x="3" y="11" width="18" height="9" rx="2"></rect>
+                            <rect x="11" y="9" width="2" height="4" rx="1" fill="#def7ec"></rect>
+                            <circle cx="12" cy="14" r="1.3" fill="#def7ec"></circle>
+                        </svg>
+                    </div>
+                    <span class="offering-label">Khazana</span>
+                </a>
+
+                <!-- 4. Tracker 360 -->
+                <a href="javascript:void(0)" class="offering-card feature-item" id="tracker360Btn" onclick="openOfferInfo('Tracker 360', 'Track your complete syllabus, test milestones and daily targets in one unified 360° dashboard.')">
+                    <span class="offering-new-badge">NEW</span>
+                    <div class="offering-icon-box" style="background: #e0ebff;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 6h6a5 5 0 0 1 5 5v7" stroke="#3b82f6" stroke-width="3.6" stroke-linecap="round"></path>
+                            <circle cx="7" cy="6" r="2.5" fill="#3b82f6"></circle>
+                            <circle cx="18" cy="18" r="2.5" fill="#3b82f6"></circle>
+                        </svg>
+                    </div>
+                    <span class="offering-label">Tracker<br>360</span>
+                </a>
+
+                <!-- 5. Community -->
+                <a href="/community" class="offering-card feature-item" id="communityBtn">
+                    <span class="offering-new-badge">NEW</span>
+                    <div class="offering-icon-box" style="background: #f3e8ff;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="#9333ea">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                        </svg>
+                    </div>
+                    <span class="offering-label">Communit<br>y</span>
+                </a>
+
+                <!-- 6. Pi -->
+                <a href="javascript:void(0)" class="offering-card feature-item" id="piBtn" onclick="openOfferInfo('Pi AI Assistant', 'Pi AI interactive doubt solver and concept companion is integrated with your batch curriculum.')">
+                    <span class="offering-new-badge">NEW</span>
+                    <div class="offering-icon-box" style="background: #f2eed9;">
+                        <span style="font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 25px; font-weight: 800; color: #849626; line-height: 1; letter-spacing: -0.5px;">pi</span>
+                        <span class="offering-lock-badge">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                    </div>
+                    <span class="offering-label">Pi</span>
+                </a>
+
+                <!-- 7. Infinite Practice -->
+                <a href="javascript:void(0)" class="offering-card feature-item" id="infinitePracticeBtn" onclick="openOfferInfo('Infinite Practice', 'Practice thousands of curated chapter-wise and topic-wise questions with adaptive difficulty.')">
+                    <span class="offering-new-badge">NEW</span>
+                    <div class="offering-icon-box" style="background: #fef3c7;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <circle cx="12" cy="12" r="4" fill="#d97706"></circle>
+                            <path d="m15 15 5 5M20 15v5h-5" stroke-width="2.4"></path>
+                        </svg>
+                    </div>
+                    <span class="offering-label">Infinite<br>Practice</span>
+                </a>
+
+                <!-- 8. Preparation Meter -->
+                <a href="javascript:void(0)" class="offering-card feature-item" id="prepMeterBtn" onclick="openOfferInfo('Preparation Meter', 'Analyze your preparation level, weak areas, and score prediction in real-time based on your test attempts.')">
+                    <div class="offering-icon-box" style="background: #ccfbf1;">
+                        <svg width="27" height="27" viewBox="0 0 24 24" fill="#0891b2">
+                            <path d="M12 4C6.48 4 2 8.48 2 14c0 2.21.72 4.25 1.93 5.91l1.45-1.45A7.95 7.95 0 0 1 4 14c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.63-.49 3.15-1.38 4.46l1.45 1.45C21.28 18.25 22 16.21 22 14c0-5.52-4.48-10-10-10z"></path>
+                            <circle cx="12" cy="14" r="2.5" fill="#ccfbf1"></circle>
+                            <line x1="12" y1="14" x2="16" y2="10" stroke="#ccfbf1" stroke-width="2.5" stroke-linecap="round"></line>
+                        </svg>
+                    </div>
+                    <span class="offering-label">Preparatio<br>n Meter</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="main-content">
+
+        <!-- Continue Watching Section -->
+        <div id="continueWatchingSection" style="margin-bottom: 22px; display: none;"></div>
+
+        <!-- Today's Schedule Section -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; width: 100%; box-sizing: border-box;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 6px; white-space: nowrap; min-width: 0;">
+                <span style="white-space: nowrap;">Today's Schedule</span>
+                <span style="background: #f1f5f9; color: #475569; font-size: 11px; font-weight: 700; padding: 1.5px 7px; border-radius: 9px;" id="todayClassesCount">0</span>
+            </h3>
+            <button onclick="openWeeklySchedule()" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 7px; padding: 4.5px 9px; font-size: 11.5px; font-weight: 600; color: #334155; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.04);">
+                <i class="fa-regular fa-calendar" style="color: #6366f1; font-size: 11px;"></i> Weekly Schedule
+            </button>
+        </div>
+        <div id="todayClassesList" class="batches-scroll-container" style="display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 14px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin-bottom: 26px;">
+            <div style="text-align:center; padding: 24px; color: #94a3b8; font-size: 13.5px; width: 100%;">Loading schedule...</div>
+        </div>
+
+        <!-- Batches for You Section (Random Batches) -->
+        <div id="batchesForYouSection" style="margin-top: 10px; margin-bottom: 36px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 8px; width: 100%;">
+                <h3 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 8px;">
+                    <span>Batches for You</span>
+                </h3>
+                <a href="/pw" style="font-size: 13px; font-weight: 700; color: #4338ca; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                    View All <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+                </a>
+            </div>
+            
+            <div id="batchesForYouList" class="batches-scroll-container" style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+                <!-- Batches loaded dynamically -->
+                <div style="flex: 0 0 295px; height: 320px; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 13px;">
+                    Loading recommended batches...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Batch Selector Popup -->
+<div id="batchPopupOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:999; opacity:0; transition:opacity 0.3s;">
+    <div id="batchPopupSheet" style="position:absolute; bottom:-100%; left:0; width:100%; background:#fff; border-radius:20px 20px 0 0; padding:20px; transition:bottom 0.3s; max-height:80vh; overflow-y:auto; display:flex; flex-direction:column; max-width: 600px; margin: 0 auto; right: 0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="font-size:18px; font-weight:700; color:#1e293b;">Select your batch</h3>
+            <button onclick="closeBatchSelector()" style="background:none; border:none; font-size:20px; color:#64748b; cursor:pointer; padding:4px;">✕</button>
+        </div>
+        <!-- Search bar in batch filter -->
+        <div style="position:relative; margin-bottom:14px;">
+            <input type="text" id="batchSelectorSearchInput" placeholder="Search your batches..." oninput="handleBatchSelectorSearch(this.value)" style="width:100%; padding:10px 36px 10px 38px; border-radius:10px; border:1px solid #e2e8f0; background:#f8fafc; font-size:14px; color:#1e293b; outline:none; transition:all 0.2s; box-sizing:border-box;">
+            <svg style="position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:#94a3b8; pointer-events:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <button id="batchSelectorSearchClear" onclick="clearBatchSelectorSearch()" style="display:none; position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94a3b8; cursor:pointer; font-size:14px; padding:2px;">✕</button>
+        </div>
+        <div id="batchPopupList" style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Batches injected here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let batchFilterSearchQuery = '';
+
+    function handleBatchSelectorSearch(val) {
+        batchFilterSearchQuery = (val || '').trim().toLowerCase();
+        const clearBtn = document.getElementById('batchSelectorSearchClear');
+        if (clearBtn) {
+            clearBtn.style.display = batchFilterSearchQuery ? 'block' : 'none';
+        }
+        renderBatchList();
+    }
+
+    function clearBatchSelectorSearch() {
+        const input = document.getElementById('batchSelectorSearchInput');
+        if (input) input.value = '';
+        batchFilterSearchQuery = '';
+        const clearBtn = document.getElementById('batchSelectorSearchClear');
+        if (clearBtn) clearBtn.style.display = 'none';
+        renderBatchList();
+        if (input) input.focus();
+    }
+
+    function openBatchSelector() {
+        const searchInput = document.getElementById('batchSelectorSearchInput');
+        if (searchInput) searchInput.value = '';
+        batchFilterSearchQuery = '';
+        const clearBtn = document.getElementById('batchSelectorSearchClear');
+        if (clearBtn) clearBtn.style.display = 'none';
+
+        const overlay = document.getElementById('batchPopupOverlay');
+        const sheet = document.getElementById('batchPopupSheet');
+        overlay.style.display = 'block';
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+            sheet.style.bottom = '0';
+        }, 10);
+        renderBatchList();
+    }
+
+    function closeBatchSelector() {
+        const overlay = document.getElementById('batchPopupOverlay');
+        const sheet = document.getElementById('batchPopupSheet');
+        overlay.style.opacity = '0';
+        sheet.style.bottom = '-100%';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 300);
+    }
+
+    function sanitizeBatchId(val) {
+        if (!val || typeof val !== 'string') return null;
+        const t = val.trim();
+        if (!t || t === 'null' || t === 'undefined' || t === '[object Object]') return null;
+        return t;
+    }
+
+    function getSafeEnrolledBatches() {
+        try {
+            const raw = localStorage.getItem('enrolled_batches');
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter(b => b && typeof b === 'object' && sanitizeBatchId(b.id));
+        } catch (e) {
+            console.warn('Recovered malformed enrolled_batches');
+            return [];
+        }
+    }
+
+    function getSafeActiveBatchId() {
+        const raw = sanitizeBatchId(localStorage.getItem('active_batch_id'));
+        if (raw) return raw;
+        const enrolled = getSafeEnrolledBatches();
+        if (enrolled.length > 0 && enrolled[0].id) {
+            const safeId = sanitizeBatchId(enrolled[0].id);
+            if (safeId) {
+                localStorage.setItem('active_batch_id', safeId);
+                return safeId;
+            }
+        }
+        const defaultId = '698ad3519549b300a5e1cc6a';
+        localStorage.setItem('active_batch_id', defaultId);
+        return defaultId;
+    }
+
+    function selectBatch(batchId) {
+        const safeId = sanitizeBatchId(batchId);
+        if (safeId) {
+            localStorage.setItem('active_batch_id', safeId);
+        }
+        loadActiveBatch();
+        closeBatchSelector();
+    }
+
+    function loadActiveBatch() {
+        const enrolled = getSafeEnrolledBatches();
+        const nameEl = document.getElementById('activeBatchName');
+        const activeId = getSafeActiveBatchId();
+
+        let activeBatch = enrolled.find(b => b.id === activeId);
+
+        if (!activeBatch && enrolled.length > 0) {
+            activeBatch = enrolled[0];
+            if (activeBatch && activeBatch.id) {
+                localStorage.setItem('active_batch_id', activeBatch.id);
+            }
+        }
+
+        const effectiveBatchId = activeBatch ? activeBatch.id : activeId;
+        const effectiveBatchName = activeBatch ? activeBatch.name : 'Arjuna JEE 2027';
+        try {
+            localStorage.setItem('active_batch_name', effectiveBatchName);
+        } catch(e) {}
+
+        if (nameEl) {
+            nameEl.textContent = effectiveBatchName;
+        }
+        
+        // Update feature links with batch ID
+        const batchParam = encodeURIComponent(effectiveBatchId);
+        const nameParam = encodeURIComponent(effectiveBatchName);
+
+        const allClassesLink = document.getElementById('allClassesBtn') || document.querySelector('.feature-item[href="#"]');
+        if (allClassesLink) {
+            allClassesLink.href = '/pw/subjects?batch_id=' + batchParam + '&name=' + nameParam;
+        }
+        const allTestsLink = document.getElementById('allTestsBtn');
+        if (allTestsLink) {
+            allTestsLink.href = '/pw/test?batch_id=' + batchParam + '&batchid=' + batchParam + '&name=' + nameParam;
+        }
+        const commLink = document.getElementById('communityBtn');
+        if (commLink) {
+            commLink.href = '/community?batchid=' + batchParam + '&name=' + nameParam;
+        }
+        const doubtsLink = document.getElementById('myDoubtsBtn');
+        if (doubtsLink) {
+            doubtsLink.href = '/pw/mydoubts';
+        }
+        const notifLink = document.getElementById('notificationBellBtn');
+        if (notifLink) {
+            notifLink.href = '/announcements?batchid=' + batchParam + '&name=' + nameParam;
+        }
+        const khazanaLink = document.getElementById('khazanaBtn');
+        if (khazanaLink) {
+            khazanaLink.href = '/pw/khazana?batchid=' + batchParam + '&name=' + nameParam;
+        }
+        checkUnreadAnnouncements(effectiveBatchId);
+        loadTodayClasses(effectiveBatchId);
+    }
+
+    function escapeJs(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/\\/g, '\\\\')
+            .replace(/'/g, "\\'")
+            .replace(/"/g, '&quot;')
+            .replace(/\n/g, ' ')
+            .replace(/\r/g, '');
+    }
+
+    function showLectureTransitionModal(url, extraMeta) {
+        try {
+            extraMeta = extraMeta || {};
+            var urlObj = new URL(url, window.location.origin);
+            var defaultTeacherImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+            var title = extraMeta.title || urlObj.searchParams.get('title') || urlObj.searchParams.get('name') || 'Lecture';
+            var batchName = extraMeta.batchName || urlObj.searchParams.get('batch_name') || localStorage.getItem('active_batch_name') || 'Arjuna JEE 2026';
+            var teacher = extraMeta.teacher || urlObj.searchParams.get('teacher') || 'Saleem Ahmad Sir';
+            var subject = extraMeta.subject || urlObj.searchParams.get('subject') || 'Physics';
+            var img = extraMeta.facultyImg || urlObj.searchParams.get('faculty_image') || urlObj.searchParams.get('facultyImage') || urlObj.searchParams.get('image');
+            if (!img || img.includes('86e92751-6d7c-4a34-8c65-27a32b2e843f.png')) {
+                img = defaultTeacherImg;
+            }
+
+            var overlay = document.getElementById('lectureTransitionOverlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'lectureTransitionOverlay';
+                overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,10,20,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:16px;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;';
+                overlay.innerHTML = `
+                    <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:8px;padding:12px 14px;background:linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);">
+                      <div id="transBackBtn" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                      </div>
+                      <div id="transTopTitle" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:600;color:#cbd5e1;">Lecture</div>
+                    </div>
+                    <div style="position:relative;width:100%;max-width:370px;border-radius:28px;border:1px solid rgba(56,189,248,0.25);background:#0d1424;padding:36px 24px 28px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.85), 0 0 45px rgba(56,189,248,0.15);">
+                      <div style="position:relative;margin:0 auto;width:80px;height:80px;display:flex;align-items:center;justify-content:center;">
+                        <div style="position:absolute;inset:0;border-radius:50%;border:2.5px solid transparent;border-top-color:#38bdf8;border-right-color:#818cf8;animation:studySpin 1.2s linear infinite;"></div>
+                        <div style="position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(56,189,248,0.2);"></div>
+                        <div style="position:relative;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#2563eb,#38bdf8);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(99,102,241,0.7);">
+                          <svg style="width:20px;height:20px;margin-left:2px;fill:#ffffff;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                      </div>
+                      <h3 id="transStatusText" style="margin-top:20px;margin-bottom:0;font-size:17.5px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;transition:all 0.2s;">
+                        Matching Batch & Faculty...
+                      </h3>
+                      <p id="transLecTitle" style="margin-top:6px;margin-bottom:0;padding:0 4px;font-size:13.5px;font-weight:500;line-height:1.5;color:#94a3b8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></p>
+                      <div style="margin-top:20px;margin-bottom:20px;display:flex;align-items:center;gap:14px;border-radius:16px;border:1px solid rgba(255,255,255,0.1);background:rgba(15,23,42,0.7);padding:12px;text-align:left;">
+                        <img id="transFacultyImg" src="${defaultTeacherImg}" referrerpolicy="no-referrer" alt="Faculty" style="width:48px;height:48px;flex-shrink:0;border-radius:14px;object-fit:cover;background:#1e293b;border:1px solid rgba(56,189,248,0.3);box-shadow:0 4px 12px rgba(0,0,0,0.4);display:block;" onerror="this.onerror=null; this.src='https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';" />
+                        <div style="flex:1;min-width:0;">
+                          <div id="transBatchName" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px;font-weight:700;color:#ffffff;"></div>
+                          <div id="transSubName" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;font-weight:600;color:#38bdf8;margin-top:2px;"></div>
+                        </div>
+                      </div>
+                      <div style="height:5px;width:100%;overflow:hidden;border-radius:9999px;background:rgba(255,255,255,0.1);">
+                        <div id="transProgressBar" style="height:100%;width:28%;border-radius:9999px;background:linear-gradient(to right, #38bdf8, #6366f1, #a855f7);transition:width 0.3s cubic-bezier(0.4,0,0.2,1);"></div>
+                      </div>
+                    </div>
+                    <style>
+                      @keyframes studySpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                    </style>
+                `;
+                document.body.appendChild(overlay);
+            }
+            document.getElementById('transTopTitle').textContent = title;
+            document.getElementById('transLecTitle').textContent = title;
+            document.getElementById('transBatchName').textContent = batchName;
+            document.getElementById('transSubName').textContent = teacher + ' • ' + subject;
+            var progEl = document.getElementById('transProgressBar');
+            var statusEl = document.getElementById('transStatusText');
+            var imgEl = document.getElementById('transFacultyImg');
+            if (progEl) progEl.style.width = '28%';
+            if (statusEl) statusEl.textContent = 'Matching Batch & Faculty...';
+            if (imgEl) {
+                imgEl.referrerPolicy = 'no-referrer';
+                imgEl.onerror = function() {
+                    this.onerror = null;
+                    this.src = defaultTeacherImg;
+                };
+                imgEl.src = img || defaultTeacherImg;
+            }
+            overlay.style.display = 'flex';
+
+            var cancelLaunch = false;
+            var backBtn = document.getElementById('transBackBtn');
+            if (backBtn) {
+                backBtn.onclick = function() {
+                    cancelLaunch = true;
+                    overlay.style.display = 'none';
+                };
+            }
+
+            setTimeout(function() {
+                if (cancelLaunch) return;
+                if (progEl) progEl.style.width = '74%';
+                if (statusEl) statusEl.textContent = 'Syncing Lecture Parameters...';
+            }, 260);
+
+            setTimeout(function() {
+                if (cancelLaunch) return;
+                if (progEl) progEl.style.width = '100%';
+                if (statusEl) statusEl.textContent = 'Launching Player...';
+            }, 600);
+
+            setTimeout(function() {
+                if (cancelLaunch) return;
+                window.location.href = url;
+            }, 820);
+        } catch(e) {
+            window.location.href = url;
+        }
+    }
+
+    if (typeof window.openClassUrl !== 'function' || window.openClassUrl.length < 2) {
+        window.openClassUrl = function(url, extraMeta) {
+            if (!url) return;
+            showLectureTransitionModal(url, extraMeta);
+        };
+    }
+    const openClassUrl = function(url, extraMeta) {
+        showLectureTransitionModal(url, extraMeta);
+    };
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    let lastCheckedBatchForAnnouncements = "";
+    async function checkUnreadAnnouncements(batchId) {
+        if (!batchId || batchId === lastCheckedBatchForAnnouncements) return;
+        lastCheckedBatchForAnnouncements = batchId;
+        try {
+            const res = await fetch(`/api/pw/radha/v1/batches/${batchId}/announcement?page=1&limit=5`);
+            if (res.ok) {
+                const text = await res.text().catch(() => '');
+                const data = text ? JSON.parse(text) : {};
+                const dot = document.getElementById('notifDot');
+                if (dot && data.success && Array.isArray(data.data) && data.data.length > 0) {
+                    dot.style.display = 'block';
+                }
+            }
+        } catch (e) {}
+    }
+
+    let extraFeaturesVisible = false;
+    function toggleExtraFeatures() {
+        extraFeaturesVisible = !extraFeaturesVisible;
+        const extras = document.querySelectorAll(".feature-extra");
+        const textEl = document.getElementById("toggleFeaturesText");
+        const iconEl = document.getElementById("toggleFeaturesIcon");
+
+        extras.forEach(el => {
+            if (extraFeaturesVisible) {
+                el.classList.add("show-extra");
+            } else {
+                el.classList.remove("show-extra");
+            }
+        });
+
+        if (textEl) textEl.textContent = extraFeaturesVisible ? "Show less" : "Load more";
+        if (iconEl) {
+            iconEl.style.transform = extraFeaturesVisible ? "rotate(180deg)" : "rotate(0deg)";
+        }
+    }
+
+    function openOfferInfo(title, desc) {
+        let overlay = document.getElementById('offeringInfoOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'offeringInfoOverlay';
+            overlay.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.72); backdrop-filter:blur(4px); z-index:1050; display:flex; align-items:center; justify-content:center; padding:20px;';
+            overlay.onclick = function(e) {
+                if (e.target === overlay) closeOfferInfo();
+            };
+            overlay.innerHTML = `
+                <div style="background:#111422; border:1px solid #1f253a; border-radius:20px; padding:24px 20px; width:100%; max-width:360px; color:#ffffff; text-align:center; box-shadow:0 15px 35px rgba(0,0,0,0.5);">
+                    <div id="offeringInfoTitle" style="font-size:18px; font-weight:800; margin-bottom:8px; color:#ffffff;"></div>
+                    <div id="offeringInfoDesc" style="font-size:13.5px; color:#94a3b8; line-height:1.5; margin-bottom:20px;"></div>
+                    <button onclick="closeOfferInfo()" style="background:#2563eb; color:#ffffff; border:none; border-radius:10px; font-weight:700; font-size:13px; padding:10px 24px; cursor:pointer; width:100%;">Got it</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+        document.getElementById('offeringInfoTitle').textContent = title;
+        document.getElementById('offeringInfoDesc').textContent = desc;
+        overlay.style.display = 'flex';
+    }
+
+    function closeOfferInfo() {
+        const overlay = document.getElementById('offeringInfoOverlay');
+        if (overlay) overlay.style.display = 'none';
+    }
+
+    function openWeeklySchedule() {
+        const activeId = getSafeActiveBatchId();
+        window.location.href = "/pw/live?batch_id=" + activeId + "&name=" + encodeURIComponent("Weekly Schedule");
+    }
+
+    let isLoadingSchedule = false;
+    async function loadTodayClasses(batchId) {
+        const listEl = document.getElementById("todayClassesList");
+        const countEl = document.getElementById("todayClassesCount");
+        
+        if (!batchId || batchId === 'null' || batchId === 'undefined') {
+            listEl.innerHTML = '<div style="text-align:center; padding: 30px 20px; color: #94a3b8; font-size: 14px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">Please select a batch to view schedule</div>';
+            countEl.textContent = "0";
+            return;
+        }
+
+        if (isLoadingSchedule) return;
+        isLoadingSchedule = true;
+
+        listEl.innerHTML = '<div style="text-align:center; padding: 30px; color: #64748b; font-size: 14px;"><i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px; color: #6366f1;"></i> Loading schedule...</div>';
+        
+        try {
+            // Fetch schedule and batch details in parallel
+            const [schedRes, detailsRes] = await Promise.all([
+                fetch("/api/pw/radha/v2/batches/" + batchId + "/todays-schedule?batchId=" + batchId),
+                fetch("/api/pw/radha/v3/batches/" + batchId + "/details").catch(() => null)
+            ]);
+            
+            const schedText = schedRes && schedRes.ok ? await schedRes.text().catch(() => '') : '';
+            const json = schedText ? JSON.parse(schedText) : {};
+            
+            // Build subject image mapping & name mapping from batch details
+            let subjectImageMap = {};
+            let subjectNameMap = {};
+            let teacherNameMap = {};
+            let batchDetails = null;
+            if (detailsRes && detailsRes.ok) {
+                try {
+                    const detailsText = await detailsRes.text().catch(() => '');
+                    const detailsJson = detailsText ? JSON.parse(detailsText) : {};
+                    batchDetails = detailsJson?.data || null;
+                    if (batchDetails?.subjects) {
+                        batchDetails.subjects.forEach(s => {
+                            const sName = s.subject || s.name || s.title || "";
+                            if (s._id) {
+                                subjectNameMap[s._id] = sName;
+                                if (s.imageId?.baseUrl && s.imageId?.key) subjectImageMap[s._id] = s.imageId.baseUrl + s.imageId.key;
+                            }
+                            if (s.subjectId) {
+                                subjectNameMap[s.subjectId] = sName;
+                                if (s.imageId?.baseUrl && s.imageId?.key) subjectImageMap[s.subjectId] = s.imageId.baseUrl + s.imageId.key;
+                            }
+                            if (Array.isArray(s.teacherIds)) {
+                                s.teacherIds.forEach(t => {
+                                    if (!t) return;
+                                    const tId = t._id || t.id;
+                                    const tFullName = [t.firstName, t.lastName].filter(Boolean).join(" ");
+                                    if (tId) {
+                                        if (tFullName) teacherNameMap[tId] = tFullName;
+                                        if (t.imageId?.baseUrl && t.imageId?.key) {
+                                            teacherImageMap[tId] = t.imageId.baseUrl + t.imageId.key;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                } catch(err) {
+                    console.warn("Could not parse batch details", err);
+                }
+            }
+
+            if (!json.success || !json.data || json.data.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align:center; padding: 36px 20px; background: white; border-radius: 14px; border: 1px solid #e2e8f0; width: 100%;">
+                        <i class="fa-regular fa-calendar-check" style="font-size: 36px; color: #cbd5e1; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px;">No classes scheduled for today</h4>
+                        <p style="color: #94a3b8; font-size: 13px;">Check back later or view the weekly schedule.</p>
+                    </div>
+                `;
+                countEl.textContent = "0";
+                return;
+            }
+
+            const classes = json.data;
+            countEl.textContent = classes.length;
+
+            // Resolve active batch thumbnail for fallback
+            const enrolled = getSafeEnrolledBatches();
+            const activeBatch = enrolled.find(b => b.id === batchId);
+            let activeBatchImg = (activeBatch && activeBatch.image && !activeBatch.image.includes("undefined")) 
+                ? activeBatch.image 
+                : (batchDetails?.previewImage ? (batchDetails.previewImage.baseUrl + batchDetails.previewImage.key) : "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg");
+
+            // Collect teacher IDs from all schedule items to fetch teacher portraits
+            const teacherIds = new Set();
+            classes.forEach(cls => {
+                const info = cls.data || {};
+                if (Array.isArray(info.teachers)) {
+                    info.teachers.forEach(tId => { if (tId) teacherIds.add(tId); });
+                }
+            });
+
+            // Fetch teacher images from User Microservice API
+            let teacherImageMap = {};
+            if (teacherIds.size > 0) {
+                try {
+                    const uRes = await fetch("/api/pw/radha/v1/users/get-user-details-list?userIds=" + Array.from(teacherIds).join(","));
+                    if (uRes.ok) {
+                        const uText = await uRes.text().catch(() => '');
+                        const uJson = uText ? JSON.parse(uText) : {};
+                        if (uJson.success && Array.isArray(uJson.data)) {
+                            uJson.data.forEach(u => {
+                                const tFullName = [u.firstName, u.lastName].filter(Boolean).join(" ");
+                                if (tFullName) teacherNameMap[u._id] = tFullName;
+                                if (u._id && u.imageId && u.imageId.baseUrl && u.imageId.key) {
+                                    teacherImageMap[u._id] = u.imageId.baseUrl + u.imageId.key;
+                                }
+                            });
+                        }
+                    }
+                } catch(err) {
+                    console.warn("Could not fetch teacher details", err);
+                }
+            }
+
+            listEl.innerHTML = classes.map(cls => {
+                const info = cls.data || {};
+                const date = info.startTime ? new Date(info.startTime) : (info.date ? new Date(info.date) : new Date());
+                const timeString = date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }).toLowerCase();
+
+                // 1. Resolve banner image:
+                let imgUrl = "";
+                let isTeacherFallback = false;
+                if (info.videoDetails && info.videoDetails.image) {
+                    imgUrl = info.videoDetails.image;
+                } else if (info.previewImageUrl) {
+                    imgUrl = info.previewImageUrl;
+                }
+
+                // Agar lecture image nahi hai toh teacher image aaye from user details API
+                if (!imgUrl && Array.isArray(info.teachers) && info.teachers.length > 0) {
+                    const foundTImg = info.teachers.map(tId => teacherImageMap[tId]).find(Boolean);
+                    if (foundTImg) {
+                        imgUrl = foundTImg;
+                        isTeacherFallback = true;
+                    }
+                }
+
+                // Fallback to companion thumbnail (e.g. DPP Quiz)
+                if (!imgUrl) {
+                    const companion = classes.find(x => x.data?.videoDetails?.image && (
+                        (info.topic && x.data.topic && x.data.topic.trim().toLowerCase() === info.topic.trim().toLowerCase()) ||
+                        (info.chapterId && x.data.chapterId === info.chapterId)
+                    ));
+                    if (companion) {
+                        imgUrl = companion.data.videoDetails.image;
+                    }
+                }
+
+                // Check subject image
+                const subId = info.subjectId ? (info.subjectId._id || info.subjectId) : null;
+                if (!imgUrl && subId && subjectImageMap[subId]) {
+                    imgUrl = subjectImageMap[subId];
+                }
+
+                // Fallback to active batch image
+                if (!imgUrl) {
+                    imgUrl = activeBatchImg;
+                }
+
+                // 2. Status Badge Formatting based on timing and status (Live vs Upcoming vs Completed):
+                const now = new Date();
+                const startTime = info.startTime ? new Date(info.startTime) : (info.date ? new Date(info.date) : null);
+                const endTime = info.endTime ? new Date(info.endTime) : null;
+                const statusUpper = (info.status || "").toUpperCase();
+
+                let badgeColor = "#d97706";
+                let badgeBg = "#fffbeb";
+                let badgeBorder = "#fde68a";
+                let statusText = "UPCOMING";
+                let statusDot = '<i class="fa-regular fa-clock" style="font-size:10px;"></i>';
+
+                if (statusUpper === "CANCELED" || statusUpper === "CANCEL") {
+                    badgeColor = "#dc2626"; badgeBg = "#fef2f2"; badgeBorder = "#fecaca";
+                    statusText = "CANCELED";
+                    statusDot = '<i class="fa-solid fa-ban" style="font-size:10px;"></i>';
+                } else if (statusUpper === "COMPLETED" || (endTime && now > endTime && statusUpper !== "LIVE")) {
+                    badgeColor = "#16a34a"; badgeBg = "#f0fdf4"; badgeBorder = "#bbf7d0";
+                    statusText = "COMPLETED";
+                    statusDot = '<i class="fa-solid fa-check" style="font-size:10px;"></i>';
+                } else if (cls.type === "DPP_QUIZ") {
+                    badgeColor = "#059669"; badgeBg = "#ecfdf5"; badgeBorder = "#a7f3d0";
+                    statusText = "DPP QUIZ";
+                    statusDot = '<i class="fa-solid fa-circle-question" style="font-size:10px;"></i>';
+                } else if (statusUpper === "LIVE" || info.lectureType === "LIVE" || cls.type === "LIVE") {
+                    if (startTime && now < startTime) {
+                        badgeColor = "#d97706"; badgeBg = "#fffbeb"; badgeBorder = "#fde68a";
+                        statusText = "UPCOMING";
+                        statusDot = '<i class="fa-regular fa-clock" style="font-size:10px;"></i>';
+                    } else if (endTime && now > endTime) {
+                        badgeColor = "#16a34a"; badgeBg = "#f0fdf4"; badgeBorder = "#bbf7d0";
+                        statusText = "COMPLETED";
+                        statusDot = '<i class="fa-solid fa-check" style="font-size:10px;"></i>';
+                    } else {
+                        badgeColor = "#dc2626"; badgeBg = "#fef2f2"; badgeBorder = "#fecaca";
+                        statusText = "LIVE";
+                        statusDot = '<span class="live-pulse-dot"></span>';
+                    }
+                } else if (statusUpper === "PENDING" || statusUpper === "UPCOMING") {
+                    if (startTime && now >= startTime && (!endTime || now <= endTime)) {
+                        badgeColor = "#dc2626"; badgeBg = "#fef2f2"; badgeBorder = "#fecaca";
+                        statusText = "LIVE";
+                        statusDot = '<span class="live-pulse-dot"></span>';
+                    } else {
+                        badgeColor = "#d97706"; badgeBg = "#fffbeb"; badgeBorder = "#fde68a";
+                        statusText = "UPCOMING";
+                        statusDot = '<i class="fa-regular fa-clock" style="font-size:10px;"></i>';
+                    }
+                } else if (statusUpper === "RECORDED" || info.lectureType === "RECORDED") {
+                    badgeColor = "#475569"; badgeBg = "#f1f5f9"; badgeBorder = "#cbd5e1";
+                    statusText = "RECORDED";
+                    statusDot = '<i class="fa-solid fa-video" style="font-size:10px;"></i>';
+                } else if (statusUpper) {
+                    statusText = statusUpper;
+                }
+
+                // Subject name
+                const subjectName = (info.subject && typeof info.subject === 'string' && info.subject) || 
+                                    (info.subjectId && info.subjectId.subject) || 
+                                    (subId && subjectNameMap[subId]) || 
+                                    (cls.type === "DPP_QUIZ" ? "DPP Quiz" : "Class");
+
+                // Teacher name
+                let teacherName = "";
+                if (Array.isArray(info.teachers) && info.teachers.length > 0) {
+                    teacherName = info.teachers.map(tId => teacherNameMap[tId]).find(Boolean) || "";
+                }
+                if (!teacherName && info.faculty) {
+                    teacherName = info.faculty.name || info.faculty;
+                }
+                if (!teacherName) {
+                    teacherName = cls.type === "DPP_QUIZ" ? "Quiz & Practice" : "Saleem Ahmad Sir";
+                }
+
+                // Faculty Image (verified working default)
+                let facultyImg = "";
+                if (Array.isArray(info.teachers) && info.teachers.length > 0) {
+                    facultyImg = info.teachers.map(tId => teacherImageMap[tId]).find(Boolean) || "";
+                }
+                if (!facultyImg && info.faculty) {
+                    facultyImg = info.faculty.image || info.faculty.imageUrl || info.faculty.photo || "";
+                }
+                if (!facultyImg && isTeacherFallback && imgUrl) {
+                    facultyImg = imgUrl;
+                }
+                if (!facultyImg || facultyImg.includes('86e92751-6d7c-4a34-8c65-27a32b2e843f.png')) {
+                    facultyImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png';
+                }
+
+                // 3. Click handler
+                const topicTitle = info.topic || (info.dppData ? info.dppData.title : (cls.topic || cls.name || cls.title || "Untitled Class"));
+                let clickAction = "";
+                if (cls.type === "DPP_QUIZ") {
+                    const dppData = info.dppData || info;
+                    const realContent = (dppData.content && dppData.content.length > 0) ? dppData.content[0] : null;
+                    const dppTestId = (realContent && (realContent.exerciseId || (realContent.exerciseDetails && realContent.exerciseDetails._id))) || dppData.dppId || dppData.testId || dppData._id || info._id;
+                    const exId = (realContent && ((realContent.exerciseDetails && realContent.exerciseDetails._id) || realContent.exerciseId || realContent._id)) || dppData.exerciseId || dppTestId;
+                    const bSchedId = info._id || cls._id || "";
+                    const bId = info.batchId || batchId;
+                    const sId = info.batchSubjectId || (info.subjectId ? (info.subjectId._id || info.subjectId) : subId) || "";
+                    const dppTitle = (info.dppData && info.dppData.title) ? info.dppData.title : topicTitle;
+
+                    const dppParams = new URLSearchParams({
+                        testId: dppTestId,
+                        test_id: dppTestId,
+                        batchId: bId,
+                        batch_id: bId,
+                        subjectId: sId,
+                        subject_id: sId,
+                        exerciseId: exId,
+                        batchScheduleId: bSchedId,
+                        testSource: 'BATCH_QUIZ',
+                        cohortId: '',
+                        test_name: dppTitle
+                    });
+                    clickAction = "window.location.href='/start-dpp-test/?" + dppParams.toString() + "'";
+                } else {
+                    const sId = cls.subjectId || cls.batchSubjectId || subId || "";
+                    const cId = cls._id || cls.id || "";
+                    const chapterId = cls.chapterId || cls.topicId || "";
+                    const bNameParam = localStorage.getItem('active_batch_name') || 'Arjuna JEE 2026';
+                    const targetUrl = `/pw/player?batchId=${encodeURIComponent(batchId)}&subjectId=${encodeURIComponent(sId)}&childId=${encodeURIComponent(cId)}&videoId=${encodeURIComponent(cId)}&topicId=${encodeURIComponent(chapterId)}&title=${encodeURIComponent(topicTitle)}&batch_name=${encodeURIComponent(bNameParam)}&teacher=${encodeURIComponent(teacherName)}&subject=${encodeURIComponent(subjectName)}&faculty_image=${encodeURIComponent(facultyImg)}&image=${encodeURIComponent(facultyImg || imgUrl)}${cls.url ? '&streamUrl=' + encodeURIComponent(cls.url) : (cls.videoDetails?.videoUrl ? '&streamUrl=' + encodeURIComponent(cls.videoDetails.videoUrl) : '')}`;
+                    clickAction = `openClassUrl('${escapeHtml(targetUrl)}', { title: '${escapeJs(topicTitle)}', batchName: '${escapeJs(bNameParam)}', teacher: '${escapeJs(teacherName)}', subject: '${escapeJs(subjectName)}', facultyImg: '${escapeJs(facultyImg)}' })`;
+                }
+
+                const isLiveNow = (statusText === 'LIVE');
+                const isCompleted = (statusText === 'COMPLETED');
+                const bulletColor = isLiveNow ? '#dc2626' : (isCompleted ? '#16a34a' : '#f59e0b');
+                const statusLabel = isLiveNow ? 'Ongoing' : (isCompleted ? 'Completed' : 'Scheduled');
+
+                return `
+                <div class="batch-for-you-card" onclick="${clickAction}">
+                    <!-- Banner Poster -->
+                    <div style="height: 94px; width: 100%; position: relative; background: ${cls.type === 'DPP_QUIZ' ? '#ecfdf5' : '#0f172a'}; overflow: hidden; border-top-left-radius: 15px; border-top-right-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                        ${cls.type === "DPP_QUIZ" ? `
+                            <img src="https://pi-mf.pw.live/static/svg/dpp.2cfc71ee.svg" alt="DPP Quiz" style="width: 48px; height: 48px; object-fit: contain;" />
+                        ` : `
+                            <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(topicTitle)}" loading="lazy" style="width: 100%; height: 100%; object-fit: ${isTeacherFallback ? 'contain' : 'cover'}; display: block;" onerror="this.onerror=null; this.src='${activeBatchImg}';" />
+                        `}
+                    </div>
+
+                    <!-- Card Body -->
+                    <div style="padding: 8px 10px 10px; display: flex; flex-direction: column; flex: 1;">
+                        <!-- Tags row -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <span style="font-size: 11.5px; font-weight: 700; color: #ea580c; text-transform: capitalize; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 110px;">
+                                ${escapeHtml(subjectName)}
+                            </span>
+                            <span style="border: 1px solid ${badgeBorder}; background: ${badgeBg}; color: ${badgeColor}; border-radius: 5px; padding: 1.5px 5px; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0;">
+                                ${statusDot}
+                                <span>${statusText}</span>
+                            </span>
+                        </div>
+
+                        <!-- Class Title (1 line) -->
+                        <h4 style="font-size: 13px; font-weight: 700; color: #1e293b; margin: 0 0 4px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(topicTitle)}">
+                            ${escapeHtml(topicTitle)}
+                        </h4>
+
+                        <!-- Teacher info with icon -->
+                        <div style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #475569; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(teacherName)}</span>
+                        </div>
+
+                        <!-- Status & Time with bullet -->
+                        <div style="display: flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 500; color: #475569; margin-bottom: 6px;">
+                            <span style="width: 5px; height: 5px; border-radius: 50%; background: ${bulletColor}; flex-shrink: 0; display: inline-block;"></span>
+                            <span>${statusLabel} <span style="color: #cbd5e1; margin: 0 2px;">|</span> ${escapeHtml(timeString)}</span>
+                        </div>
+
+                        <!-- Action Row -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 6px; border-top: 1px solid #f1f5f9;">
+                            <div style="display: flex; align-items: center; gap: 4px; color: #64748b; font-size: 10.5px; font-weight: 600;">
+                                <i class="fa-regular fa-clock" style="font-size: 9.5px; color: #6366f1;"></i>
+                                <span>${escapeHtml(timeString)}</span>
+                            </div>
+                            <div>
+                                <button type="button" class="batch-buy-btn" onclick="event.stopPropagation(); ${clickAction};" style="background: #181d28; color: #ffffff; border: none; border-radius: 8px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 5px;">
+                                    ${cls.type === "DPP_QUIZ" ? '<i class="fa-solid fa-pen-to-square" style="font-size: 9px;"></i> Start DPP' : (isLiveNow ? '<span class="live-pulse-dot" style="width: 5px; height: 5px; background: #fff;"></span> Join Live' : '<i class="fa-solid fa-play" style="font-size: 9px;"></i> Watch')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join("");
+        } catch (e) {
+            console.error(e);
+            listEl.innerHTML = '<div style="text-align:center; padding: 25px; color: #ef4444; font-size: 14px; background: white; border-radius: 12px; border: 1px solid #fee2e2;">Failed to load schedule. Please try again.</div>';
+            countEl.textContent = "0";
+        } finally {
+            isLoadingSchedule = false;
+        }
+    }
+
+    function renderBatchList() {
+        const enrolled = getSafeEnrolledBatches();
+        const listEl = document.getElementById('batchPopupList');
+        const activeId = getSafeActiveBatchId();
+
+        if (enrolled.length === 0) {
+            listEl.innerHTML = '<p style="text-align:center; color:#64748b; padding: 20px;">You are not enrolled in any batches yet.</p>';
+            return;
+        }
+
+        let displayBatches = enrolled;
+        if (batchFilterSearchQuery) {
+            displayBatches = enrolled.filter(b => {
+                const name = (b.name || '').toLowerCase();
+                return name.includes(batchFilterSearchQuery);
+            });
+        }
+
+        if (displayBatches.length === 0) {
+            listEl.innerHTML = `
+                <div style="text-align:center; padding: 25px 15px; color:#64748b;">
+                    <p style="font-size:14px; margin-bottom:8px;">No enrolled batch matches "<strong>${escapeHtml(batchFilterSearchQuery)}</strong>"</p>
+                    <a href="/pw?search=${encodeURIComponent(batchFilterSearchQuery)}" style="display:inline-block; font-size:13px; font-weight:600; color:#8b5cf6; text-decoration:none;">Search all batches in GB STUDY →</a>
+                </div>
+            `;
+            return;
+        }
+
+        listEl.innerHTML = displayBatches.map(batch => {
+            const imgSrc = (batch.image && !batch.image.includes('undefined')) ? batch.image : 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg';
+            return `
+            <div onclick="selectBatch('${batch.id}')" style="display:flex; align-items:center; gap:15px; padding:12px; border:1px solid ${batch.id === activeId ? '#8b5cf6' : '#e2e8f0'}; border-radius:12px; background:${batch.id === activeId ? '#f5f3ff' : '#fff'}; cursor:pointer; transition:all 0.2s;">
+                <img src="${imgSrc}" style="width:120px; height:68px; object-fit:cover; border-radius:8px; flex-shrink:0;" alt="Batch Image">
+                <div style="flex:1;">
+                    <h4 style="font-size:15px; font-weight:700; color:#1e293b; margin-bottom:4px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${escapeHtml(batch.name)}</h4>
+                </div>
+                <div>
+                    <button style="background:${batch.id === activeId ? '#8b5cf6' : '#f1f5f9'}; color:${batch.id === activeId ? '#fff' : '#475569'}; border:none; padding:6px 16px; border-radius:8px; font-weight:600; font-size:13px;">${batch.id === activeId ? 'Selected' : 'Select'}</button>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    function renderContinueWatching() {
+        const container = document.getElementById('continueWatchingSection');
+        if (!container) return;
+        try {
+            const raw = localStorage.getItem('continue_watching');
+            let list = raw ? JSON.parse(raw) : [];
+            if (!Array.isArray(list) || list.length === 0) {
+                container.style.display = 'none';
+                container.innerHTML = '';
+                return;
+            }
+
+            container.style.display = 'block';
+
+            let showAll = window.__showAllContinueWatching || false;
+            let displayList = showAll ? list : list.slice(0, 1);
+
+            let html = `
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 8px; margin: 0;">
+                        <span>Continue Watching</span>
+                        <span style="background: #f1f5f9; color: #475569; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">${list.length}</span>
+                    </h3>
+                    ${list.length > 1 ? `
+                        <button onclick="toggleAllContinueWatching()" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s;">
+                            ${showAll ? 'Show Less' : 'View All'} <i class="fa-solid ${showAll ? 'fa-chevron-up' : 'fa-chevron-right'}" style="font-size: 11px;"></i>
+                        </button>
+                    ` : ''}
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+            `;
+
+            displayList.forEach((item) => {
+                const title = item.topicTitle || item.title || 'Lecture';
+                const batchId = item.batchId || '';
+                const subjectId = item.subjectId || '';
+                const childId = item.childId || '';
+                const time = item.time || 0;
+                const targetUrl = `/pw/player?batchId=${encodeURIComponent(batchId)}&subjectId=${encodeURIComponent(subjectId)}&childId=${encodeURIComponent(childId)}&t=${Math.floor(time)}`;
+
+                html += `
+                    <div style="background: #fbf7ee; border: 1px solid #f3ebd9; border-radius: 16px; padding: 14px 16px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 14px;">
+                        <!-- Left Play Icon Circle -->
+                        <div onclick="openClassUrl('${escapeHtml(targetUrl)}')" style="width: 42px; height: 42px; border-radius: 50%; background: #1e293b; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer;">
+                            <i class="fa-solid fa-play" style="font-size: 13px; margin-left: 2px;"></i>
+                        </div>
+
+                        <!-- Middle Content -->
+                        <div style="flex: 1; min-width: 0; padding-right: 28px; cursor: pointer;" onclick="openClassUrl('${escapeHtml(targetUrl)}')">
+                            <div style="font-size: 14px; font-weight: 600; color: #334155; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" title="${escapeHtml(title)}">
+                                ${escapeHtml(title)}
+                            </div>
+                            <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-top: 6px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                                Continue Watching <i class="fa-solid fa-arrow-right" style="font-size: 12px;"></i>
+                            </div>
+                        </div>
+
+                        <!-- Top Right Remove Button -->
+                        <button onclick="removeFromContinueWatching('${escapeHtml(batchId)}', '${escapeHtml(childId)}', event)" aria-label="Remove" style="position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; border-radius: 50%; background: #e2e8f0; border: none; color: #475569; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;" title="Remove from Continue Watching">
+                            <i class="fa-solid fa-xmark" style="font-size: 14px;"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        } catch (e) {
+            console.error('Error rendering continue watching:', e);
+        }
+    }
+
+    function removeFromContinueWatching(batchId, childId, event) {
+        if (event) event.stopPropagation();
+        try {
+            const raw = localStorage.getItem('continue_watching');
+            let list = raw ? JSON.parse(raw) : [];
+            if (!Array.isArray(list)) list = [];
+            list = list.filter(x => !(x.childId === childId && x.batchId === batchId));
+            localStorage.setItem('continue_watching', JSON.stringify(list));
+            renderContinueWatching();
+        } catch (e) {}
+    }
+
+    function toggleAllContinueWatching() {
+        window.__showAllContinueWatching = !window.__showAllContinueWatching;
+        renderContinueWatching();
+    }
+
+    async function loadBatchesForYou() {
+        const listEl = document.getElementById("batchesForYouList");
+        if (!listEl) return;
+
+        try {
+            let rawList = [];
+            
+            // 1. First attempt: Dedicated fast server random endpoint from in-memory batch JSON
+            try {
+                const res = await fetch("/api/batches/random?count=12");
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && Array.isArray(data.batches) && data.batches.length > 0) {
+                        rawList = data.batches;
+                    }
+                }
+            } catch (e) {
+                console.warn("Primary random batches endpoint failed, attempting fallback...", e);
+            }
+
+            // 2. Second attempt: Fetch entire batch JSON directly from upstream sources or get-Batches.json?all=true
+            if (rawList.length === 0) {
+                const sources = [
+                    "/api/pw/get-Batches.json?all=true",
+                    "https://studystark.github.io/batches/batches.json",
+                    "https://semfy-gros.github.io/batches/batcha.json",
+                    "https://rarestudy.github.io/rarestudy/batches.json?v="
+                ];
+
+                for (const src of sources) {
+                    try {
+                        const sRes = await fetch(src, { cache: "no-store" });
+                        if (sRes.ok) {
+                            const sData = await sRes.json();
+                            const arr = Array.isArray(sData) ? sData : (sData.batches || sData.data || []);
+                            if (arr && arr.length > 0) {
+                                rawList = arr;
+                                break;
+                            }
+                        }
+                    } catch (err) {}
+                }
+            }
+
+            // Filter valid batches from the full batch JSON
+            const valid = rawList.filter(b => b && (b.id || b.batch_id) && b.name && b.name.trim() !== "PW Batch");
+            if (valid.length === 0) {
+                listEl.innerHTML = '<div style="padding: 24px; color: #94a3b8; font-size: 13.5px;">No recommended batches found.</div>';
+                return;
+            }
+
+            // Pick 12 random batches from anywhere in the entire batch JSON
+            const shuffled = valid.sort(() => 0.5 - Math.random()).slice(0, 12);
+
+            const fallbackBanners = [
+                "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg",
+                "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a8a8837e-fa4d-4355-bbd5-214512154c23.png",
+                "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg"
+            ];
+
+            const formatStartDate = (rawDate, idx) => {
+                if (rawDate) {
+                    try {
+                        const d = new Date(rawDate);
+                        if (!isNaN(d.getTime())) {
+                            const day = d.getDate();
+                            const suffix = (day === 1 || day === 21 || day === 31) ? "st" : (day === 2 || day === 22) ? "nd" : (day === 3 || day === 23) ? "rd" : "th";
+                            const month = d.toLocaleString('en-US', { month: 'short' });
+                            const year = String(d.getFullYear()).slice(-2);
+                            return `${day}${suffix} ${month}'${year}`;
+                        }
+                    } catch(e) {}
+                }
+                const fallbackDates = ["22nd Jun'26", "15th Jul'26", "10th Aug'26", "5th May'26", "28th Sep'26", "12th Oct'26", "18th Nov'26"];
+                return fallbackDates[idx % fallbackDates.length];
+            };
+
+            let cardsHtml = "";
+            shuffled.forEach((batch, index) => {
+                const bId = String(batch.id || batch.batch_id);
+                const bName = (batch.name || "PW Batch").trim();
+                const bPhoto = (batch.photo && batch.photo.trim()) ? batch.photo : fallbackBanners[index % fallbackBanners.length];
+
+                // Class detection
+                let classText = "Class 12";
+                if (batch.class && String(batch.class).trim()) {
+                    const c = String(batch.class).trim();
+                    classText = c.toLowerCase().includes("class") ? c : `Class ${c}`;
+                } else {
+                    const match = bName.match(/class\s*(\d+[a-z]*|\d+)/i) || bName.match(/\b(10|11|12|9|8|7|6)(th)?\b/i);
+                    if (match) classText = `Class ${match[1] || match[0]}`;
+                    else if (bName.toLowerCase().includes("dropper")) classText = "Dropper";
+                    else if (bName.toLowerCase().includes("foundation")) classText = "Foundation";
+                }
+
+                // Language detection
+                let langText = "HINGLISH";
+                if (batch.language && String(batch.language).trim()) {
+                    langText = String(batch.language).trim().toUpperCase();
+                } else {
+                    const matchLang = bName.match(/\b(odia|hindi|hinglish|english|bengali|marathi|kannada|tamil|telugu|gujarati|punjabi)\b/i);
+                    if (matchLang) langText = matchLang[1].toUpperCase();
+                }
+
+                // Exam detection
+                let examText = "Boards 2027";
+                if (batch.exam && String(batch.exam).trim()) {
+                    examText = String(batch.exam).trim();
+                    if (!examText.includes("202")) examText += " 2027";
+                } else if (bName.toLowerCase().includes("neet")) {
+                    examText = "NEET 2027";
+                } else if (bName.toLowerCase().includes("jee")) {
+                    examText = "JEE 2027";
+                } else if (bName.toLowerCase().includes("board")) {
+                    examText = "Boards 2027";
+                } else if (bName.toLowerCase().includes("nda")) {
+                    examText = "NDA 2027";
+                }
+
+                // Date
+                const startedOn = formatStartDate(batch.start_date, index);
+
+                // Pricing calculation
+                let currentPrice = 699;
+                let origPrice = 5000;
+                if (batch.amount && Number(batch.amount) > 0) {
+                    currentPrice = Number(batch.amount);
+                    origPrice = Math.max(currentPrice + 2000, Math.round(currentPrice * 3.5 / 500) * 500);
+                } else {
+                    const priceTiers = [699, 999, 1499, 1999, 2499, 2999, 3499, 3999];
+                    currentPrice = priceTiers[index % priceTiers.length];
+                    origPrice = currentPrice <= 999 ? 5000 : (currentPrice <= 2500 ? 6000 : 8000);
+                }
+                const discountPct = Math.max(50, Math.min(92, Math.round(((origPrice - currentPrice) / origPrice) * 100)));
+
+                const targetUrl = `/pw/enroll?batch_id=${encodeURIComponent(bId)}&name=${encodeURIComponent(bName)}`;
+
+                cardsHtml += `
+                    <div class="batch-for-you-card" onclick="window.location.href='${escapeHtml(targetUrl)}'">
+                        <!-- Banner Poster -->
+                        <div style="height: 94px; width: 100%; position: relative; background: #f0fdf4; overflow: hidden; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                            <img src="${escapeHtml(bPhoto)}" alt="${escapeHtml(bName)}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.onerror=null; this.src='${fallbackBanners[0]}';" />
+                        </div>
+
+                        <!-- Card Body -->
+                        <div style="padding: 8px 10px 10px; display: flex; flex-direction: column; flex: 1;">
+                            <!-- Tags row -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                <span style="font-size: 11.5px; font-weight: 700; color: #ea580c;">${escapeHtml(classText)}</span>
+                                <span style="border: 1px solid #cbd5e1; border-radius: 5px; padding: 1.5px 5px; font-size: 9.5px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.02em;">${escapeHtml(langText)}</span>
+                            </div>
+
+                            <!-- Batch Title (1 line) -->
+                            <h4 style="font-size: 13px; font-weight: 700; color: #1e293b; margin: 0 0 4px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(bName)}">
+                                ${escapeHtml(bName)}
+                            </h4>
+
+                            <!-- Exam -->
+                            <div style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #475569; margin-bottom: 3px;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                                <span>${escapeHtml(examText)}</span>
+                            </div>
+
+                            <!-- Status & Date with red bullet -->
+                            <div style="display: flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 500; color: #475569; margin-bottom: 6px;">
+                                <span style="width: 5px; height: 5px; border-radius: 50%; background: #ef4444; flex-shrink: 0; display: inline-block;"></span>
+                                <span>Ongoing <span style="color: #cbd5e1; margin: 0 2px;">|</span> Started on ${escapeHtml(startedOn)}</span>
+                            </div>
+
+                            <!-- Price and Action Row -->
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 6px; border-top: 1px solid #f1f5f9;">
+                                <div>
+                                    <div style="display: flex; align-items: baseline; gap: 4px;">
+                                        <span style="font-size: 15px; font-weight: 800; color: #0f172a;">₹${currentPrice}</span>
+                                        <span style="font-size: 11px; color: #94a3b8; text-decoration: line-through;">₹${origPrice}</span>
+                                    </div>
+                                    <div style="font-size: 10.5px; font-weight: 800; color: #16a34a; margin-top: 1px;">
+                                        ${discountPct}% OFF
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="batch-buy-btn" onclick="event.stopPropagation(); window.location.href='${escapeHtml(targetUrl)}';" style="background: #181d28; color: #ffffff; border: none; border-radius: 8px; padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer; transition: background 0.2s;">
+                                        Buy Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            listEl.innerHTML = cardsHtml;
+        } catch (err) {
+            console.error("Error loading random batches:", err);
+            listEl.innerHTML = '<div style="padding: 20px; color: #94a3b8; font-size: 13px;">Could not load recommended batches.</div>';
+        }
+    }
+
+    function openSidebarLink(url) {
+        try {
+            const sidebarOverlay = document.getElementById('pwSidebarOverlay');
+            if (sidebarOverlay) sidebarOverlay.classList.remove('open');
+            const batchId = localStorage.getItem('active_batch_id') || '660a95ff258fb5001859bf54';
+            const batchName = localStorage.getItem('active_batch_name') || 'Arjuna JEE 2026';
+            let target = url;
+            if (url === '/pw/subjects' || url === '/pw/test' || url === '/pw/khazana' || url === '/community' || url === '/announcements') {
+                const joinChar = url.includes('?') ? '&' : '?';
+                target = `${url}${joinChar}batch_id=${encodeURIComponent(batchId)}&batchid=${encodeURIComponent(batchId)}&name=${encodeURIComponent(batchName)}`;
+            }
+            window.location.href = target;
+        } catch(e) {
+            window.location.href = url;
+        }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        loadActiveBatch();
+        renderContinueWatching();
+        loadBatchesForYou();
+
+        const sidebarToggle = document.getElementById('pwSidebarToggle');
+        const sidebarClose = document.getElementById('pwSidebarClose');
+        const sidebarOverlay = document.getElementById('pwSidebarOverlay');
+
+        if (sidebarToggle && sidebarClose && sidebarOverlay) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebarOverlay.classList.add('open');
+            });
+
+            sidebarClose.addEventListener('click', () => {
+                sidebarOverlay.classList.remove('open');
+            });
+
+            sidebarOverlay.addEventListener('click', (e) => {
+                if (e.target === sidebarOverlay) {
+                    sidebarOverlay.classList.remove('open');
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
