@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Test Series — GB STUDY</title>
+    <meta name="description" content="Attempt online quizzes, subjective & objective tests, practice series, and review test solutions on GB STUDY.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://eduzex.pages.dev/pw_test.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pw-blue: #5a4bda;
+            --pw-blue-hover: #4838cc;
+            --pw-light-blue: #f5f3ff;
+            --pw-blue-border: #ddd6fe;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-sub: #475569;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --tag-missed-bg: #fef3c7;
+            --tag-missed-text: #b45309;
+            --tag-missed-border: #fde68a;
+            --tag-live-bg: #ecfdf5;
+            --tag-live-text: #047857;
+            --tag-live-border: #a7f3d0;
+            --tag-upcoming-bg: #eff6ff;
+            --tag-upcoming-text: #1d4ed8;
+            --tag-upcoming-border: #bfdbfe;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #fff;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header */
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #ffffff;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .back-btn {
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .header-title-box {
+            min-width: 0;
+        }
+
+        .header-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.25;
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 1px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        /* Search Bar */
+        .search-bar-container {
+            padding: 12px 18px 0;
+            background: #ffffff;
+            display: none;
+        }
+
+        .search-bar-container.show {
+            display: block;
+        }
+
+        .search-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 14px;
+        }
+
+        .search-input-wrap i {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .search-input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-main);
+        }
+
+        /* Category Section Tabs (e.g. AITS 2027, Other Tests) */
+        .section-tabs-wrapper {
+            position: sticky;
+            top: 65px;
+            z-index: 40;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 16px;
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-tabs-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .section-tab-btn {
+            background: none;
+            border: none;
+            padding: 14px 4px 12px;
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .section-tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .section-tab-btn.active {
+            color: var(--pw-blue);
+        }
+
+        .section-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: var(--pw-blue);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-badge-count {
+            background: #f1f5f9;
+            color: var(--text-sub);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 12px;
+            line-height: 1;
+        }
+
+        .section-tab-btn.active .tab-badge-count {
+            background: var(--pw-light-blue);
+            color: var(--pw-blue);
+        }
+
+        /* Attempt Status Filter Pills (All, Attempted, Non-Attempted, Resume) */
+        .status-pills-bar {
+            padding: 12px 18px;
+            background: #ffffff;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status-pills-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .status-pill {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-sub);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-pill:hover {
+            border-color: #cbd5e1;
+            background: #f1f5f9;
+        }
+
+        .status-pill.active {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #1e293b;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        /* Results Counter Header */
+        .content-summary {
+            padding: 12px 18px 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Tests List Container */
+        .tests-container {
+            padding: 12px 18px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        /* Test Card Styling */
+        .test-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px 18px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .test-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .card-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badges-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            line-height: 1.2;
+        }
+
+        .tag-badge.missed {
+            background: var(--tag-missed-bg);
+            color: var(--tag-missed-text);
+            border: 1px solid var(--tag-missed-border);
+        }
+
+        .tag-badge.live {
+            background: var(--tag-live-bg);
+            color: var(--tag-live-text);
+            border: 1px solid var(--tag-live-border);
+        }
+
+        .tag-badge.upcoming {
+            background: var(--tag-upcoming-bg);
+            color: var(--tag-upcoming-text);
+            border: 1px solid var(--tag-upcoming-border);
+        }
+
+        .pattern-badge {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .lang-badge {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f8fafc;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid #f1f5f9;
+        }
+
+        /* Card Center Row: 1:1 Icon + Test Info */
+        .card-body-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .test-icon-container {
+            width: 64px;
+            height: 64px;
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            background: #f5f3ff;
+            border: 1px solid #ede9fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 10px;
+        }
+
+        .test-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            aspect-ratio: 1/1;
+        }
+
+        .test-info-box {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .test-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .test-meta-strip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 12.5px;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        .meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .meta-item i {
+            color: var(--pw-blue);
+            font-size: 12px;
+        }
+
+        /* Schedule Timeline Box */
+        .schedule-info-box {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .schedule-item i {
+            color: #94a3b8;
+        }
+
+        /* Card Action Buttons */
+        .card-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 4px;
+            border-top: 1px dashed #f1f5f9;
+        }
+
+        .btn-syllabus {
+            background: #ffffff;
+            border: 1.5px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-syllabus:hover {
+            border-color: var(--pw-blue);
+            color: var(--pw-blue);
+            background: var(--pw-light-blue);
+        }
+
+        .btn-start {
+            background: var(--pw-blue);
+            border: 1.5px solid var(--pw-blue);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+            box-shadow: 0 2px 4px rgba(90, 75, 218, 0.2);
+        }
+
+        .btn-start:hover {
+            background: var(--pw-blue-hover);
+            border-color: var(--pw-blue-hover);
+            box-shadow: 0 4px 8px rgba(90, 75, 218, 0.3);
+        }
+
+        /* Loader & Empty States */
+        .loader-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            gap: 14px;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3.5px solid #e2e8f0;
+            border-top-color: var(--pw-blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            background: #ffffff;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .empty-state i {
+            font-size: 42px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 16px;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* MODAL: View Syllabus & Instructions */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalSlide 0.2s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: #ffffff;
+        }
+
+        .modal-header-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .modal-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .modal-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .modal-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Language Toggle Control in Modal */
+        .lang-switch-box {
+            display: inline-flex;
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 2.5px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: var(--pw-blue);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .modal-close-btn {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        /* Modal Sub-Tabs */
+        .modal-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 16px;
+            gap: 16px;
+        }
+
+        .modal-tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 4px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            font-family: inherit;
+            transition: color 0.2s;
+        }
+
+        .modal-tab-btn.active {
+            color: var(--pw-blue);
+        }
+
+        .modal-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: var(--pw-blue);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 60vh;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        /* HTML content inside syllabus/instructions */
+        .modal-body h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 16px 0 8px;
+        }
+
+        .modal-body h4:first-child {
+            margin-top: 0;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+
+        .modal-body strong {
+            color: #0f172a;
+        }
+
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        .modal-body td, .modal-body th {
+            border: 1px solid #cbd5e1;
+            padding: 8px;
+            font-size: 13px;
+        }
+
+        .modal-footer {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-modal-close {
+            background: #f1f5f9;
+            border: none;
+            color: var(--text-main);
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 9px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-modal-close:hover {
+            background: #e2e8f0;
+        }
+    </style>
+
+<style>
+  img[src*="1790916890122.png"], img[src*="eduzex.png"], .pw-header-logo, .footer-pw-logo, .brand img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+</style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Sticky Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="back-btn" onclick="handleBack()" title="Back">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="header-title-box">
+                    <h1 class="header-title" id="pageHeaderTitle">Test Series</h1>
+                    <div class="header-subtitle" id="pageHeaderSubtitle">Loading Tests...</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="toggleSearch()" title="Search Tests">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button class="icon-btn" onclick="refreshTests()" title="Refresh">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Search Bar (Toggleable) -->
+        <div class="search-bar-container" id="searchBarWrap">
+            <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search tests by title or exam..." oninput="handleSearchInput()">
+                <button style="background: none; border: none; cursor: pointer; color: #94a3b8;" onclick="clearSearch()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Navigation Tabs (from categorySections) -->
+        <div class="section-tabs-wrapper" id="sectionTabsContainer">
+            <!-- Dynamic tabs inserted here: All Tests, AITS 2027, Other Tests -->
+        </div>
+
+        <!-- Attempt Status Filter Pills -->
+        <div class="status-pills-bar" id="statusPillsContainer">
+            <!-- Dynamic pills inserted here: All, Attempted, Non-Attempted, Resume -->
+        </div>
+
+        <!-- Content Summary Strip -->
+        <div class="content-summary" id="contentSummaryStrip">
+            <span id="testsCountText">Showing 0 Tests</span>
+            <span id="activeFilterText" style="font-size: 12px; color: #94a3b8;"></span>
+        </div>
+
+        <!-- Test Cards List -->
+        <main class="tests-container" id="testsListContainer">
+            <div class="loader-wrap">
+                <div class="spinner"></div>
+                <span>Fetching Tests...</span>
+            </div>
+        </main>
+    </div>
+
+    <!-- VIEW SYLLABUS & INSTRUCTIONS MODAL -->
+    <div class="modal-overlay" id="syllabusModal" onclick="handleModalOverlayClick(event)">
+        <div class="modal-box">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <h3 class="modal-title" id="modalTestName">Test Details</h3>
+                    <div class="modal-subtitle" id="modalMetaInfo">Loading details...</div>
+                </div>
+                <div class="modal-header-right">
+                    <!-- Language Switcher Option -->
+                    <div class="lang-switch-box" id="modalLangSwitcher">
+                        <button class="lang-btn active" id="btnLangEn" onclick="switchModalLang('en')">English</button>
+                        <button class="lang-btn" id="btnLangHi" onclick="switchModalLang('hi')">हिंदी</button>
+                    </div>
+                    <button class="modal-close-btn" onclick="closeSyllabusModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Sub-Tabs -->
+            <div class="modal-tabs">
+                <button class="modal-tab-btn active" id="modalTabSyllabus" onclick="switchModalTab('syllabus')">
+                    <i class="fa-solid fa-book-open" style="margin-right: 5px;"></i> Syllabus
+                </button>
+                <button class="modal-tab-btn" id="modalTabTestInst" onclick="switchModalTab('testInstructions')">
+                    <i class="fa-solid fa-clipboard-list" style="margin-right: 5px;"></i> Test Pattern
+                </button>
+                <button class="modal-tab-btn" id="modalTabGenInst" onclick="switchModalTab('generalInstructions')">
+                    <i class="fa-solid fa-circle-info" style="margin-right: 5px;"></i> General Rules
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="modal-body" id="modalBodyContent">
+                <div class="loader-wrap" style="padding: 30px;">
+                    <div class="spinner"></div>
+                    <span>Loading Syllabus & Instructions...</span>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeSyllabusModal()">Close</button>
+                <button class="btn-start" id="modalStartTestBtn" onclick="launchTestFromModal()">
+                    <i class="fa-solid fa-play"></i> Start Test
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        const urlParams = new URLSearchParams(window.location.search);
+        let batchId = urlParams.get('batchid') || urlParams.get('batch_id') || urlParams.get('batchId') || localStorage.getItem('active_batch_id') || '698ad3519549b300a5e1cc6a';
+        let batchName = urlParams.get('batch_name') || urlParams.get('name') || '';
+
+        let filterData = null;
+        let activeCategoryId = '';
+        let activeSectionId = 'all'; // 'all' or sectionId
+        let activeAttemptStatus = 'All'; // 'All', 'Attempted', 'NonAttempted', 'Resume'
+        
+        let allTestsCache = [];
+        let filteredTestsList = [];
+        let sectionCountsMap = { 'all': 0 };
+
+        // Modal State
+        let currentModalTestId = null;
+        let currentModalTestName = '';
+        let currentInstructionsData = null;
+        let currentModalLang = 'en'; // 'en' or 'hi'
+        let currentModalTab = 'syllabus'; // 'syllabus', 'testInstructions', 'generalInstructions'
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            initBatchInfo();
+            await loadFiltersAndInitialize();
+        });
+
+        function handleBack() {
+            if (document.referrer && document.referrer.includes('/pw/')) {
+                window.location.href = document.referrer;
+            } else {
+                window.location.href = `/pw/study?batch_id=${batchId}`;
+            }
+        }
+
+        function initBatchInfo() {
+            try {
+                const enrolled = JSON.parse(localStorage.getItem('enrolled_batches') || '[]');
+                const found = enrolled.find(b => b.id === batchId);
+                if (found && found.name) {
+                    batchName = found.name;
+                }
+            } catch (e) {}
+
+            if (!batchName) {
+                batchName = "Arjuna JEE 2027";
+            }
+
+            document.getElementById('pageHeaderTitle').textContent = "Test Series";
+            document.getElementById('pageHeaderSubtitle').textContent = batchName;
+        }
+
+        function toggleSearch() {
+            const wrap = document.getElementById('searchBarWrap');
+            wrap.classList.toggle('show');
+            if (wrap.classList.contains('show')) {
+                document.getElementById('searchInput').focus();
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            handleSearchInput();
+        }
+
+        function handleSearchInput() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!query) {
+                filteredTestsList = [...allTestsCache];
+            } else {
+                filteredTestsList = allTestsCache.filter(t => {
+                    const nameMatch = (t.name || '').toLowerCase().includes(query);
+                    const tagMatch = (t.tag1 || '').toLowerCase().includes(query) || (t.tag2 || '').toLowerCase().includes(query);
+                    const templateMatch = (t.template || '').toLowerCase().includes(query);
+                    return nameMatch || tagMatch || templateMatch;
+                });
+            }
+            renderTestsList();
+        }
+
+        async function refreshTests() {
+            await fetchTests();
+        }
+
+        // ==========================================
+        // 1. LOAD FILTERS
+        // ==========================================
+        async function loadFiltersAndInitialize() {
+            const cacheKey = `pw_filters_${batchId}`;
+            const cachedFilters = sessionStorage.getItem(cacheKey);
+            if (cachedFilters) {
+                try {
+                    const parsed = JSON.parse(cachedFilters);
+                    if (parsed && parsed.categorySections) {
+                        filterData = parsed;
+                        renderSectionTabs(filterData.categorySections);
+                        renderStatusPills(filterData.attemptStatus);
+                    }
+                } catch (e) {}
+            }
+
+            const filterUrl = `/api/pw/radha/v3/test-service/tests/filters?batchId=${batchId}&isSubjective=false&isPurchased=false`;
+            
+            try {
+                const res = await fetch(filterUrl);
+                const json = await res.json();
+                
+                if (json.success && json.data && json.data.categorySections && json.data.categorySections.length > 0) {
+                    filterData = json.data;
+                    try { sessionStorage.setItem(cacheKey, JSON.stringify(filterData)); } catch (e) {}
+                    renderSectionTabs(filterData.categorySections);
+                    renderStatusPills(filterData.attemptStatus);
+                } else if (!filterData) {
+                    renderDefaultFilters();
+                }
+            } catch (err) {
+                console.error("Failed to load filters:", err);
+                if (!filterData) renderDefaultFilters();
+            }
+
+            await fetchTests();
+        }
+
+        function renderDefaultFilters() {
+            renderSectionTabs([
+                {
+                    categoryId: "",
+                    categoryName: batchName,
+                    sections: [
+                        { title: "AITS 2027", id: "6a89a25bd7501733893b16de" },
+                        { title: "Other Tests", id: "Other_Tests" }
+                    ]
+                }
+            ]);
+            renderStatusPills([
+                { enum: "All", title: "All", isSelected: true },
+                { enum: "Attempted", title: "Attempted", isSelected: false },
+                { enum: "NonAttempted", title: "Non-Attempted", isSelected: false },
+                { enum: "Resume", title: "Resume", isSelected: false }
+            ]);
+        }
+
+        function renderSectionTabs(categorySections) {
+            const container = document.getElementById('sectionTabsContainer');
+            if (!categorySections || categorySections.length === 0) {
+                container.innerHTML = `<button class="section-tab-btn active">All Tests</button>`;
+                return;
+            }
+
+            const cat = categorySections[0];
+            activeCategoryId = cat.categoryId || '';
+            if (cat.categoryName) {
+                document.getElementById('pageHeaderSubtitle').textContent = cat.categoryName;
+            }
+
+            let html = `
+                <button class="section-tab-btn ${activeSectionId === 'all' ? 'active' : ''}" onclick="selectSection('all')">
+                    All Tests <span class="tab-badge-count" id="count-all">0</span>
+                </button>
+            `;
+
+            if (cat.sections && Array.isArray(cat.sections)) {
+                cat.sections.forEach(sec => {
+                    const isActive = activeSectionId === sec.id;
+                    html += `
+                        <button class="section-tab-btn ${isActive ? 'active' : ''}" onclick="selectSection('${sec.id}')">
+                            ${escapeHtml(sec.title)} <span class="tab-badge-count" id="count-${sec.id}">0</span>
+                        </button>
+                    `;
+                });
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderStatusPills(attemptStatusList) {
+            const container = document.getElementById('statusPillsContainer');
+            if (!attemptStatusList || !Array.isArray(attemptStatusList)) return;
+
+            let html = '';
+            attemptStatusList.forEach(item => {
+                const isActive = activeAttemptStatus === item.enum;
+                html += `
+                    <button class="status-pill ${isActive ? 'active' : ''}" onclick="selectStatus('${item.enum}')">
+                        ${escapeHtml(item.title || item.enum)}
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selectSection(secId) {
+            if (activeSectionId === secId) return;
+            activeSectionId = secId;
+            
+            // Update tabs UI
+            document.querySelectorAll('.section-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            fetchTests();
+        }
+
+        function selectStatus(statusEnum) {
+            if (activeAttemptStatus === statusEnum) return;
+            activeAttemptStatus = statusEnum;
+
+            // Update pills UI
+            document.querySelectorAll('.status-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            fetchTests();
+        }
+
+        // ==========================================
+        // 2. FETCH TESTS
+        // ==========================================
+        async function fetchTests(isRetry = false) {
+            const container = document.getElementById('testsListContainer');
+
+            let testUrl = '';
+            if (activeSectionId === 'all') {
+                testUrl = `/api/pw/radha/v3/test-service/tests?testType=All&testStatus=All&attemptStatus=${activeAttemptStatus}&batchId=${batchId}&isSubjective=false`;
+            } else {
+                testUrl = `/api/pw/radha/v3/test-service/tests?testType=All&testStatus=All&attemptStatus=${activeAttemptStatus}&batchId=${batchId}&isSubjective=false&categoryId=${activeCategoryId}&categorySectionId=${activeSectionId}&isPurchased=false`;
+            }
+
+            const cacheKey = `pw_tests_${testUrl}`;
+            let hasCachedData = false;
+            try {
+                const cachedRaw = sessionStorage.getItem(cacheKey);
+                if (cachedRaw) {
+                    const parsed = JSON.parse(cachedRaw);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        allTestsCache = parsed;
+                        filteredTestsList = [...allTestsCache];
+                        if (activeSectionId === 'all') {
+                            updateSectionCounts(allTestsCache);
+                        } else {
+                            const countEl = document.getElementById(`count-${activeSectionId}`);
+                            if (countEl) countEl.textContent = allTestsCache.length;
+                        }
+                        renderTestsList();
+                        hasCachedData = true;
+                    }
+                }
+            } catch (e) {}
+
+            if (!hasCachedData && !isRetry) {
+                container.innerHTML = `
+                    <div class="loader-wrap">
+                        <div class="spinner"></div>
+                        <span>Loading tests...</span>
+                    </div>
+                `;
+            }
+
+            try {
+                const res = await fetch(testUrl);
+                
+                // If upstream returns 502 or 429 and we haven't retried yet, auto-retry once after 1.2s
+                if (!res.ok && (res.status === 502 || res.status === 429) && !isRetry) {
+                    await new Promise(r => setTimeout(r, 1200));
+                    return fetchTests(true);
+                }
+
+                const json = await res.json();
+
+                if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+                    allTestsCache = json.data;
+                    filteredTestsList = [...allTestsCache];
+                    try { sessionStorage.setItem(cacheKey, JSON.stringify(json.data)); } catch (e) {}
+                    
+                    if (activeSectionId === 'all') {
+                        updateSectionCounts(allTestsCache);
+                    } else {
+                        const countEl = document.getElementById(`count-${activeSectionId}`);
+                        if (countEl) countEl.textContent = allTestsCache.length;
+                    }
+
+                    renderTestsList();
+                } else if (!hasCachedData) {
+                    allTestsCache = Array.isArray(json.data) ? json.data : [];
+                    filteredTestsList = [...allTestsCache];
+                    renderTestsList();
+                }
+            } catch (err) {
+                console.error("Failed to load tests:", err);
+                if (!isRetry) {
+                    await new Promise(r => setTimeout(r, 1200));
+                    return fetchTests(true);
+                }
+
+                if (!hasCachedData) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ef4444;"></i>
+                            <h3>Failed to Load Tests</h3>
+                            <p>${err.message || 'Please check your connection and try again.'}</p>
+                            <button class="btn-start" style="margin-top: 15px;" onclick="fetchTests()">Retry</button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function updateSectionCounts(tests) {
+            const allCountEl = document.getElementById('count-all');
+            if (allCountEl) allCountEl.textContent = tests.length;
+
+            if (filterData && filterData.categorySections && filterData.categorySections[0]) {
+                const sections = filterData.categorySections[0].sections || [];
+                sections.forEach(sec => {
+                    let c = 0;
+                    if (sec.id === 'Other_Tests') {
+                        c = tests.filter(t => t.categorySectionId === 'Other_Tests' || !t.name.toLowerCase().includes('aits')).length;
+                    } else {
+                        c = tests.filter(t => t.categorySectionId === sec.id || t.name.toLowerCase().includes('aits')).length;
+                    }
+                    const secCountEl = document.getElementById(`count-${sec.id}`);
+                    if (secCountEl) secCountEl.textContent = c;
+                });
+            }
+        }
+
+        // ==========================================
+        // 3. RENDER TEST CARDS
+        // ==========================================
+        function renderTestsList() {
+            const container = document.getElementById('testsListContainer');
+            const summaryText = document.getElementById('testsCountText');
+            summaryText.textContent = `Showing ${filteredTestsList.length} Test${filteredTestsList.length === 1 ? '' : 's'}`;
+
+            if (!filteredTestsList || filteredTestsList.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        <h3>No Tests Available</h3>
+                        <p>There are currently no tests available for the selected filter.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            filteredTestsList.forEach(test => {
+                // Status Tag & Colors
+                const tag1 = (test.tag1 || 'Missed').trim();
+                let tagClass = 'missed';
+                let tagIcon = '<i class="fa-regular fa-clock"></i>';
+                if (tag1.toLowerCase() === 'live') {
+                    tagClass = 'live';
+                    tagIcon = '<i class="fa-solid fa-circle" style="font-size: 8px;"></i>';
+                } else if (tag1.toLowerCase() === 'upcoming') {
+                    tagClass = 'upcoming';
+                    tagIcon = '<i class="fa-regular fa-calendar"></i>';
+                }
+
+                // Format dates
+                const startStr = formatDate(test.startTime);
+                const resultStr = test.resultScheduleAt ? formatDate(test.resultScheduleAt) : null;
+
+                // Languages
+                let langText = '';
+                if (test.testLanguages && test.testLanguages.length > 0) {
+                    langText = `<span class="lang-badge"><i class="fa-solid fa-language"></i> ${test.testLanguages.join(', ')}</span>`;
+                }
+
+                // Template badge
+                let templateBadge = test.template ? `<span class="pattern-badge">${escapeHtml(test.template)} Pattern</span>` : '';
+
+                // Action tag
+                const actionText = test.tag2 || 'Start';
+
+                html += `
+                    <div class="test-card" id="test-${test._id}">
+                        <!-- Top Badges Row -->
+                        <div class="card-top-row">
+                            <div class="badges-group">
+                                <span class="tag-badge ${tagClass}">${tagIcon} ${escapeHtml(tag1)}</span>
+                                ${templateBadge}
+                            </div>
+                            <div>
+                                ${langText}
+                            </div>
+                        </div>
+
+                        <!-- Center Info Row with 1:1 Test Icon -->
+                        <div class="card-body-row">
+                            <div class="test-icon-container">
+                                <img src="https://pi-mf.pw.live/static/svg/test-obj.9f6ced90.svg" class="test-icon-img" alt="Test Icon">
+                            </div>
+                            <div class="test-info-box">
+                                <h2 class="test-title">${escapeHtml(test.name)}</h2>
+                                <div class="test-meta-strip">
+                                    <span class="meta-item">
+                                        <i class="fa-regular fa-circle-question"></i>
+                                        <strong>${test.totalQuestions || 0}</strong> Questions
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="fa-solid fa-award"></i>
+                                        <strong>${test.totalMarks || 0}</strong> Marks
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <strong>${test.maxDuration || 180}</strong> Mins
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Schedule Timeline Info -->
+                        <div class="schedule-info-box">
+                            <div class="schedule-item">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <span>Starts: <strong>${startStr}</strong></span>
+                            </div>
+                            ${resultStr ? `
+                            <div class="schedule-item">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Result: <strong>${resultStr}</strong></span>
+                            </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Card Action Buttons -->
+                        <div class="card-actions-row">
+                            <button class="btn-syllabus" onclick="openSyllabusModal('${test._id}', '${escapeJs(test.name)}')">
+                                <i class="fa-solid fa-book-open"></i> View Syllabus
+                            </button>
+                            <button class="btn-start" onclick="startTest('${test._id}', '${escapeJs(test.name)}')">
+                                <i class="fa-solid fa-play"></i> ${escapeHtml(actionText)}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'Available';
+            try {
+                const d = new Date(dateStr);
+                return d.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            } catch (e) {
+                return dateStr;
+            }
+        }
+
+        // ==========================================
+        // 4. VIEW SYLLABUS & INSTRUCTIONS MODAL
+        // ==========================================
+        async function openSyllabusModal(testId, testName) {
+            currentModalTestId = testId;
+            currentModalTestName = testName;
+            currentModalTab = 'syllabus';
+            
+            const modal = document.getElementById('syllabusModal');
+            document.getElementById('modalTestName').textContent = testName;
+            document.getElementById('modalMetaInfo').textContent = "Loading test structure...";
+            
+            const body = document.getElementById('modalBodyContent');
+            body.innerHTML = `
+                <div class="loader-wrap" style="padding: 40px;">
+                    <div class="spinner"></div>
+                    <span>Loading Syllabus & Instructions...</span>
+                </div>
+            `;
+            modal.classList.add('active');
+
+            // Reset tabs
+            updateModalTabUI('syllabus');
+
+            try {
+                const instUrl = `/api/pw/radha/v3/test-service/tests/${testId}/instructions`;
+                const res = await fetch(instUrl);
+                const json = await res.json();
+
+                if (json.success && json.data) {
+                    currentInstructionsData = json.data;
+                    
+                    // Update Meta info
+                    const metaArr = [];
+                    if (currentInstructionsData.totalQuestions) metaArr.push(`${currentInstructionsData.totalQuestions} Questions`);
+                    if (currentInstructionsData.totalMarks) metaArr.push(`${currentInstructionsData.totalMarks} Marks`);
+                    if (currentInstructionsData.maxDuration) metaArr.push(`${currentInstructionsData.maxDuration} Mins`);
+                    document.getElementById('modalMetaInfo').textContent = metaArr.join(" • ") || "Test Details";
+
+                    // Check available languages
+                    setupLanguageOptions(currentInstructionsData);
+                    renderModalContent();
+                } else {
+                    body.innerHTML = `<div class="empty-state"><h3>Failed to load instructions</h3><p>${json.error || 'Please try again later'}</p></div>`;
+                }
+            } catch (err) {
+                console.error("Failed to load instructions:", err);
+                body.innerHTML = `<div class="empty-state"><h3>Error loading instructions</h3><p>${err.message}</p></div>`;
+            }
+        }
+
+        function setupLanguageOptions(data) {
+            // Inspect languages in data
+            const hasHi = (data.syllabus && data.syllabus.hi) || 
+                          (data.multiTestInstructions && data.multiTestInstructions.hi) ||
+                          (data.multiGeneralInstructions && data.multiGeneralInstructions.hi);
+            
+            const btnHi = document.getElementById('btnLangHi');
+            if (hasHi) {
+                btnHi.style.display = 'inline-block';
+            } else {
+                // If only English exists, keep English active
+                currentModalLang = 'en';
+            }
+            updateModalLangUI();
+        }
+
+        function switchModalLang(lang) {
+            currentModalLang = lang;
+            updateModalLangUI();
+            renderModalContent();
+        }
+
+        function updateModalLangUI() {
+            const btnEn = document.getElementById('btnLangEn');
+            const btnHi = document.getElementById('btnLangHi');
+            
+            if (currentModalLang === 'en') {
+                btnEn.classList.add('active');
+                btnHi.classList.remove('active');
+            } else {
+                btnHi.classList.add('active');
+                btnEn.classList.remove('active');
+            }
+        }
+
+        function switchModalTab(tabName) {
+            currentModalTab = tabName;
+            updateModalTabUI(tabName);
+            renderModalContent();
+        }
+
+        function updateModalTabUI(tabName) {
+            document.getElementById('modalTabSyllabus').classList.toggle('active', tabName === 'syllabus');
+            document.getElementById('modalTabTestInst').classList.toggle('active', tabName === 'testInstructions');
+            document.getElementById('modalTabGenInst').classList.toggle('active', tabName === 'generalInstructions');
+        }
+
+        function renderModalContent() {
+            if (!currentInstructionsData) return;
+            const body = document.getElementById('modalBodyContent');
+            const lang = currentModalLang;
+
+            let html = '';
+            if (currentModalTab === 'syllabus') {
+                const syl = currentInstructionsData.syllabus;
+                if (syl) {
+                    html = syl[lang] || syl['en'] || '<p>No specific syllabus provided for this test.</p>';
+                } else {
+                    html = '<p>No specific syllabus provided for this test.</p>';
+                }
+            } else if (currentModalTab === 'testInstructions') {
+                const tInst = currentInstructionsData.multiTestInstructions;
+                if (tInst) {
+                    html = tInst[lang] || tInst['en'] || '<p>No specific test pattern instructions provided.</p>';
+                } else {
+                    html = '<p>No specific test pattern instructions provided.</p>';
+                }
+            } else if (currentModalTab === 'generalInstructions') {
+                const gInst = currentInstructionsData.multiGeneralInstructions;
+                if (gInst) {
+                    html = gInst[lang] || gInst['en'] || '<p>Standard examination rules apply.</p>';
+                } else {
+                    html = '<p>Standard examination rules apply.</p>';
+                }
+            }
+
+            body.innerHTML = html;
+        }
+
+        function closeSyllabusModal() {
+            document.getElementById('syllabusModal').classList.remove('active');
+        }
+
+        function handleModalOverlayClick(event) {
+            if (event.target === document.getElementById('syllabusModal')) {
+                closeSyllabusModal();
+            }
+        }
+
+        function launchTestFromModal() {
+            closeSyllabusModal();
+            if (currentModalTestId) {
+                startTest(currentModalTestId, currentModalTestName);
+            }
+        }
+
+        // ==========================================
+        // 5. START TEST REDIRECTION
+        // ==========================================
+        function startTest(testId, testName) {
+            const params = new URLSearchParams({
+                batchId: batchId || '',
+                batch_id: batchId || '',
+                testId: testId || '',
+                test_id: testId || '',
+                testName: testName || 'Online Test',
+                test_name: testName || 'Online Test'
+            });
+
+            window.location.href = `/start-test?${params.toString()}`;
+        }
+
+        // Utility helpers
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, m => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[m]);
+        }
+
+        function escapeJs(str) {
+            if (!str) return '';
+            return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>

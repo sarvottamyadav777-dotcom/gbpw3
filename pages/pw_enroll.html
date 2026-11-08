@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/Q3g9fGSt/1791541921524.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Overview — GB STUDY</title>
+    <meta name="description" content="View batch highlights, faculty details, schedules, and preview videos on GB STUDY.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="canonical" href="https://eduzex.pages.dev/enroll.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <style>
+        :root {
+            --pw-navy: #171820;
+            --pw-blue: #5a4bda;
+            --pw-red: #eb5353;
+            --pw-green: #22c55e;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; }
+        body { max-width: 100vw; overflow-x: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: var(--bg-color); color: var(--text-main); padding-bottom: 80px; }
+        
+        /* Header */
+        .header { background: white; padding: 12px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .back-btn { background: transparent; border: none; font-size: 24px; cursor: pointer; color: var(--pw-navy); display: flex; align-items: center; justify-content: center; padding: 4px; }
+        .batch-title { font-size: 18px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+        
+        .container { max-width: 100%; margin: 0 auto; padding: 12px 0; display: flex; flex-direction: column; gap: 12px; }
+        
+        /* Section styling */
+        .section { background: var(--card-bg); padding: 20px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .section-title { font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: var(--text-main); }
+        
+        /* Orientation Video */
+        .orientation-card { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; position: relative; background: #fff; cursor: pointer; }
+        .orientation-thumb-wrapper { width: 50%; position: relative; }
+        .orientation-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .orientation-play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--pw-navy); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .orientation-info { padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .orientation-title { font-size: 14px; font-weight: 600; margin: 0; }
+        .orientation-deco { position: absolute; bottom: 0; right: 0; width: 60px; opacity: 0.8; }
+        
+        /* Demo Videos Scroller */
+        .scroll-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .scroll-row::-webkit-scrollbar { display: none; }
+        .scroll-wrapper { position: relative; display: flex; align-items: center; }
+        .scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); cursor: pointer; z-index: 10; border: 1px solid #e2e8f0; }
+        .scroll-btn.left { left: -16px; }
+        .scroll-btn.right { right: -16px; }
+        @media (max-width: 640px) { .scroll-btn { display: none; } }
+        
+        .video-card { min-width: 280px; max-width: 280px; scroll-snap-align: start; border: 1px solid #f1f5f9; border-radius: 12px; overflow: hidden; background: #fafafa; padding: 12px; position: relative; display: flex; flex-direction: column; }
+        .video-card-inner { background: #eef2ff; border-radius: 8px; padding: 16px; position: relative; display: flex; justify-content: space-between; gap: 12px; height: 120px; overflow: hidden; margin-bottom: 12px; }
+        .video-card-text { flex: 1; display: flex; flex-direction: column; z-index: 2; }
+        .video-card-topic { font-size: 11px; font-weight: 700; color: var(--pw-blue); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        .video-card-title { font-size: 11.5px; font-weight: 700; line-height: 1.4; color: var(--text-main); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .video-card-teacher-name { font-size: 10px; font-weight: 600; color: var(--text-muted); margin-top: auto; }
+        .video-card-avatar { width: 70px; height: 70px; border-radius: 50%; background: white; border: 2px solid #e0e7ff; position: relative; flex-shrink: 0; z-index: 2; align-self: center; }
+        .video-card-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .video-card-play { position: absolute; bottom: -4px; right: -4px; width: 24px; height: 24px; background: var(--pw-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .video-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--text-main); }
+        .pw-watermark { position: absolute; top: 8px; right: 8px; width: 20px; opacity: 0.9; z-index: 2; }
+        .video-card-bg-circle { position: absolute; right: -20px; top: 10px; width: 140px; height: 140px; background: white; border-radius: 50%; opacity: 0.5; z-index: 1; }
+        
+        .view-all-btn { display: block; text-align: center; width: 100%; padding: 12px; margin-top: 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--text-main); background: white; cursor: pointer; text-decoration: none; }
+        
+        /* Know Your Teachers */
+        .teacher-card { min-width: 140px; max-width: 140px; scroll-snap-align: start; border: 1px solid #f1f5f9; border-radius: 12px; overflow: hidden; background: #fafafa; padding: 12px; display: flex; flex-direction: column; position: relative; }
+        .teacher-img-wrap { width: 100%; height: 130px; background: #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 12px; display: flex; align-items: flex-end; justify-content: center; position: relative; }
+        .teacher-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .teacher-name-badge { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); background: white; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,0.1); width: 85%; text-align: center; overflow: hidden; text-overflow: ellipsis; }
+        .teacher-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+        .teacher-meta { display: flex; flex-direction: column; }
+        .teacher-subject { font-size: 12px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80px; }
+        .teacher-exp { font-size: 10px; color: var(--text-muted); }
+        .teacher-arrow { width: 28px; height: 28px; border-radius: 8px; background: #eef2ff; color: var(--pw-blue); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        
+        /* Schedule Cards */
+        .schedule-card { min-width: 100px; max-width: 100px; scroll-snap-align: start; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 8px; text-align: center; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+        .schedule-icon-wrap { width: 44px; height: 44px; background: #f8fafc; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .schedule-icon { width: 28px; height: 28px; object-fit: contain; }
+        .schedule-title { font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--text-main); }
+
+        /* Accordion */
+        .accordion { margin-top: 12px; border-radius: 8px; border: 1px solid #f1f5f9; overflow: hidden; }
+        .accordion-item { border-bottom: 1px solid #f1f5f9; background: white; }
+        .accordion-item:last-child { border-bottom: none; }
+        .accordion-header { padding: 16px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text-main); }
+        .accordion-content { padding: 0 16px 16px 16px; font-size: 13px; color: #475569; line-height: 1.6; display: none; }
+        .accordion-item.active .accordion-content { display: block; }
+        .accordion-icon { transition: transform 0.2s; color: var(--text-muted); }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); color: var(--pw-navy); }
+        
+        /* Bottom Buy Bar */
+        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 100; }
+        .price-area { display: flex; flex-direction: column; }
+        .price-main { font-size: 20px; font-weight: 800; color: var(--pw-navy); line-height: 1; }
+        .price-sub { font-size: 12px; color: var(--pw-green); font-weight: 600; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+        .price-sub strike { color: var(--text-muted); font-weight: 500; }
+        .buy-btn { background: var(--pw-navy); color: white; border: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; min-width: 140px; }
+        
+        .loading-shimmer { height: 100px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* Description HTML Overrides */
+        .description-meta-container, .desc-container { padding: 0 !important; }
+        .desc-row { border-bottom: 1px solid #f1f5f9 !important; padding: 12px 0 !important; margin: 0 !important; }
+        .desc-row:last-child { border-bottom: none !important; }
+    
+        /* Responsive Desktop Breakpoints */
+        
+        
+        /* Base Banner Styles */
+        .batch-banner-img { width: 100%; height: auto; object-fit: contain; border-radius: 0; display: block; margin-bottom: 12px; }
+
+        @media (min-width: 1024px) {
+            .container { max-width: 100%; padding: 12px 0; }
+            .header { max-width: 100%; padding: 16px 24px; }
+            .bottom-bar { max-width: 100%; padding: 16px 24px; }
+            
+            /* Banner Hero */
+            .batch-banner-img { height: auto; max-height: none; aspect-ratio: auto; object-fit: contain; margin-bottom: 24px; border-radius: 0; width: 100%; }
+            
+            /* This Batch Includes */
+            .includes-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+            .accordion-content { font-size: 14px; line-height: 1.6; }
+            
+            /* Increase Sizes for Desktop Carousel */
+            .video-card { min-width: 340px; max-width: 340px; }
+            .teacher-card { min-width: 180px; max-width: 180px; }
+            .schedule-card { min-width: 160px; max-width: 160px; }
+            .scroll-row { padding-bottom: 16px; }
+        }
+        
+        @media (min-width: 640px) and (max-width: 1023px) {
+            .container { max-width: 100%; padding: 12px 0; }
+            .header { max-width: 100%; padding: 12px 20px; }
+            .bottom-bar { max-width: 100%; padding: 12px 20px; }
+            
+            /* Increase Sizes for Tablet Carousel */
+            .video-card { min-width: 300px; max-width: 300px; }
+            .teacher-card { min-width: 160px; max-width: 160px; }
+            .schedule-card { min-width: 140px; max-width: 140px; }
+        }
+        
+        @media (min-width: 640px) {
+            .batch-banner-img { height: auto; max-height: none; aspect-ratio: auto; object-fit: contain; border-radius: 0; width: 100%; }
+            .section { border-radius: 0; }
+        }
+        
+        /* Make sure container is 100% everywhere */
+        .container { width: 100%; max-width: 100% !important; margin: 0 auto; padding: 12px 0; display: flex; flex-direction: column; gap: 12px; overflow-x: hidden; }
+
+    </style>
+
+<style>
+  img[src*="1790916890122.png"], img[src*="eduzex.png"], .pw-header-logo, .footer-pw-logo, .brand img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+  }
+</style>
+</head>
+<body>
+    <div class="header-wrapper" style="background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; justify-content: center;">
+<div class="header" style="width: 100%; box-shadow: none; position: static;">
+        <button class="back-btn" onclick="history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <h1 class="batch-title" id="pageTitle">Loading...</h1>
+    </div>
+    </div>
+    
+    <div class="container" id="mainContent">
+        <div class="section"><div class="loading-shimmer"></div></div>
+        <div class="section"><div class="loading-shimmer"></div></div>
+    </div>
+    
+    <div class="bottom-bar-wrapper" style="position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 100;">
+<div class="bottom-bar" style="width: 100%; position: static; box-shadow: none; left: auto; right: auto; bottom: auto;">
+        <div class="price-area">
+            <div class="price-main">Free</div>
+            <div class="price-sub"><strike>₹1,999</strike> 100% OFF</div>
+        </div>
+        <a href="#" class="buy-btn" id="enrollBtn" onclick="enrollNow(event)">Enroll</a>
+    </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        function sanitizeBatchId(val) {
+            if (!val || typeof val !== 'string') return null;
+            const t = val.trim();
+            if (!t || t === 'null' || t === 'undefined' || t === '[object Object]') return null;
+            return t;
+        }
+
+        const rawParamBatchId = sanitizeBatchId(urlParams.get('batchid')) ||
+                               sanitizeBatchId(urlParams.get('batch_id')) ||
+                               sanitizeBatchId(urlParams.get('batchId'));
+        const rawParamId = sanitizeBatchId(urlParams.get('id'));
+        // If id parameter is a 24-character hex mongo ID, it might be the batchId
+        const isHexId = (str) => typeof str === 'string' && /^[0-9a-fA-F]{24}$/.test(str.trim());
+        
+        const batchId = rawParamBatchId || (isHexId(rawParamId) ? rawParamId : '698ad3519549b300a5e1cc6a');
+        const batchName = (!isHexId(rawParamId) && rawParamId) ? rawParamId : (urlParams.get('name') || '');
+        
+        if (batchName) {
+            document.getElementById('pageTitle').textContent = batchName;
+        }
+
+        function getSafeEnrolledBatches() {
+            try {
+                const raw = localStorage.getItem('enrolled_batches');
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                if (!Array.isArray(parsed)) return [];
+                return parsed.filter(b => b && typeof b === 'object' && sanitizeBatchId(b.id));
+            } catch (e) {
+                console.warn('Recovered malformed enrolled_batches');
+                return [];
+            }
+        }
+
+        function checkEnrolled() {
+            const enrolled = getSafeEnrolledBatches();
+            if (enrolled.some(b => b.id === batchId)) {
+                document.getElementById('enrollBtn').textContent = "Let's Study";
+            }
+        }
+        checkEnrolled();
+        
+        function enrollNow(e) {
+            e.preventDefault();
+            let batchImg = document.getElementById('topBatchImg')?.src || '';
+            if (!batchImg || batchImg.includes('undefined')) {
+                 const bannerSection = document.querySelector('.batch-banner-img');
+                 if(bannerSection) batchImg = bannerSection.src;
+                 else batchImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg';
+            }
+
+            const bName = batchName || document.getElementById('pageTitle').textContent || 'Course Batch';
+            
+            let enrolled = getSafeEnrolledBatches();
+            if (!enrolled.some(b => b.id === batchId)) {
+                enrolled.push({
+                    id: batchId,
+                    name: bName,
+                    image: batchImg
+                });
+            }
+
+            // Also add all complementary batches to enrolled_batches so user can select them from batch filter
+            if (Array.isArray(window.complementaryBatchesData) && window.complementaryBatchesData.length > 0) {
+                window.complementaryBatchesData.forEach(cb => {
+                    const cbId = sanitizeBatchId(cb._id || cb.id);
+                    if (cbId && !enrolled.some(b => b.id === cbId)) {
+                        let cbImg = '';
+                        if (cb.previewImage && cb.previewImage.baseUrl) {
+                            cbImg = cb.previewImage.baseUrl + (cb.previewImage.key || cb.previewImage.main || '');
+                        } else if (cb.previewImageUrl) {
+                            cbImg = cb.previewImageUrl.startsWith('http') ? cb.previewImageUrl : ('https://static.pw.live/' + cb.previewImageUrl);
+                        } else if (cb.photo && cb.photo.startsWith('http')) {
+                            cbImg = cb.photo;
+                        }
+                        enrolled.push({
+                            id: cbId,
+                            name: cb.name || cb.batchName || 'Complementary Batch',
+                            image: cbImg || 'https://i.ibb.co/Q3g9fGSt/1791541921524.png'
+                        });
+                    }
+                });
+            }
+
+            try {
+                localStorage.setItem('enrolled_batches', JSON.stringify(enrolled));
+            } catch(err) {}
+
+            if (batchId) {
+                localStorage.setItem('active_batch_id', batchId);
+            }
+            
+            const btn = document.getElementById('enrollBtn');
+            btn.textContent = "Let's Study";
+            setTimeout(() => {
+                window.location.href = '/pw/study';
+            }, 300);
+        }
+
+        window.enrollComplementaryBatch = function(cbId, cbName, cbImg, e) {
+            if (e) e.stopPropagation();
+            let enrolled = getSafeEnrolledBatches();
+            
+            // Add main batch if not enrolled
+            let mainBatchImg = document.getElementById('topBatchImg')?.src || 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg';
+            const bName = batchName || document.getElementById('pageTitle').textContent || 'Course Batch';
+            if (batchId && !enrolled.some(b => b.id === batchId)) {
+                enrolled.push({ id: batchId, name: bName, image: mainBatchImg });
+            }
+
+            // Add all complementary batches
+            if (Array.isArray(window.complementaryBatchesData)) {
+                window.complementaryBatchesData.forEach(cb => {
+                    const id = sanitizeBatchId(cb._id || cb.id);
+                    if (id && !enrolled.some(b => b.id === id)) {
+                        let img = '';
+                        if (cb.previewImage && cb.previewImage.baseUrl) {
+                            img = cb.previewImage.baseUrl + (cb.previewImage.key || cb.previewImage.main || '');
+                        } else if (cb.previewImageUrl) {
+                            img = cb.previewImageUrl.startsWith('http') ? cb.previewImageUrl : ('https://static.pw.live/' + cb.previewImageUrl);
+                        }
+                        enrolled.push({ id, name: cb.name || cb.batchName || 'Complementary Batch', image: img || 'https://i.ibb.co/Q3g9fGSt/1791541921524.png' });
+                    }
+                });
+            }
+
+            try {
+                localStorage.setItem('enrolled_batches', JSON.stringify(enrolled));
+            } catch(err) {}
+
+            if (cbId) {
+                localStorage.setItem('active_batch_id', cbId);
+            }
+            window.location.href = '/pw/study';
+        };
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        function escapeAttr(str) {
+            if (!str) return '';
+            return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        function toggleAccordion(element) {
+            element.parentElement.classList.toggle('active');
+        }
+        
+        function scrollRow(btn, direction) {
+            const row = btn.parentElement.querySelector('.scroll-row');
+            if (row) {
+                row.scrollBy({ left: direction * 280, behavior: 'smooth' });
+            }
+        }
+
+        async function loadData() {
+            if (!batchId) {
+                document.getElementById('mainContent').innerHTML = '<div class="section"><p>No batch ID provided.</p></div>';
+                return;
+            }
+            
+            try {
+                const [detailsRes, scheduleRes, demoRes, configRes, compRes] = await Promise.all([
+                    fetch(`/api/pw/radha/v3/batches/${batchId}/details`).catch(() => null),
+                    fetch(`/api/pw/radha/v1/batches/${batchId}/free-schedule?page=1`).catch(() => null),
+                    fetch(`/api/pw/radha/v1/batches/${batchId}/demo-videos?page=1`).catch(() => null),
+                    fetch(`/api/pw/radha/v3/batch-service/batch-config/${batchId}`).catch(() => null),
+                    fetch(`/api/pw/radha/batch-service/v1/batch-plans/${batchId}/offering-data?type=BATCH&page=1`).catch(() => null)
+                ]);
+                
+                const parseSafe = async (res) => {
+                    if (!res || !res.ok) return null;
+                    const text = await res.text().catch(() => '');
+                    return text ? JSON.parse(text) : null;
+                };
+                
+                const detailsData = await parseSafe(detailsRes);
+                const scheduleData = await parseSafe(scheduleRes);
+                const demoData = await parseSafe(demoRes);
+                const configData = await parseSafe(configRes);
+                const compData = await parseSafe(compRes);
+
+                let complementaryBatches = [];
+                if (compData && Array.isArray(compData.data)) {
+                    complementaryBatches = compData.data.filter(b => b && (b._id || b.id));
+                } else if (compData && Array.isArray(compData)) {
+                    complementaryBatches = compData.filter(b => b && (b._id || b.id));
+                }
+                window.complementaryBatchesData = complementaryBatches;
+                
+                renderPage({
+                    lead: detailsData?.data || detailsData || {},
+                    details: detailsData?.data || detailsData || {},
+                    schedule: scheduleData?.data || scheduleData || [],
+                    demo: demoData?.data || demoData || [],
+                    config: configData?.data || configData || {},
+                    complementary: complementaryBatches
+                });
+            } catch (err) {
+                console.error(err);
+                document.getElementById('mainContent').innerHTML = '<div class="section"><p>Error loading batch details. Please try again later.</p></div>';
+            }
+        }
+        
+        function extractBodyContent(htmlString) {
+            const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+            const styles = Array.from(doc.querySelectorAll("style")).map(s => s.outerHTML).join(""); return styles + doc.body.innerHTML;
+        }
+
+        function renderPage(data) {
+            const { lead, details, schedule, demo, config } = data;
+            const info = Object.keys(details).length > 0 ? details : lead;
+            
+            let html = '';
+
+            // --- TOP BATCH IMAGE ---
+            let topBatchImgUrl = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg';
+            if (info.previewImage && info.previewImage.baseUrl) {
+                topBatchImgUrl = info.previewImage.baseUrl + (info.previewImage.key || info.previewImage.main || '');
+            }
+            html += `<div class="section banner-section" style="padding: 0; background: transparent; box-shadow: none;">
+                <img id="topBatchImg" src="${topBatchImgUrl}" class="batch-banner-img" alt="Batch Image">
+            </div>`;
+            
+            // 1. This Batch Includes
+            html += `<div class="section">
+                <h2 class="section-title">This Batch Includes</h2>`;
+                
+            if (info.shortDescription) {
+                html += extractBodyContent(info.shortDescription);
+            } else {
+                html += `<ul class="includes-list">`;
+                if (info.startDate) {
+                    const sDate = new Date(info.startDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                    const eDate = info.endDate ? new Date(info.endDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '';
+                    html += `<li><div class="icon-circle">📅</div> <div><strong>Course Duration:</strong><br><span style="color:#64748b; font-size:12px; margin-top:2px; display:inline-block;">Syllabus Class Start : ${sDate}<br>Syllabus Class End : ${eDate || 'N/A'}</span></div></li>`;
+                }
+                if (info.validity) {
+                    html += `<li><div class="icon-circle">⭐</div> <div><strong>Validity:</strong><br><span style="color:#64748b; font-size:12px; margin-top:2px; display:inline-block;">${info.validity}</span></div></li>`;
+                }
+                html += `<li><div class="icon-circle">⭐</div> <div><strong>Mode of Lectures:</strong><br><span style="color:#64748b; font-size:12px; margin-top:2px; display:inline-block;">Live Online</span></div></li>`;
+                html += `</ul>`;
+            }
+            
+            // Batch Orientation (from config)
+            if (config.isIntroSectionEnabled && config.introSection) {
+                const introTitle = config.introSection.customTitle || 'Batch Orientation';
+                const introImg = config.introSection.introVideoImageUrl || 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/3e8cfc91-740b-4681-aa68-8546e0be783e.jpeg';
+                html += `
+                <h2 class="section-title" style="margin-top: 24px;">${introTitle}</h2>
+                <div class="orientation-card" onclick="alert('Playing Orientation Video')">
+                    <div class="orientation-thumb-wrapper">
+                        <img class="orientation-thumb" src="${introImg}" alt="Orientation">
+                        <div class="orientation-play-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 3px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </div>
+                    </div>
+                    <div class="orientation-info">
+                        <h3 class="orientation-title">${config.introSection.introVideoTitle || 'Orientation Video'}</h3>
+                    </div>
+                </div>`;
+            }
+            html += `</div>`;
+            
+            // Complementary Batches Section ("Yeah section tabh aaye jab api se batches available ho")
+            const complementary = data.complementary;
+            if (complementary && complementary.length > 0) {
+                html += `
+                <div class="section complementary-section">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <img src="https://cdn-icons-png.flaticon.com/128/3536/3536998.png" style="width: 22px; height: 22px; object-fit: contain;" alt="Complementary Icon">
+                            <h2 class="section-title" style="margin: 0; font-size: 17px; font-weight: 700;">Complementary batches</h2>
+                        </div>
+                        <span style="font-size: 11px; font-weight: 700; color: #4338ca; background: #e0e7ff; padding: 2px 8px; border-radius: 6px;">
+                            ${complementary.length} Included Free
+                        </span>
+                    </div>
+
+                    <div class="scroll-wrapper">
+                        <div class="scroll-btn left" onclick="scrollRow(this, -1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+                        <div class="scroll-row">`;
+
+                complementary.forEach(cb => {
+                    const cbId = cb._id || cb.id;
+                    let cbImg = 'https://i.ibb.co/Q3g9fGSt/1791541921524.png';
+                    if (cb.previewImage && cb.previewImage.baseUrl) {
+                        cbImg = cb.previewImage.baseUrl + (cb.previewImage.key || cb.previewImage.main || '');
+                    } else if (cb.previewImageUrl) {
+                        cbImg = cb.previewImageUrl.startsWith('http') ? cb.previewImageUrl : ('https://static.pw.live/' + cb.previewImageUrl);
+                    }
+                    const cbName = cb.name || cb.batchName || 'Complementary Batch';
+                    const cbClass = cb.class ? `Class ${cb.class}` : '';
+                    const cbLang = cb.language || 'Hinglish';
+
+                    html += `
+                        <div class="comp-card" style="min-width: 250px; max-width: 250px; scroll-snap-align: start; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #f1f5f9; overflow: hidden;">
+                                <img src="${cbImg}" alt="${escapeHtml(cbName)}" style="width: 100%; height: 100%; object-fit: cover;">
+                                <span style="position: absolute; top: 8px; right: 8px; background: #16a34a; color: white; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.2);">
+                                    100% OFF
+                                </span>
+                            </div>
+                            <div style="padding: 12px; display: flex; flex-direction: column; flex: 1;">
+                                <div style="font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.35; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 35px;">
+                                    ${escapeHtml(cbName)}
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
+                                    ${cbClass ? `<span style="font-size: 10px; font-weight: 600; background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px;">${cbClass}</span>` : ''}
+                                    <span style="font-size: 10px; font-weight: 600; background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px;">${cbLang}</span>
+                                    <span style="font-size: 10.5px; font-weight: 700; color: #16a34a; margin-left: auto;">Free</span>
+                                </div>
+                                <div style="display: flex; gap: 8px; margin-top: auto;">
+                                    <a href="/pw/enroll?batch_id=${cbId}&name=${encodeURIComponent(cbName)}" style="flex: 1; text-align: center; text-decoration: none; padding: 8px; font-size: 11.5px; font-weight: 600; color: #334155; background: #f1f5f9; border-radius: 6px; border: 1px solid #e2e8f0;">
+                                        Details
+                                    </a>
+                                    <button onclick="enrollComplementaryBatch('${cbId}', '${escapeAttr(cbName)}', '${escapeAttr(cbImg)}', event)" style="flex: 1.2; border: none; cursor: pointer; padding: 8px; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--pw-navy); border-radius: 6px;">
+                                        Let's Study
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+
+                html += `
+                        </div>
+                        <div class="scroll-btn right" onclick="scrollRow(this, 1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </div>
+                </div>`;
+            }
+            
+            // 2. Demo Videos
+            if (demo && demo.length > 0) {
+                html += `<div class="section">
+                    <h2 class="section-title">Demo Videos</h2>
+                    <div class="scroll-wrapper">
+                        <div class="scroll-btn left" onclick="scrollRow(this, -1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+                        <div class="scroll-row">`;
+                
+                demo.forEach(v => {
+                    const vidDetail = v.videoDetails || {};
+                    let teacherInfo = null;
+                    if (v.teachers && v.teachers.length > 0 && info.subjects) {
+                        for (const sub of info.subjects) {
+                            if (sub.teacherIds) {
+                                const found = sub.teacherIds.find(t => t._id === v.teachers[0]);
+                                if (found) { teacherInfo = found; break; }
+                            }
+                        }
+                    }
+                    
+                    // User said: "Fix demo video images (baseurl+main)"
+                    // Try to construct using subject/teacher or vidDetail
+                    let thumbImg = vidDetail.image || v.previewImageUrl;
+                    if (v.imageId && v.imageId.baseUrl) {
+                        thumbImg = v.imageId.baseUrl + (v.imageId.key || v.imageId.main || '');
+                    }
+                    if (!thumbImg) {
+                        thumbImg = 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg'; // fallback
+                    }
+
+                    const teacherName = teacherInfo ? ((teacherInfo.firstName + " " + (teacherInfo.lastName || "")).trim()) : 'Faculty';
+                    const titleParts = (v.topic || vidDetail.name || 'Demo Lecture').split('||');
+                    const mainTopic = titleParts[0] ? titleParts[0].trim() : 'Demo Lecture';
+                    const subTopic = titleParts[1] ? titleParts[1].trim() : '';
+                    
+                    const dateObj = v.date ? new Date(v.date) : new Date();
+                    const dateStr = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    const timeStr = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                    
+                    const demoPlayUrl = `/pw/player?batchId=${encodeURIComponent(batchId)}&childId=${encodeURIComponent(v._id || '')}&title=${encodeURIComponent(mainTopic)}${v.url ? '&streamUrl=' + encodeURIComponent(v.url) : (vidDetail.videoUrl ? '&streamUrl=' + encodeURIComponent(vidDetail.videoUrl) : '')}`;
+                    html += `
+                        <div class="video-card" style="padding: 0; cursor: pointer;" onclick="window.location.href='${demoPlayUrl}'">
+                            <div style="width: 100%; height: 140px; position: relative;">
+                                <img src="${thumbImg}" style="width: 100%; height: 100%; object-fit: cover;" alt="Demo Thumbnail">
+                                <div style="position: absolute; bottom: 8px; right: 8px; width: 32px; height: 32px; border-radius:50%; object-fit:cover;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                </div>
+                            </div>
+                            <div style="padding: 12px;">
+                                <div style="font-size: 13px; font-weight: 700; color: var(--pw-navy); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" title="${mainTopic}">${mainTopic}</div>
+                                ${subTopic ? `<div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">${subTopic}</div>` : ''}
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 12px;">By ${teacherName}</div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); border-top: 1px solid #f1f5f9; padding-top: 8px;">
+                                    <span>${dateStr}</span>
+                                    <span>🕒 ${timeStr}</span>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                
+                const passedName = encodeURIComponent(batchName || document.getElementById('pageTitle').textContent);
+                html += `</div>
+                        <div class="scroll-btn right" onclick="scrollRow(this, 1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </div>
+                    <a href="/pw/demo_video?id=${batchId}&batch_name=${passedName}" class="view-all-btn">View All ></a>
+                </div>`;
+            }
+            
+            // 3. Know Your Teachers
+            let teachersMap = new Map();
+            if (info.subjects && Array.isArray(info.subjects)) {
+                info.subjects.forEach(sub => {
+                    if (sub.teacherIds && Array.isArray(sub.teacherIds)) {
+                        sub.teacherIds.forEach(t => {
+                            if (t && t._id && !teachersMap.has(t._id)) {
+                                teachersMap.set(t._id, t);
+                            }
+                        });
+                    }
+                });
+            }
+            const teachers = Array.from(teachersMap.values());
+            
+            if (teachers.length > 0) {
+                html += `<div class="section">
+                    <h2 class="section-title">Know Your Teachers</h2>
+                    <div class="scroll-wrapper">
+                        <div class="scroll-btn left" onclick="scrollRow(this, -1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+                        <div class="scroll-row ">`;
+                
+                teachers.forEach(t => {
+                    const imgUrl = t.imageId ? (t.imageId.baseUrl + (t.imageId.key || t.imageId.main || '')) : 'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/bb464a1b-1525-48df-8c4e-a7e607038bf7.jpeg';
+                    const name = (t.firstName + " " + (t.lastName || "")).trim();
+                    const exp = t.experience ? `Exp: ${t.experience}` : '';
+                    html += `
+                        <div class="teacher-card">
+                            <div class="teacher-img-wrap">
+                                <img src="${imgUrl}" alt="${name}">
+                                <div class="teacher-name-badge" title="${name}">${name}</div>
+                            </div>
+                            <div class="teacher-bottom">
+                                <div class="teacher-meta">
+                                    <p class="teacher-subject" title="${t.subject || 'Faculty'}">${t.subject || 'Faculty'}</p>
+                                    <span class="teacher-exp">${exp}</span>
+                                </div>
+                                <div class="teacher-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                html += `</div>
+                        <div class="scroll-btn right" onclick="scrollRow(this, 1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </div>
+                    <a href="/pw/subjects?batch_id=${batchId}&name=${encodeURIComponent(batchName || info.name || '')}" class="view-all-btn" style="margin-top: 16px;">Download Lectures Planner</a>
+                </div>`;
+            }
+            
+            // 4. Checkout Your Schedule (PDF DOWNLOAD)
+            if (info.subjects && Array.isArray(info.subjects)) {
+                html += `<div class="section">
+                    <h2 class="section-title">Checkout Your Schedule</h2>
+                    <div class="scroll-wrapper">
+                        <div class="scroll-btn left" onclick="scrollRow(this, -1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+                        <div class="scroll-row ">`;
+                
+                info.subjects.forEach(sub => {
+                    const imgUrl = sub.imageId ? (sub.imageId.baseUrl + (sub.imageId.key || sub.imageId.main || '')) : 'https://i.ibb.co/Q3g9fGSt/1791541921524.png';
+                    const shortSub = sub.subject.split(" By ")[0].split(" by ")[0].split(" By ")[0].trim();
+                    let fileHref = '#';
+                    if (sub.fileId && sub.fileId.baseUrl) {
+                         fileHref = sub.fileId.baseUrl + (sub.fileId.key || sub.fileId.main || '');
+                    }
+                    
+                    html += `
+                        <a href="${fileHref}" download target="_blank" style="text-decoration: none;" class="schedule-card">
+                            <div class="schedule-icon-wrap">
+                                <img class="schedule-icon" src="${imgUrl}" alt="${shortSub}">
+                            </div>
+                            <div class="schedule-title">${shortSub}</div>
+                        </a>`;
+                });
+                html += `</div>
+                        <div class="scroll-btn right" onclick="scrollRow(this, 1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </div>
+                </div>`;
+            }
+            
+            // 5. Other Details & FAQs
+            html += `<div class="section" style="padding-bottom: 0;">`;
+            
+            if (info.description) {
+                html += `
+                <div class="accordion">
+                    <div class="accordion-item active">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            Other Details
+                            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="accordion-content" style="padding-top: 0;">
+                            ${extractBodyContent(info.description)}
+                        </div>
+                    </div>
+                </div>`;
+            }
+            
+            const faqs = [
+                {q: "Why should I join this course? How will it help me?", a: "This course is designed by PW's top faculty to ensure you master the concepts thoroughly and crack your target exams."},
+                {q: "How will the classes be conducted? What if I miss a class?", a: "Classes are conducted Live online. If you miss a class, the recording will be available in your batch immediately after the session."},
+                {q: "Can I download the classes?", a: "Yes, you can download the classes in the PW App to watch them offline without internet."},
+                {q: "How can I resolve my doubts?", a: "You can use the doubt solving engine in the app during and after the classes to get your queries resolved."},
+                {q: "What is Digital Preparation KIT ? How to access its features ?", a: "The digital kit includes audio summaries, PYQs, and handwritten notes. You can access it directly from the study tab in your batch."}
+            ];
+            
+            html += `<h2 class="section-title" style="margin-top:24px;">FAQ's</h2>
+                <div class="accordion" style="margin-bottom: 24px;">`;
+            
+            faqs.forEach(faq => {
+                html += `
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            ${faq.q}
+                            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                        <div class="accordion-content">
+                            ${faq.a}
+                        </div>
+                    </div>`;
+            });
+            
+            html += `
+                    <div style="padding: 12px 16px; text-align: right; background: white; border-top: 1px solid #f1f5f9;">
+                        <a href="#" style="color: var(--pw-blue); font-size: 13px; font-weight: 600; text-decoration: none;">Load More</a>
+                    </div>
+                </div></div>`;
+            
+            document.getElementById('mainContent').innerHTML = html;
+            document.getElementById('mainContent').style.paddingBottom = '80px';
+            
+            // Set Enroll Price Free and 100% OFF
+            const priceEl = document.querySelector('.price-main');
+            const subPriceEl = document.querySelector('.price-sub');
+            if (info.fee && info.fee.price > 0) {
+                priceEl.innerHTML = 'Free';
+                subPriceEl.innerHTML = `<strike>₹${info.fee.price}</strike> 100% OFF`;
+                subPriceEl.style.display = 'flex';
+            } else {
+                priceEl.innerHTML = 'Free';
+                subPriceEl.innerHTML = `<strike>₹1999</strike> 100% OFF`;
+                subPriceEl.style.display = 'flex';
+            }
+        }
+        loadData();
+    </script>
+</body>
+</html>
