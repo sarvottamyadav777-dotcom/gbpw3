@@ -1,6 +1,0 @@
-{
-  "name": "GB STUDY",
-  "description": "GB STUDY - Explore online and offline batches for JEE, NEET, Class 11, Class 12, lectures, notes, and DPPs.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
